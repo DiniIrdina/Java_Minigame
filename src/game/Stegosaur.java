@@ -14,7 +14,7 @@ import edu.monash.fit2099.engine.GameMap;
  */
 public class Stegosaur extends Dinosaur {
 	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
-	private Behaviour behaviour;
+
 
 	/** 
 	 * Constructor.
