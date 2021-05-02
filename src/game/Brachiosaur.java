@@ -3,8 +3,8 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 public class Brachiosaur extends Dinosaur{
-    public Brachiosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints);
+    public Brachiosaur(String name) {
+        super(name, 'B', 160);
     }
 
     @Override

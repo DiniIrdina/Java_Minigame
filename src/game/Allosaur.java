@@ -3,8 +3,9 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 public class Allosaur extends Dinosaur{
-    public Allosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints);
+    public Allosaur(String name) {
+        super(name, 'a', 100);
+        behaviour = new WanderBehaviour();
     }
 
     @Override

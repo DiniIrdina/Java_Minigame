@@ -1,10 +1,13 @@
 package game;
 
+import edu.monash.fit2099.engine.Location;
+
 public class Egg extends PortableItem{
     private String species;
+    private int age = 0;
 
     public Egg(String name, String species, char displayChar) {
-        super(name, displayChar);
+        super(name, 'o');
         setSpecies(species);
     }
 
@@ -15,4 +18,23 @@ public class Egg extends PortableItem{
     public void setSpecies(String species) {
         this.species = species;
     }
+
+
+    public void tick(Location currentLocation){
+        super.tick(currentLocation);
+        age++;
+        if (age == 10){
+            if (species.equals("Stegosaur")){
+                Stegosaur babyDino = new Stegosaur("Stegosaur");
+            }
+            else if (species.equals("Brachiosaur")){
+                Brachiosaur babyDino = new Brachiosaur("Brachiosaur");
+            }
+            else{
+                Allosaur babyDino = new Allosaur("Allosaur");
+            }
+        }
+
+    }
+
 }
