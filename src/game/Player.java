@@ -13,6 +13,7 @@ import edu.monash.fit2099.engine.Menu;
 public class Player extends Actor {
 
 	private Menu menu = new Menu();
+	public int EcoPointStorage;
 
 	/**
 	 * Constructor.
@@ -31,5 +32,13 @@ public class Player extends Actor {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);
+	}
+
+	/**
+	 * Getter method to obtain the current eco points the player is holding
+	 * @return The total eco points the player is holding
+	 */
+	public int getEcoPointStorage(){
+		return EcoPointStorage;
 	}
 }

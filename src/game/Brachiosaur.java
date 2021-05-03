@@ -28,4 +28,14 @@ public class Brachiosaur extends Dinosaur{
 
         return new DoNothingAction();
     }
+
+    @Override
+    public String getSpecies() {
+        return null;
+    }
+
+    @Override
+    public boolean Attackable() {
+        return false;
+    }
 }
