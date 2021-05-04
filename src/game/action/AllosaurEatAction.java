@@ -1,6 +1,7 @@
-package game;
+package game.action;
 
 import edu.monash.fit2099.engine.*;
+import game.actor.Dinosaur;
 
 public class AllosaurEatAction extends Action {
     /**

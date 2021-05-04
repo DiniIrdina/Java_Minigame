@@ -1,11 +1,12 @@
-package game;
+package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.action.AttackAction;
+import game.actor.Dinosaur;
 
-public class Allosaur extends Dinosaur{
-    public Allosaur(String name) {
-        super(name, 'a', 100);
-        behaviour = new WanderBehaviour();
+public class Brachiosaur extends Dinosaur {
+    public Brachiosaur(String name) {
+        super(name, 'B', 160);
     }
 
     @Override
@@ -16,7 +17,7 @@ public class Allosaur extends Dinosaur{
     /**
      * Figure out what to do next.
      *
-     * FIXME: Allosaur wanders around at random, or if no suitable MoveActions are available, it
+     * FIXME: Brachiosaur wanders around at random, or if no suitable MoveActions are available, it
      * just stands there.  That's boring.
      *
      * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)

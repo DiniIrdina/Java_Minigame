@@ -1,7 +1,9 @@
-package game;
+package game.actor;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.behaviour.Behaviour;
+import game.item.Corpse;
 
 
 public abstract class Dinosaur extends Actor {

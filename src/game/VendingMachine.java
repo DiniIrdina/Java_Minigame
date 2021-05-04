@@ -2,13 +2,14 @@ package game;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
-
-import javax.swing.*;
+import game.actor.Player;
+import game.item.Fruit;
+import game.item.PortableItem;
 
 public class VendingMachine extends Item {
     private int Selection;
     protected Actor Actor;
-    protected Player Player;
+    protected game.actor.Player Player;
 
 
     /***

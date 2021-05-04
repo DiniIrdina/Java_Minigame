@@ -1,8 +1,11 @@
-package game;
+package game.item;
 
 import edu.monash.fit2099.engine.Location;
+import game.actor.Brachiosaur;
+import game.actor.Allosaur;
+import game.actor.Stegosaur;
 
-public class Egg extends PortableItem{
+public class Egg extends PortableItem {
     private String species;
     private int age = 0;
 

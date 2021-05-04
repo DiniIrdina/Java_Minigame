@@ -1,6 +1,7 @@
-package game;
+package game.behaviour;
 
 import edu.monash.fit2099.engine.*;
+import game.behaviour.Behaviour;
 
 /**
  * A class that figures out a MoveAction that will move the actor one step 

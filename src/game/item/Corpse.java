@@ -1,6 +1,6 @@
-package game;
+package game.item;
 
-import edu.monash.fit2099.engine.Item;
+import game.item.PortableItem;
 
 public class Corpse extends PortableItem {
     public Corpse(String name, char displayChar) {
