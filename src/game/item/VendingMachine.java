@@ -3,8 +3,6 @@ package game.item;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import game.actor.Player;
-import game.item.Fruit;
-import game.item.PortableItem;
 
 public class VendingMachine extends Item {
     private int Selection;
