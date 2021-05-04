@@ -25,9 +25,16 @@ public class Tree extends Ground {
 			displayChar = 'T';
 
 		double fruitChance = Math.random();
-		if (fruitChance >= 0.5){
+		if (fruitChance >= 0.5 && fruits.size() <= 10){
 			Fruit fruit = new Fruit();
 			fruits.add(fruit);
+		}
+
+		double fruitDropChance = Math.random();
+		if (fruitDropChance <= 0.05 && !fruits.isEmpty()){
+			fruits.remove(fruits.size()-1);
+			Fruit fruit = new Fruit();
+			location.addItem(fruit);
 		}
 	}
 
