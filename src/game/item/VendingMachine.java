@@ -76,7 +76,7 @@ public class VendingMachine extends Item {
         int price = 100;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Item vegetarianMealKit = new PortableItem("Vegetarian Meal Kit", '&');
+            VegetarianMealKit vegetarianMealKit = new VegetarianMealKit("Vegetarian Meal Kit", '&');
             this.Player.removeEcoPoints(price);
             selected = vegetarianMealKit;
             }
@@ -90,7 +90,7 @@ public class VendingMachine extends Item {
         int price = 500;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Item carnivoreMealKit = new PortableItem("Carnivore Meal Kit", '^');
+            CarnivoreMealKit carnivoreMealKit = new CarnivoreMealKit("Carnivore Meal Kit", '^');
             this.Player.removeEcoPoints(price);
             selected = carnivoreMealKit;
         }
@@ -104,7 +104,7 @@ public class VendingMachine extends Item {
         int price = 200;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Item stegosaurEgg = new PortableItem("Stegosaur Egg", 's');
+            StegosaurEgg stegosaurEgg = new StegosaurEgg("Stegosaur Egg", "Stegosaur", 's');
             this.Player.removeEcoPoints(price);
             selected = stegosaurEgg;
         }
@@ -118,7 +118,7 @@ public class VendingMachine extends Item {
         int price = 500;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Item brachiosaurEgg = new PortableItem("Brachiosaur Egg", 'b');
+            BrachiosaurEgg brachiosaurEgg = new BrachiosaurEgg("Brachiosaur Egg", "Brachiosaur", 'b');
             this.Player.removeEcoPoints(price);
             selected = brachiosaurEgg;
         }
@@ -132,7 +132,7 @@ public class VendingMachine extends Item {
         int price = 1000;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Item allosaurEgg = new PortableItem("Allosaur Egg", 'a');
+            AllosaurEgg allosaurEgg = new AllosaurEgg("Allosaur Egg", "Allosaur", 'a');
             this.Player.removeEcoPoints(price);
             selected = allosaurEgg;
         }
@@ -146,7 +146,7 @@ public class VendingMachine extends Item {
         int price = 500;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Item laserGun = new PortableItem("Laser Gun", 'g');
+            LaserGun laserGun = new LaserGun("Laser Gun", 'g');
             this.Player.removeEcoPoints(price);
             selected = laserGun;
         }
