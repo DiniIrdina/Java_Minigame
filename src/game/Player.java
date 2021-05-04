@@ -41,4 +41,8 @@ public class Player extends Actor {
 	public int getEcoPointStorage(){
 		return EcoPointStorage;
 	}
+
+	public void removeEcoPoints(int remove){
+		EcoPointStorage = EcoPointStorage - remove;
+	}
 }
