@@ -1,6 +1,4 @@
-package game;
-
-import edu.monash.fit2099.engine.Ground;
+package game.environment;
 
 public class Bush extends Dirt{
     /**

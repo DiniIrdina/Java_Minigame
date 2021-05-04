@@ -10,6 +10,11 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.actor.Player;
 import game.actor.Stegosaur;
+import game.environment.Dirt;
+import game.environment.Floor;
+import game.environment.Tree;
+import game.environment.Wall;
+import game.item.VendingMachine;
 
 /**
  * The main class for the Jurassic World game.
