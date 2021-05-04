@@ -61,7 +61,7 @@ public class VendingMachine extends Item {
         int price = 30;
         try {
             if (totalEcoPoints >= price) {
-                Fruit fruit = new Fruit("Fruit", '*');
+                Fruit fruit = new Fruit();
                 this.Player.removeEcoPoints(price);
                 return fruit;
             }

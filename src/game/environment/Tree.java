@@ -23,6 +23,12 @@ public class Tree extends Ground {
 			displayChar = 't';
 		if (age == 20)
 			displayChar = 'T';
+
+		double fruitChance = Math.random();
+		if (fruitChance >= 0.5){
+			Fruit fruit = new Fruit();
+			fruits.add(fruit);
+		}
 	}
 
 }
