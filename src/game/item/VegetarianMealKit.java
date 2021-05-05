@@ -1,7 +1,7 @@
 package game.item;
 
-public class VegetarianMealKit extends PortableItem{
-    public VegetarianMealKit(String name, char displayChar) {
-        super(name, displayChar);
+public class VegetarianMealKit extends Food{
+    public VegetarianMealKit() {
+        super("Vegetarian Meal Kit", '&');
     }
 }

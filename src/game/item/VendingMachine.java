@@ -74,7 +74,7 @@ public class VendingMachine extends Item {
         int price = 100;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            VegetarianMealKit vegetarianMealKit = new VegetarianMealKit("Vegetarian Meal Kit", '&');
+            VegetarianMealKit vegetarianMealKit = new VegetarianMealKit();
             this.Player.removeEcoPoints(price);
             selected = vegetarianMealKit;
             }
@@ -88,7 +88,7 @@ public class VendingMachine extends Item {
         int price = 500;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            CarnivoreMealKit carnivoreMealKit = new CarnivoreMealKit("Carnivore Meal Kit", '^');
+            CarnivoreMealKit carnivoreMealKit = new CarnivoreMealKit();
             this.Player.removeEcoPoints(price);
             selected = carnivoreMealKit;
         }

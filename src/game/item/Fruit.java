@@ -1,6 +1,6 @@
 package game.item;
 
-public class Fruit extends PortableItem {
+public class Fruit extends Food {
     public Fruit(){
         super("Fruit", '*');
     }

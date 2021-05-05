@@ -1,7 +1,7 @@
 package game.item;
 
-public class CarnivoreMealKit extends PortableItem{
-    public CarnivoreMealKit(String name, char displayChar) {
-        super(name, displayChar);
+public class CarnivoreMealKit extends Food{
+    public CarnivoreMealKit() {
+        super("Carnivore Meal Kit", '^');
     }
 }

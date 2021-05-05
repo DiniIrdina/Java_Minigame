@@ -26,17 +26,17 @@ public class Egg extends PortableItem {
     public void tick(Location currentLocation){
         super.tick(currentLocation);
         age++;
-        if (age == 10){
-            if (species.equals("Stegosaur")){
-                Stegosaur babyDino = new Stegosaur("Stegosaur");
-            }
-            else if (species.equals("Brachiosaur")){
-                Brachiosaur babyDino = new Brachiosaur("Brachiosaur");
-            }
-            else{
-                Allosaur babyDino = new Allosaur("Allosaur");
-            }
-        }
+//        if (age == 10){
+//            if (species.equals("Stegosaur")){
+//                Stegosaur babyDino = new Stegosaur("Stegosaur");
+//            }
+//            else if (species.equals("Brachiosaur")){
+//                Brachiosaur babyDino = new Brachiosaur("Brachiosaur");
+//            }
+//            else{
+//                Allosaur babyDino = new Allosaur("Allosaur");
+//            }
+//        }
 
     }
 
