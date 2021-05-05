@@ -3,10 +3,14 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.action.AttackAction;
 import game.actor.Dinosaur;
+import game.item.Food;
+import game.item.Fruit;
+import game.item.VegetarianMealKit;
 
 public class Brachiosaur extends Dinosaur {
-    public Brachiosaur(String name) {
-        super(name, 'B', 160);
+    String species = "Brachiosaur";
+    public Brachiosaur() {
+        super("Brachiosaur", 'B', 160);
     }
 
     @Override
@@ -39,5 +43,23 @@ public class Brachiosaur extends Dinosaur {
     @Override
     public boolean Attackable() {
         return false;
+    }
+
+    @Override
+    public boolean canEat(Food food) {
+        boolean result = false;
+        if (food instanceof Fruit || food instanceof VegetarianMealKit){
+            result = true;
+        }
+        return result;
+    }
+
+    @Override
+    public void eatsFood(Food food) {
+        if (food instanceof Fruit){
+            heal(5);
+        }else if(food instanceof VegetarianMealKit){
+            heal(maxHitPoints-hitPoints);
+        }
     }
 }

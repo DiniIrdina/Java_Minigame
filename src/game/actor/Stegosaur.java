@@ -9,6 +9,9 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
+import game.item.Food;
+import game.item.Fruit;
+import game.item.VegetarianMealKit;
 
 /**
  * A herbivorous dinosaur.
@@ -16,16 +19,14 @@ import game.action.AttackAction;
  */
 public class Stegosaur extends Dinosaur {
 	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
-
-
+	String species = "Stegosaur";
 	/** 
 	 * Constructor.
 	 * All Stegosaurs are represented by a 'd' and have 100 hit points.
-	 * 
-	 * @param name the name of this Stegosaur
+	 *
 	 */
-	public Stegosaur(String name) {
-		super(name, 'd', 100);
+	public Stegosaur() {
+		super("Stegosaur", 'd', 100);
 		
 		behaviour = new WanderBehaviour();
 	}
@@ -61,4 +62,24 @@ public class Stegosaur extends Dinosaur {
 	public boolean Attackable() {
 		return false;
 	}
+
+	@Override
+	public boolean canEat(Food food) {
+		boolean result = false;
+		if (food instanceof Fruit || food instanceof VegetarianMealKit){
+			result = true;
+		}
+		return result;
+	}
+
+	@Override
+	public void eatsFood(Food food) {
+		if (food instanceof Fruit){
+			heal(10);
+		}else if (food instanceof VegetarianMealKit){
+			heal(maxHitPoints-hitPoints);
+		}
+	}
+
+
 }

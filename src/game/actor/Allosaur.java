@@ -3,10 +3,12 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
+import game.item.*;
 
 public class Allosaur extends Dinosaur {
-    public Allosaur(String name) {
-        super(name, 'A', 100);
+    String species = "Allosaur";
+    public Allosaur() {
+        super("Allosaur", 'A', 100);
         behaviour = new WanderBehaviour();
     }
 
@@ -40,5 +42,21 @@ public class Allosaur extends Dinosaur {
     @Override
     public boolean Attackable() {
         return false;
+    }
+
+    @Override
+    public boolean canEat(Food food) {
+        boolean result = false;
+        if (food instanceof Egg || food instanceof CarnivoreMealKit || food instanceof Corpse){
+            result = true;
+        }
+        return result;
+    }
+
+    @Override
+    public void eatsFood(Food food) {
+        if (food instanceof Corpse){
+
+        }
     }
 }

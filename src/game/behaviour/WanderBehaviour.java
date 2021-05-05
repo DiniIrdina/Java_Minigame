@@ -1,14 +1,13 @@
 package game.behaviour;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Exit;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
+import game.actor.Dinosaur;
 import game.behaviour.Behaviour;
+import game.item.Food;
 
 public class WanderBehaviour implements Behaviour {
 	
@@ -26,6 +25,18 @@ public class WanderBehaviour implements Behaviour {
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		ArrayList<Action> actions = new ArrayList<Action>();
+
+		Location location = map.locationOf(actor);
+		List<Item> itemsHere = location.getItems();
+		if(!itemsHere.isEmpty()){
+			for(Item item: itemsHere){
+				if(item instanceof Food){
+					if(((Dinosaur)actor).canEat((Food)item)){
+
+					}
+				}
+			}
+		}
 		
 		for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();

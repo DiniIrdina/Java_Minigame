@@ -5,7 +5,7 @@ import game.actor.Brachiosaur;
 import game.actor.Allosaur;
 import game.actor.Stegosaur;
 
-public class Egg extends PortableItem {
+public class Egg extends Food {
     private String species;
     private int age = 0;
 
