@@ -7,9 +7,10 @@ import game.item.*;
 
 public class Allosaur extends Dinosaur {
     public static final String SPECIES = "Allosaur";
-    public static final int ADULT_AGE = 20;
+    public static final int ADULT_AGE = 50;
     public static final int MAX_HIT_POINTS = 100;
-    public static final int PREGNANT_LENGTH = 10;
+    public static final int HUNGRY_LEVEL = 80;
+    public static final int PREGNANT_LENGTH = 20;
     public static final char BABY_ALLOSAUR_DISPLAY = 'a';
     public static final char ADULT_ALLOSAUR_DISPLAY = 'A';
     public Allosaur(int age) {

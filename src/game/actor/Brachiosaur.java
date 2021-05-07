@@ -10,8 +10,9 @@ import game.item.VegetarianMealKit;
 
 public class Brachiosaur extends Dinosaur {
     public static final String SPECIES = "Brachiosaur";
-    public static final int ADULT_AGE = 25;
+    public static final int ADULT_AGE = 50;
     public static final int MAX_HIT_POINTS=160;
+    public static final int HUNGRY_LEVEL = 140;
     public static final int PREGNANT_LENGTH = 30;
     public static final char  BABY_BRACHIOSAUR_DISPLAY = 'b';
     public static final char  ADULT_BRACHIOSAUR_DISPLAY = 'B';

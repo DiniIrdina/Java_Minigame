@@ -22,10 +22,10 @@ public class Stegosaur extends Dinosaur {
 	public static final String SPECIES = "Stegosaur";
 	public static final int ADULT_AGE = 20;
 	public static final int MAX_HIT_POINTS=100;
+	public static final int HUNGRY_LEVEL = 90;
 	public static final int PREGNANT_LENGTH = 10;
 	public static final char BABY_STEGOSAUR_DISPLAY = 's';
 	public static final char ADULT_STEGOSAUR_DISPLAY = 'S';
-
 
 	/** 
 	 * Constructor.

@@ -26,19 +26,20 @@ public class Egg extends Food {
     public void tick(Location currentLocation){
         super.tick(currentLocation);
         age++;
-        if (age == 10){
-            if (species.equals("Stegosaur")){
-                Stegosaur babyDino = new Stegosaur(0);
-                currentLocation.addActor(babyDino);
+        if (age == 20 && species.equals("Stegosaur")){
+            Stegosaur babyDino = new Stegosaur(0);
+            currentLocation.addActor(babyDino);
             }
-            else if (species.equals("Brachiosaur")){
-                Brachiosaur babyDino = new Brachiosaur(0);
-                currentLocation.addActor(babyDino);
-            }
-            else{
-                Allosaur babyDino = new Allosaur(0);
-                currentLocation.addActor(babyDino);
+        if (age == 50 && species.equals("Allosaur")){
+            Allosaur babyDino = new Allosaur(0);
+            currentLocation.addActor(babyDino);
+        }
+        if (age ==40 && species.equals("Brachiosaur")){
+            Brachiosaur babyDino = new Brachiosaur(0);
+            currentLocation.addActor(babyDino);
+        }
+
             }
         }
-    }
-}
+
+
