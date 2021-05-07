@@ -43,7 +43,7 @@ public abstract class Dinosaur extends Actor {
      */
     public void Death(Dinosaur target, GameMap map) {
         if (!target.isConscious()) {
-            Corpse corpse = new Corpse(target.getSpecies());
+            Corpse corpse = new Corpse(target.getSpecies(), map);
             map.locationOf(target).addItem(corpse);
             map.removeActor(target);
 
