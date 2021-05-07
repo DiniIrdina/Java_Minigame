@@ -2,11 +2,13 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.action.AttackAction;
+import game.action.FeedingAction;
 import game.actor.Dinosaur;
 import game.behaviour.WanderBehaviour;
-import game.item.Food;
-import game.item.Fruit;
-import game.item.VegetarianMealKit;
+import game.interfaces.NeedsPlayer;
+import game.item.*;
+
+import static java.util.Objects.isNull;
 
 public class Brachiosaur extends Dinosaur {
     public static final String SPECIES = "Brachiosaur";
@@ -33,11 +35,24 @@ public class Brachiosaur extends Dinosaur {
 
         behaviour = new WanderBehaviour();
     }
-
-    @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        return new Actions(new AttackAction(this));
+        actions = new Actions();
+        actions.add(new AttackAction(this));
+        Player player = NeedsPlayer.getPlayer(map);
+        if (!isNull(player)){
+            for(Item item: player.getInventory()){
+                if (item instanceof Fruit){
+                    actions.add(new FeedingAction(this,((Food)item),Fruit.getFeedPoints()));
+                }else if (item instanceof VegetarianMealKit){
+                    actions.add(new FeedingAction(this,((Food)item), VegetarianMealKit.getFeedPoints()));
+                }
+            }
+        }
+        return actions;
+
     }
+
+
 
     @Override
     public void assignBehaviour() {

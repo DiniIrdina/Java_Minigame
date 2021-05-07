@@ -1,11 +1,15 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.action.FeedingAction;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
+import game.interfaces.NeedsPlayer;
 import game.item.*;
 
 import java.util.ArrayList;
+
+import static java.util.Objects.isNull;
 
 public class Allosaur extends Dinosaur {
     public static final String SPECIES = "Allosaur";
@@ -34,11 +38,22 @@ public class Allosaur extends Dinosaur {
         behaviour = new WanderBehaviour();
     }
 
-    @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        return new Actions(new AttackAction(this));
-    }
+        actions = new Actions();
+        actions.add(new AttackAction(this));
+        Player player = NeedsPlayer.getPlayer(map);
+        if (!isNull(player)){
+            for(Item item: player.getInventory()){
+                if (item instanceof Egg){
+                    actions.add(new FeedingAction(this,((Food)item), Egg.getFeedPoints()));
+                }else if (item instanceof CarnivoreMealKit){
+                    actions.add(new FeedingAction(this,((Food)item), CarnivoreMealKit.getFeedPoints()));
+                }
+            }
+        }
+        return actions;
 
+    }
     @Override
     public void assignBehaviour() {
 

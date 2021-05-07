@@ -1,17 +1,16 @@
 package game.actor;
 
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
+import game.action.FeedingAction;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
+import game.interfaces.NeedsPlayer;
 import game.item.Food;
 import game.item.Fruit;
 import game.item.VegetarianMealKit;
+
+import static java.util.Objects.isNull;
 
 /**
  * A herbivorous dinosaur.
@@ -47,9 +46,21 @@ public class Stegosaur extends Dinosaur {
 		behaviour = new WanderBehaviour();
 	}
 
-	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		return new Actions(new AttackAction(this));
+		actions = new Actions();
+		actions.add(new AttackAction(this));
+		Player player = NeedsPlayer.getPlayer(map);
+		if (!isNull(player)){
+			for(Item item: player.getInventory()){
+				if (item instanceof Fruit){
+					actions.add(new FeedingAction(this,((Food)item),Fruit.getFeedPoints()));
+				}else if (item instanceof VegetarianMealKit){
+					actions.add(new FeedingAction(this,((Food)item), VegetarianMealKit.getFeedPoints()));
+				}
+			}
+		}
+		return actions;
+
 	}
 
 	/**

@@ -1,8 +1,9 @@
 package game.actor;
-
+import static java.util.Objects.isNull;
 import edu.monash.fit2099.engine.*;
 import game.action.AttackAction;
 import game.behaviour.Behaviour;
+import game.interfaces.NeedsPlayer;
 import game.item.Corpse;
 import game.item.Food;
 
@@ -98,13 +99,6 @@ public abstract class Dinosaur extends Actor {
 
     public abstract boolean canEat(Food food);
 
-    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map){
-        actions = new Actions();
-        actions.add(new AttackAction(this));
-
-
-        return actions;
-    }
 
     public void removeEgg(){
         for(Item item: inventory){
