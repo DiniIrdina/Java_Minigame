@@ -20,14 +20,30 @@ import game.item.VegetarianMealKit;
 public class Stegosaur extends Dinosaur {
 	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
 	String species = "Stegosaur";
+	public static final int ADULT_AGE = 20;
+	public static final int MAX_HIT_POINTS=100;
+	public static final int PREGNANT_LENGTH = 10;
+	public static final char BABY_STEGOSAUR_DISPLAY = 's';
+	public static final char ADULT_STEGOSAUR_DISPLAY = 'S';
+
+
 	/** 
 	 * Constructor.
 	 * All Stegosaurs are represented by a 'd' and have 100 hit points.
 	 *
 	 */
-	public Stegosaur() {
-		super("Stegosaur", 'd', 100);
-		
+	public Stegosaur(int age) {
+		super("Stegosaur", ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE );
+		if (age < ADULT_AGE){
+			this.displayChar = BABY_STEGOSAUR_DISPLAY;
+		}
+		behaviour = new WanderBehaviour();
+	}
+	public Stegosaur(int age, char gender) {
+		super("Stegosaur", ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE );
+		if (age < ADULT_AGE){
+			this.displayChar = BABY_STEGOSAUR_DISPLAY;
+		}
 		behaviour = new WanderBehaviour();
 	}
 

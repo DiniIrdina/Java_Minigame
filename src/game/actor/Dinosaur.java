@@ -12,14 +12,38 @@ public abstract class Dinosaur extends Actor {
     protected Behaviour behaviour;
 
     protected String species;
-
+    protected int age;
+    protected final int PREGNANT_LENGTH;
+    protected final int ADULT_AGE;
     protected char gender;
 
     private double genderProbability = 0.5;
 
-    public Dinosaur(String name, char displayChar, int hitPoints) {
+    public Dinosaur(String name, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge) {
         super(name, displayChar, hitPoints);
         double probability = Math.random();
+        this.maxHitPoints = maxHitPoints;
+        this.PREGNANT_LENGTH = pregnant;
+        this.ADULT_AGE = adultAge;
+        this.age=age;
+
+        if (probability<=genderProbability){
+            this.gender = 'F';
+        }
+        else{
+            this.gender = 'M';
+        }
+    }
+
+    public Dinosaur(String name, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge) {
+        super(name, displayChar, hitPoints);
+        double probability = Math.random();
+        this.maxHitPoints = maxHitPoints;
+        this.PREGNANT_LENGTH = pregnant;
+        this.ADULT_AGE = adultAge;
+        this.gender = gender;
+        this.age=age;
+
         if (probability<=genderProbability){
             this.gender = 'F';
         }
