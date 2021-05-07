@@ -33,14 +33,14 @@ public class Stegosaur extends Dinosaur {
 	 *
 	 */
 	public Stegosaur(int age) {
-		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE );
+		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,ADULT_STEGOSAUR_DISPLAY);
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}
 		behaviour = new WanderBehaviour();
 	}
 	public Stegosaur(int age, char gender) {
-		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE );
+		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,ADULT_STEGOSAUR_DISPLAY);
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}
@@ -60,14 +60,15 @@ public class Stegosaur extends Dinosaur {
 	 * 
 	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
 	 */
-	@Override
-	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		Action wander = behaviour.getAction(this, map);
-		if (wander != null)
-			return wander;
-		
-		return new DoNothingAction();
-	}
+
+//	@Override
+//	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+//		Action wander = behaviour.getAction(this, map);
+//		if (wander != null)
+//			return wander;
+//
+//		return new DoNothingAction();
+//	}
 
 	@Override
 	public boolean canEat(Food food) {

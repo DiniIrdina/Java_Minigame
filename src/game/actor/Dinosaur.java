@@ -1,8 +1,6 @@
 package game.actor;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
 import game.behaviour.Behaviour;
 import game.item.Corpse;
 import game.item.Food;
@@ -15,12 +13,14 @@ public abstract class Dinosaur extends Actor {
     protected int age;
     protected final int PREGNANT_LENGTH;
     protected final int ADULT_AGE;
+    protected final char ADULT_DISPLAY;
     protected char gender;
     protected boolean attackable;
 
     private double genderProbability = 0.5;
 
-    public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge) {
+    public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
+                    adultDisplay) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.SPECIES = species;
@@ -29,6 +29,7 @@ public abstract class Dinosaur extends Actor {
         this.ADULT_AGE = adultAge;
         this.age=age;
         this.attackable = true;
+        this.ADULT_DISPLAY = adultDisplay;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -38,13 +39,15 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-    public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge) {
+    public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
+                    char adultDisplay) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
         this.SPECIES = species;
         this.PREGNANT_LENGTH = pregnant;
         this.ADULT_AGE = adultAge;
+        this.ADULT_DISPLAY = adultDisplay;
         this.gender = gender;
         this.age=age;
 
@@ -102,9 +105,24 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    public void turn(Action action){
+        age++;
+        if(age== ADULT_AGE){
+            displayChar = ADULT_DISPLAY;
+        }
+    }
+
+    @Override
+    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        turn(lastAction);
+        return new DoNothingAction();
+    }
+
     public abstract void eatsFood(Food food);
 
     public int getHitPoints(){
         return this.hitPoints;
     }
+
+
 }

@@ -5,8 +5,6 @@ import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
 import game.item.*;
 
-import java.util.ArrayList;
-
 public class Allosaur extends Dinosaur {
     public static final String SPECIES = "Allosaur";
     public static final int ADULT_AGE = 50;
@@ -15,10 +13,9 @@ public class Allosaur extends Dinosaur {
     public static final int PREGNANT_LENGTH = 20;
     public static final char BABY_ALLOSAUR_DISPLAY = 'a';
     public static final char ADULT_ALLOSAUR_DISPLAY = 'A';
-    private ArrayList<Dinosaur> attacked_dinosaurs = new ArrayList<Dinosaur>();
-    private ArrayList<Integer> attacked_dinosaurs_timer = new ArrayList<Integer>();
+
     public Allosaur(int age) {
-        super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE);
+        super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,ADULT_ALLOSAUR_DISPLAY) ;
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }
@@ -26,7 +23,7 @@ public class Allosaur extends Dinosaur {
     }
 
     public Allosaur(int age, char gender) {
-        super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE);
+        super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,ADULT_ALLOSAUR_DISPLAY);
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }
@@ -70,22 +67,4 @@ public class Allosaur extends Dinosaur {
 
         }
     }
-
-    public void setAttacked_dinosaurs(Dinosaur dinosaur){
-        attacked_dinosaurs.add(dinosaur);
-    }
-
-    public ArrayList<Dinosaur> getAttacked_dinosaurs(){
-        return this.attacked_dinosaurs;
-    }
-
-    public void setAttacked_dinosaurs_timer(Integer count){
-        attacked_dinosaurs_timer.add(count);
-    }
-
-    public ArrayList<Integer> getAttacked_dinosaurs_timer(){
-        return this.attacked_dinosaurs_timer;
-    }
-
-    //UPDATE TIMER FOR DINOSAURS ATTACKED
 }
