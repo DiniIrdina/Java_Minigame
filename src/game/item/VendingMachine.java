@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import game.actor.Player;
 
+import java.util.Scanner;
+
 public class VendingMachine extends Item {
     private int Selection;
     protected Actor Actor;
@@ -20,38 +22,59 @@ public class VendingMachine extends Item {
         super(name, displayChar, portable);
     }
 
-    public Item purchase(Player player){
+    public void itemChoices(){
+        System.out.println("1. Fruit");
+        System.out.println("2. Vegetarian Meal Kit");
+        System.out.println("3. Carnivore Meal Kit");
+        System.out.println("4. Stegosaur Egg");
+        System.out.println("5. Brachiosaur Egg");
+        System.out.println("6. Allosaur Egg");
+        System.out.println("7. Laser Gun");
+        System.out.println("8. Exit");
+    }
+
+    public Item Selection_Purchase(){
+        Scanner scan = new Scanner(System.in);
+        itemChoices();
+        this.Selection = scan.nextInt();
+        scan.nextLine();
+        return purchase(Player, this.Selection);
+    }
+
+    public Item purchase(Player player, int selection){
         Item selectedItem = null;
-        switch(this.Selection){
-            case 1:
-                //fruit
-                selectedItem = spawnFruit(player.EcoPointStorage);
-                break;
-            case 2:
-                //vege meal kit
-                selectedItem = spawnVegetarianMealKit(player.EcoPointStorage);
-                break;
-            case 3:
-                //carni meal kit
-                selectedItem = spawnCarnivoreMealKit(player.EcoPointStorage);
-                break;
-            case 4:
-                //stego egg
-                selectedItem = spawnStegosaurEgg(player.EcoPointStorage);
-                break;
-            case 5:
-                //brachio egg
-                selectedItem = spawnBrachiosaurEgg(player.EcoPointStorage);
-                break;
-            case 6:
-                //allosaur egg
-                selectedItem = spawnAllosaurEgg(player.EcoPointStorage);
-                break;
-            case 7:
-                //laser gun
-                selectedItem = spawnLaserGun(player.EcoPointStorage);
-                break;
-        }
+        do {
+            switch (selection) {
+                case 1:
+                    //fruit
+                    selectedItem = spawnFruit(player.EcoPointStorage);
+                    break;
+                case 2:
+                    //vege meal kit
+                    selectedItem = spawnVegetarianMealKit(player.EcoPointStorage);
+                    break;
+                case 3:
+                    //carni meal kit
+                    selectedItem = spawnCarnivoreMealKit(player.EcoPointStorage);
+                    break;
+                case 4:
+                    //stego egg
+                    selectedItem = spawnStegosaurEgg(player.EcoPointStorage);
+                    break;
+                case 5:
+                    //brachio egg
+                    selectedItem = spawnBrachiosaurEgg(player.EcoPointStorage);
+                    break;
+                case 6:
+                    //allosaur egg
+                    selectedItem = spawnAllosaurEgg(player.EcoPointStorage);
+                    break;
+                case 7:
+                    //laser gun
+                    selectedItem = spawnLaserGun(player.EcoPointStorage);
+                    break;
+            }
+        }while(this.Selection != 8);
         return selectedItem;
     }
 
@@ -144,7 +167,7 @@ public class VendingMachine extends Item {
         int price = 500;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            LaserGun laserGun = new LaserGun("Laser Gun", 'g');
+            LaserGun laserGun = new LaserGun();
             this.Player.removeEcoPoints(price);
             selected = laserGun;
         }
