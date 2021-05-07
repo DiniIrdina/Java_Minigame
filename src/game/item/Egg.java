@@ -12,7 +12,7 @@ public abstract class Egg extends Food {
 
     public Egg() {
         super("Egg", 'o');
-        setSpecies(species);
+        setSpecies(this.species);
     }
 
     public String getSpecies() {

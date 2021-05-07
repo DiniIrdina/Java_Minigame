@@ -17,6 +17,8 @@ public class VMPurchasingAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
+        Player player = (Player)actor;
+
         return null;
     }
 
