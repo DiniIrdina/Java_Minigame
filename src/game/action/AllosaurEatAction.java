@@ -21,9 +21,6 @@ public class AllosaurEatAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-
-        boolean status;
-
         if (map.locationOf(actor) == map.locationOf(target) && target.getSpecies().equals("Stegosaur")) {
             int damage = 20;
             this.damage = damage;
