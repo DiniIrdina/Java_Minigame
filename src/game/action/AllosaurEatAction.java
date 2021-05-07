@@ -23,7 +23,7 @@ public class AllosaurEatAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (map.locationOf(actor) == map.locationOf(target) && target.getSpecies().equals("Stegosaur")) {
-            if (((Allosaur) actor).getAttacked_dinosaurs().contains(target)) {
+            if (((Allosaur) actor).getAttacked_dinosaur().contains(target)) {
                 return "Can't attack same dinosaur";
             } else {
                 int damage = 20;
@@ -33,8 +33,8 @@ public class AllosaurEatAction extends Action {
                     target.Death(target, map);
                 }
                 else {
-                    ((Allosaur) actor).setAttacked_dinosaurs(target);
-                    ((Allosaur) actor).setAttacked_dinosaurs_timer(0);
+                    ((Allosaur) actor).setAttacked_dinosaur(target);
+                    ((Allosaur) actor).setAttacked_dinosaur_count(0);
                 }
                 actor.heal(damage);
             }

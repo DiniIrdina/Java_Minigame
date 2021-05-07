@@ -5,6 +5,8 @@ import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
 import game.item.*;
 
+import java.util.ArrayList;
+
 public class Allosaur extends Dinosaur {
     public static final String SPECIES = "Allosaur";
     public static final int ADULT_AGE = 50;
@@ -13,6 +15,8 @@ public class Allosaur extends Dinosaur {
     public static final int PREGNANT_LENGTH = 20;
     public static final char BABY_ALLOSAUR_DISPLAY = 'a';
     public static final char ADULT_ALLOSAUR_DISPLAY = 'A';
+    private ArrayList<Dinosaur> attacked_dinosaur = new ArrayList<Dinosaur>();
+    private ArrayList<Integer> attacked_dinosaur_count = new ArrayList<Integer>();
 
     public Allosaur(int age) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,ADULT_ALLOSAUR_DISPLAY) ;
@@ -66,5 +70,21 @@ public class Allosaur extends Dinosaur {
         if (food instanceof Corpse){
 
         }
+    }
+
+    public void setAttacked_dinosaur(Dinosaur dinosaur){
+        this.attacked_dinosaur.add(dinosaur);
+    }
+
+    public ArrayList<Dinosaur> getAttacked_dinosaur(){
+        return this.attacked_dinosaur;
+    }
+
+    public void setAttacked_dinosaur_count(int count){
+        this.attacked_dinosaur_count.add(count);
+    }
+
+    public ArrayList<Integer> getAttacked_dinosaur_count(){
+        return this.attacked_dinosaur_count;
     }
 }
