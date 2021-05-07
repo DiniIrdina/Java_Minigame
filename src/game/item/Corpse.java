@@ -31,13 +31,13 @@ public class Corpse extends Food {
         super.tick(currentLocation);
         this.timer++;
         if (species.equals("Allosaur") || species.equals("Stegosaur")){
-            if (despawn_timer == 20) {
+            if (timer == despawn_timer) {
                 removeCorpse();
             }
         }
 
         else if (species.equals("Brachiosaur")) {
-            if (despawn_timer == 40){
+            if (timer == despawn_timer){
                 removeCorpse();
             }
         }
