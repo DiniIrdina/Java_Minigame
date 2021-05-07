@@ -9,8 +9,8 @@ public class Egg extends Food {
     private String species;
     private int age = 0;
 
-    public Egg(String name, String species, char displayChar) {
-        super(name, 'o');
+    public Egg(String species) {
+        super("Egg", 'o');
         setSpecies(species);
     }
 

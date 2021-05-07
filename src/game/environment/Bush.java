@@ -21,7 +21,7 @@ public class Bush extends Ground {
 
         double possibility = Math.random();
         if (possibility<=fruitPossibility && fruits.size() <= 5){
-            location.addItem(new Fruit());
+            fruits.add(new Fruit());
         }
     }
 }

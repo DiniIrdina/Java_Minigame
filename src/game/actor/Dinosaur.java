@@ -9,30 +9,29 @@ import game.item.Food;
 
 public abstract class Dinosaur extends Actor {
     protected Behaviour behaviour;
-    protected genderValue gender;
+
     protected String species;
 
-    protected enum genderValue{
-        FEMALE,MALE
-    }
+    protected char gender;
+
     private double genderProbability = 0.5;
 
     public Dinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         double probability = Math.random();
         if (probability<=genderProbability){
-            this.gender = genderValue.FEMALE;
+            this.gender = 'F';
         }
         else{
-            this.gender = genderValue.MALE;
+            this.gender = 'M';
         }
     }
 
-    public String getGender() {
-        return gender.toString();
+    public char getGender() {
+        return gender;
     }
 
-    public void setGender(genderValue gender) {
+    public void setGender(char gender) {
         this.gender = gender;
     }
 
@@ -48,6 +47,9 @@ public abstract class Dinosaur extends Actor {
             map.removeActor(target);
 
         }
+    }
+    public String getName(){
+        return this.name;
     }
 
     /**
