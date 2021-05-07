@@ -3,14 +3,34 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.action.AttackAction;
 import game.actor.Dinosaur;
+import game.behaviour.WanderBehaviour;
 import game.item.Food;
 import game.item.Fruit;
 import game.item.VegetarianMealKit;
 
 public class Brachiosaur extends Dinosaur {
     String species = "Brachiosaur";
-    public Brachiosaur() {
-        super("Brachiosaur", 'B', 160);
+    public static final int ADULT_AGE = 25;
+    public static final int MAX_HIT_POINTS=160;
+    public static final int PREGNANT_LENGTH = 30;
+    public static final char  BABY_BRACHIOSAUR_DISPLAY = 'b';
+    public static final char  ADULT_BRACHIOSAUR_DISPLAY = 'B';
+
+    public Brachiosaur(int age) {
+        super("Brachiosaur", ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE);
+        if (age<ADULT_AGE){
+            this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
+        }
+        behaviour = new WanderBehaviour();
+    }
+
+    public Brachiosaur(int age, char gender) {
+        super("Brachiosaur", ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE);
+        if (age<ADULT_AGE){
+            this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
+        }
+
+        behaviour = new WanderBehaviour();
     }
 
     @Override
