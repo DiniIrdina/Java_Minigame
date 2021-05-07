@@ -123,7 +123,7 @@ public class VendingMachine extends Ground {
         int price = 200;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Egg stegosaurEgg = new Egg("Stegosaur Egg");
+            Egg stegosaurEgg = new StegosaurEgg();
             this.Player.removeEcoPoints(price);
             selected = stegosaurEgg;
         }
@@ -137,7 +137,7 @@ public class VendingMachine extends Ground {
         int price = 500;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Egg brachiosaurEgg = new Egg("Brachiosaur Egg");
+            Egg brachiosaurEgg = new BrachiosaurEgg();
             this.Player.removeEcoPoints(price);
             selected = brachiosaurEgg;
         }
@@ -151,7 +151,7 @@ public class VendingMachine extends Ground {
         int price = 1000;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Egg allosaurEgg = new Egg("Allosaur Egg");
+            Egg allosaurEgg = new AllosaurEgg();
             this.Player.removeEcoPoints(price);
             selected = allosaurEgg;
         }
