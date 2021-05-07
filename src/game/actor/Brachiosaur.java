@@ -9,7 +9,7 @@ import game.item.Fruit;
 import game.item.VegetarianMealKit;
 
 public class Brachiosaur extends Dinosaur {
-    String species = "Brachiosaur";
+    public static final String SPECIES = "Brachiosaur";
     public static final int ADULT_AGE = 25;
     public static final int MAX_HIT_POINTS=160;
     public static final int PREGNANT_LENGTH = 30;
@@ -17,7 +17,7 @@ public class Brachiosaur extends Dinosaur {
     public static final char  ADULT_BRACHIOSAUR_DISPLAY = 'B';
 
     public Brachiosaur(int age) {
-        super("Brachiosaur", ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE);
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
@@ -25,7 +25,7 @@ public class Brachiosaur extends Dinosaur {
     }
 
     public Brachiosaur(int age, char gender) {
-        super("Brachiosaur", ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE);
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
@@ -55,10 +55,6 @@ public class Brachiosaur extends Dinosaur {
         return new DoNothingAction();
     }
 
-    @Override
-    public String getSpecies() {
-        return null;
-    }
 
     @Override
     public boolean Attackable() {

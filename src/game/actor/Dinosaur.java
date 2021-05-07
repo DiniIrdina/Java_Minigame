@@ -11,7 +11,7 @@ import game.item.Food;
 public abstract class Dinosaur extends Actor {
     protected Behaviour behaviour;
 
-    protected String species;
+    protected final String SPECIES;
     protected int age;
     protected final int PREGNANT_LENGTH;
     protected final int ADULT_AGE;
@@ -19,9 +19,10 @@ public abstract class Dinosaur extends Actor {
 
     private double genderProbability = 0.5;
 
-    public Dinosaur(String name, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge) {
-        super(name, displayChar, hitPoints);
+    public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge) {
+        super(species, displayChar, hitPoints);
         double probability = Math.random();
+        this.SPECIES = species;
         this.maxHitPoints = maxHitPoints;
         this.PREGNANT_LENGTH = pregnant;
         this.ADULT_AGE = adultAge;
@@ -35,10 +36,11 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-    public Dinosaur(String name, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge) {
-        super(name, displayChar, hitPoints);
+    public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge) {
+        super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
+        this.SPECIES = species;
         this.PREGNANT_LENGTH = pregnant;
         this.ADULT_AGE = adultAge;
         this.gender = gender;
@@ -54,10 +56,6 @@ public abstract class Dinosaur extends Actor {
 
     public char getGender() {
         return gender;
-    }
-
-    public void setGender(char gender) {
-        this.gender = gender;
     }
 
     /**
@@ -82,7 +80,7 @@ public abstract class Dinosaur extends Actor {
      * @return the species of dinosaur
      */
     public String getSpecies(){
-        return species;}
+        return SPECIES;}
     /**
      * Indicates if the dinosaur has been attacked or null.
      * @return True if dinosaur been attacked, false if not.

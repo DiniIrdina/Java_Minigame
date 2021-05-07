@@ -36,7 +36,7 @@ public class Egg extends Food {
                 currentLocation.addActor(babyDino);
             }
             else{
-                Allosaur babyDino = new Allosaur();
+                Allosaur babyDino = new Allosaur(0);
                 currentLocation.addActor(babyDino);
             }
         }

@@ -6,9 +6,25 @@ import game.action.AttackAction;
 import game.item.*;
 
 public class Allosaur extends Dinosaur {
-    String species = "Allosaur";
-    public Allosaur() {
-        super("Allosaur", 'A', 100);
+    public static final String SPECIES = "Allosaur";
+    public static final int ADULT_AGE = 20;
+    public static final int MAX_HIT_POINTS = 100;
+    public static final int PREGNANT_LENGTH = 10;
+    public static final char BABY_ALLOSAUR_DISPLAY = 'a';
+    public static final char ADULT_ALLOSAUR_DISPLAY = 'A';
+    public Allosaur(int age) {
+        super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE);
+        if(age<ADULT_AGE){
+            this.displayChar = BABY_ALLOSAUR_DISPLAY;
+        }
+        behaviour = new WanderBehaviour();
+    }
+
+    public Allosaur(int age, char gender) {
+        super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE);
+        if(age<ADULT_AGE){
+            this.displayChar = BABY_ALLOSAUR_DISPLAY;
+        }
         behaviour = new WanderBehaviour();
     }
 
@@ -34,10 +50,6 @@ public class Allosaur extends Dinosaur {
         return new DoNothingAction();
     }
 
-    @Override
-    public String getSpecies() {
-        return null;
-    }
 
     @Override
     public boolean Attackable() {

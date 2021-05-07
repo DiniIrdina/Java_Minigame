@@ -19,7 +19,7 @@ import game.item.VegetarianMealKit;
  */
 public class Stegosaur extends Dinosaur {
 	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
-	String species = "Stegosaur";
+	public static final String SPECIES = "Stegosaur";
 	public static final int ADULT_AGE = 20;
 	public static final int MAX_HIT_POINTS=100;
 	public static final int PREGNANT_LENGTH = 10;
@@ -33,14 +33,14 @@ public class Stegosaur extends Dinosaur {
 	 *
 	 */
 	public Stegosaur(int age) {
-		super("Stegosaur", ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE );
+		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE );
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}
 		behaviour = new WanderBehaviour();
 	}
 	public Stegosaur(int age, char gender) {
-		super("Stegosaur", ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE );
+		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE );
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}
@@ -69,10 +69,6 @@ public class Stegosaur extends Dinosaur {
 		return new DoNothingAction();
 	}
 
-	@Override
-	public String getSpecies() {
-		return null;
-	}
 
 	@Override
 	public boolean Attackable() {
