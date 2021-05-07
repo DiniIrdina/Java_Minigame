@@ -105,10 +105,17 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    public void turn(Action action){
+        age++;
+        if(age== ADULT_AGE){
+            displayChar = ADULT_DISPLAY;
+        }
+    }
+
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         turn(lastAction);
-        return null;
+        return new DoNothingAction();
     }
 
     public abstract void eatsFood(Food food);
@@ -117,10 +124,5 @@ public abstract class Dinosaur extends Actor {
         return this.hitPoints;
     }
 
-    public void turn(Action action){
-        this.age++;
-        if(this.age== this.ADULT_AGE){
-            this.displayChar = this.ADULT_DISPLAY;
-        }
-    }
+
 }
