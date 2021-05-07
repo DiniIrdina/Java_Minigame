@@ -2,6 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import game.behaviour.Behaviour;
 import game.item.Corpse;
 import game.item.Food;
@@ -65,6 +66,15 @@ public abstract class Dinosaur extends Actor {
     public abstract boolean Attackable();
 
     public abstract boolean canEat(Food food);
+
+    public void removeEgg(){
+        for(Item item: inventory){
+            if (item.toString().equals("Egg")){
+                this.removeItemFromInventory(item);
+                break;
+            }
+        }
+    }
 
     public abstract void eatsFood(Food food);
 }
