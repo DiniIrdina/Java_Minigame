@@ -14,7 +14,6 @@ import game.environment.Dirt;
 import game.environment.Floor;
 import game.environment.Tree;
 import game.environment.Wall;
-import game.item.VendingMachine;
 
 /**
  * The main class for the Jurassic World game.
@@ -25,13 +24,13 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new VendingMachine());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree());
 		
 		List<String> map = Arrays.asList(
 		"................................................................................",
 		"................................................................................",
 		".....#######....................................................................",
-		".....#___V_#....................................................................",
+		".....#_____#....................................................................",
 		".....#_____#....................................................................",
 		".....###.###....................................................................",
 		"................................................................................",
