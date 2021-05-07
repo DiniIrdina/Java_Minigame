@@ -25,13 +25,13 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new VendingMachine());
 		
 		List<String> map = Arrays.asList(
 		"................................................................................",
 		"................................................................................",
 		".....#######....................................................................",
-		".....#_____#....................................................................",
+		".....#___V_#....................................................................",
 		".....#_____#....................................................................",
 		".....###.###....................................................................",
 		"................................................................................",
@@ -62,7 +62,6 @@ public class Application {
 		// Place a pair of stegosaurs in the middle of the map
 		gameMap.at(30, 12).addActor(new Stegosaur(25,'F'));
 		gameMap.at(32, 12).addActor(new Stegosaur(25,'M'));
-		gameMap.at(10, 4).addItem(new VendingMachine("VendingMachine", 'V', false));
 
 		world.run();
 	}

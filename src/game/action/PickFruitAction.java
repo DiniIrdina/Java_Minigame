@@ -3,6 +3,7 @@ package game.action;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.actor.Player;
 import game.item.Fruit;
 
 public class PickFruitAction extends Action {
@@ -14,6 +15,7 @@ public class PickFruitAction extends Action {
         double probability = Math.random();
         if (probability <= FRUIT_PROBABILITY) {
             actor.addItemToInventory(new Fruit());
+            Player.updateEcoPoints(10);
             output = "Fruit collected!";
         }else{
             output = "You search the tree or bush for fruit, but you can't find any ripe ones.";

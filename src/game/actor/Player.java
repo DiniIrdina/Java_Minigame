@@ -13,7 +13,7 @@ import edu.monash.fit2099.engine.Menu;
 public class Player extends Actor {
 
 	private Menu menu = new Menu();
-	public int EcoPointStorage;
+	public static int EcoPointStorage;
 
 	/**
 	 * Constructor.
@@ -24,6 +24,7 @@ public class Player extends Actor {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+		EcoPointStorage = 0;
 	}
 
 	@Override
@@ -44,5 +45,9 @@ public class Player extends Actor {
 
 	public void removeEcoPoints(int remove){
 		EcoPointStorage = EcoPointStorage - remove;
+	}
+
+	public static void updateEcoPoints(int EcoPoints){
+		EcoPointStorage += EcoPoints;
 	}
 }

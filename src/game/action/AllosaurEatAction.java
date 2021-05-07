@@ -1,6 +1,7 @@
 package game.action;
 
 import edu.monash.fit2099.engine.*;
+import game.actor.Allosaur;
 import game.actor.Dinosaur;
 import game.item.Corpse;
 import game.item.Egg;
@@ -12,7 +13,7 @@ public class AllosaurEatAction extends Action {
      * The dinosaur to be attacked for food source
      */
     protected Dinosaur target;
-    protected Dinosaur actor;
+    protected Allosaur actor;
     private int damage;
 
     public AllosaurEatAction(Dinosaur target){
@@ -22,16 +23,21 @@ public class AllosaurEatAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (map.locationOf(actor) == map.locationOf(target) && target.getSpecies().equals("Stegosaur")) {
-            int damage = 20;
-            this.damage = damage;
-            target.hurt(damage);
-            if (target.getHitPoints() <= 0){
-                target.Death(target, map);
+            if (((Allosaur) actor).getAttacked_dinosaurs().contains(target)) {
+                return "Can't attack same dinosaur";
+            } else {
+                int damage = 20;
+                this.damage = damage;
+                target.hurt(damage);
+                if (target.getHitPoints() <= 0) {
+                    target.Death(target, map);
+                }
+                else {
+                    ((Allosaur) actor).setAttacked_dinosaurs(target);
+                    ((Allosaur) actor).setAttacked_dinosaurs_timer(0);
+                }
+                actor.heal(damage);
             }
-            else {
-                target.setAttackable();
-            }
-            actor.heal(damage);
         }
 
         else {

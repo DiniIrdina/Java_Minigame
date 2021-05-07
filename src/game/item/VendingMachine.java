@@ -1,12 +1,11 @@
 package game.item;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
 import game.actor.Player;
 
 import java.util.Scanner;
 
-public class VendingMachine extends Item {
+public class VendingMachine extends Ground {
     private int Selection;
     protected Actor Actor;
     protected game.actor.Player Player;
@@ -19,7 +18,8 @@ public class VendingMachine extends Item {
      * @param portable true if and only if the Item can be picked up
      */
     public VendingMachine(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+        super('V');
+        Selection_Purchase();
     }
 
     public void itemChoices(){
@@ -33,12 +33,13 @@ public class VendingMachine extends Item {
         System.out.println("8. Exit");
     }
 
-    public Item Selection_Purchase(){
+    public void Selection_Purchase(){
         Scanner scan = new Scanner(System.in);
         itemChoices();
         this.Selection = scan.nextInt();
         scan.nextLine();
-        return purchase(Player, this.Selection);
+        Item item = purchase(Player, this.Selection);
+        Player.addItemToInventory(item);
     }
 
     public Item purchase(Player player, int selection){

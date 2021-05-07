@@ -2,6 +2,7 @@ package game.environment;
 
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.actor.Player;
 import game.item.Fruit;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class Tree extends Ground {
 		if (fruitChance >= 0.5 && fruits.size() <= 10){
 			Fruit fruit = new Fruit();
 			fruits.add(fruit);
+			Player.updateEcoPoints(1);
 		}
 
 		double fruitDropChance = Math.random();
