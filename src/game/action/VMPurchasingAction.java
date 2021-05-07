@@ -1,22 +1,28 @@
-package game.item;
+package game.action;
 
 import edu.monash.fit2099.engine.*;
+import edu.monash.fit2099.interfaces.VendingMachineItemsInterface;
 import game.actor.Player;
+import game.item.*;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class VendingMachine extends Ground {
-    private int Selection;
-    protected Actor Actor;
-    protected game.actor.Player Player;
+public class VMPurchasingAction extends Action {
+    VendingMachineItemsInterface selection;
 
+    public VMPurchasingAction(VendingMachineItemsInterface selection) {
+        this.selection = selection;
+    }
 
-    /***
-     * Constructor.
-     */
-    public VendingMachine() {
-        super('V');
-        Selection_Purchase();
+    @Override
+    public String execute(Actor actor, GameMap map) {
+        return null;
+    }
+
+    @Override
+    public String menuDescription(Actor actor) {
+        return "Item: " + selection.toString();
     }
 
     public void itemChoices(){
@@ -30,16 +36,7 @@ public class VendingMachine extends Ground {
         System.out.println("8. Exit");
     }
 
-    public void Selection_Purchase(){
-        Scanner scan = new Scanner(System.in);
-        itemChoices();
-        this.Selection = scan.nextInt();
-        scan.nextLine();
-        Item item = purchase(Player, this.Selection);
-        Player.addItemToInventory(item);
-    }
-
-    public Item purchase(Player player, int selection){
+    /*public Item purchase(Player player, int selection){
         Item selectedItem = null;
         do {
             switch (selection) {
@@ -98,7 +95,7 @@ public class VendingMachine extends Ground {
             VegetarianMealKit vegetarianMealKit = new VegetarianMealKit();
             this.Player.removeEcoPoints(price);
             selected = vegetarianMealKit;
-            }
+        }
         else {
             System.out.print("Insufficient Points");
         }
@@ -123,7 +120,7 @@ public class VendingMachine extends Ground {
         int price = 200;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Egg stegosaurEgg = new StegosaurEgg();
+            Egg stegosaurEgg = new Egg("Stegosaur Egg");
             this.Player.removeEcoPoints(price);
             selected = stegosaurEgg;
         }
@@ -137,7 +134,7 @@ public class VendingMachine extends Ground {
         int price = 500;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Egg brachiosaurEgg = new BrachiosaurEgg();
+            Egg brachiosaurEgg = new Egg("Brachiosaur Egg");
             this.Player.removeEcoPoints(price);
             selected = brachiosaurEgg;
         }
@@ -151,7 +148,7 @@ public class VendingMachine extends Ground {
         int price = 1000;
         Item selected = null;
         if (totalEcoPoints >= price) {
-            Egg allosaurEgg = new AllosaurEgg();
+            Egg allosaurEgg = new Egg("Allosaur Egg");
             this.Player.removeEcoPoints(price);
             selected = allosaurEgg;
         }
@@ -173,6 +170,5 @@ public class VendingMachine extends Ground {
             System.out.print("Insufficient Points");
         }
         return selected;
-    }
+    }*/
 }
-

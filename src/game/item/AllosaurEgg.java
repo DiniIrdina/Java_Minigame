@@ -1,11 +1,12 @@
 package game.item;
 
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.interfaces.VendingMachineItemsInterface;
 import game.actor.Allosaur;
 import game.actor.Player;
 
 
-public class AllosaurEgg extends Egg{
+public class AllosaurEgg extends Egg implements VendingMachineItemsInterface {
     public AllosaurEgg() {
         super();
     }
