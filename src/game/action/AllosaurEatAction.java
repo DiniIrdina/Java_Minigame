@@ -2,6 +2,10 @@ package game.action;
 
 import edu.monash.fit2099.engine.*;
 import game.actor.Dinosaur;
+import game.item.Corpse;
+import game.item.Egg;
+
+import java.util.List;
 
 public class AllosaurEatAction extends Action {
     /**
@@ -9,7 +13,7 @@ public class AllosaurEatAction extends Action {
      */
     protected Dinosaur target;
     protected Dinosaur actor;
-    protected boolean AttackCooldown;
+    private int damage;
 
     public AllosaurEatAction(Dinosaur target){
         this.target = target;
@@ -22,14 +26,37 @@ public class AllosaurEatAction extends Action {
 
         if (map.locationOf(actor) == map.locationOf(target) && target.getSpecies().equals("Stegosaur")) {
             int damage = 20;
+            this.damage = damage;
             target.hurt(damage);
-            target.Death(target, map);
+            if (target.getHitPoints() <= 0){
+                target.Death(target, map);
+            }
+            else {
+                target.setAttackable();
+            }
             actor.heal(damage);
         }
 
-        //INCOMPLETE, needs GETITEM METHOD to be implemented!!!!!
+        else {
+            Location location = map.locationOf(actor);
+            List<Item> items = location.getItems();
+            for (Item i : items){
+                if (i instanceof Corpse){
+                    if (((Corpse) i).getSpecies().equals("Allosaur") || ((Corpse) i).getSpecies().equals("Stegosaur")){
+                        actor.heal(50);
+                    }
+                    else if (((Corpse) i).getSpecies().equals("Brachiosaur")){
+                        actor.heal(100);
+                    }
+                }
 
-        return "Allosaur has Eaten";
+                else if (i instanceof Egg){
+                    actor.heal(10);
+                }
+            }
+        }
+
+        return "Allosaur eaten for " + this.damage;
     }
 
     @Override

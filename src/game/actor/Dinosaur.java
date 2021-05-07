@@ -16,6 +16,7 @@ public abstract class Dinosaur extends Actor {
     protected final int PREGNANT_LENGTH;
     protected final int ADULT_AGE;
     protected char gender;
+    protected boolean attackable;
 
     private double genderProbability = 0.5;
 
@@ -27,6 +28,7 @@ public abstract class Dinosaur extends Actor {
         this.PREGNANT_LENGTH = pregnant;
         this.ADULT_AGE = adultAge;
         this.age=age;
+        this.attackable = true;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -85,7 +87,9 @@ public abstract class Dinosaur extends Actor {
      * Indicates if the dinosaur has been attacked or null.
      * @return True if dinosaur been attacked, false if not.
      */
-    public abstract boolean Attackable();
+    public boolean setAttackable(){
+        return this.attackable = false;
+    }
 
     public abstract boolean canEat(Food food);
 
@@ -99,4 +103,8 @@ public abstract class Dinosaur extends Actor {
     }
 
     public abstract void eatsFood(Food food);
+
+    public int getHitPoints(){
+        return this.hitPoints;
+    }
 }

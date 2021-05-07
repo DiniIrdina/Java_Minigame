@@ -56,12 +56,6 @@ public class Brachiosaur extends Dinosaur {
         return new DoNothingAction();
     }
 
-
-    @Override
-    public boolean Attackable() {
-        return false;
-    }
-
     @Override
     public boolean canEat(Food food) {
         boolean result = false;
