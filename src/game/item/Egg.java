@@ -1,14 +1,11 @@
 package game.item;
 
 import edu.monash.fit2099.engine.Location;
-import game.actor.Brachiosaur;
-import game.actor.Allosaur;
-import game.actor.Player;
-import game.actor.Stegosaur;
 
 public abstract class Egg extends Food {
     private String species;
     protected int age = 0;
+    static final int FEED_POINTS = 10;
 
     public Egg() {
         super("Egg", 'o');
@@ -23,6 +20,9 @@ public abstract class Egg extends Food {
         this.species = species;
     }
 
+    public static int getFeedPoints() {
+        return FEED_POINTS;
+    }
 
     public void tick(Location currentLocation){
         super.tick(currentLocation);

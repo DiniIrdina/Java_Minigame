@@ -1,6 +1,7 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.action.AttackAction;
 import game.behaviour.Behaviour;
 import game.item.Corpse;
 import game.item.Food;
@@ -8,7 +9,7 @@ import game.item.Food;
 
 public abstract class Dinosaur extends Actor {
     protected Behaviour behaviour;
-
+    protected Actions actions;
     protected final String SPECIES;
     protected int age;
     protected final int PREGNANT_LENGTH;
@@ -16,6 +17,7 @@ public abstract class Dinosaur extends Actor {
     protected final char ADULT_DISPLAY;
     protected char gender;
     protected boolean attackable;
+
 
     private double genderProbability = 0.5;
 
@@ -96,6 +98,14 @@ public abstract class Dinosaur extends Actor {
 
     public abstract boolean canEat(Food food);
 
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map){
+        actions = new Actions();
+        actions.add(new AttackAction(this));
+
+
+        return actions;
+    }
+
     public void removeEgg(){
         for(Item item: inventory){
             if (item.toString().equals("Egg")){
@@ -105,16 +115,32 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-    public void turn(Action action){
+    public void turn(){
+        Age();
+        hurt(1);
+
+    }
+
+    public void Age(){
         age++;
         if(age== ADULT_AGE){
             displayChar = ADULT_DISPLAY;
         }
     }
 
+    public abstract void assignBehaviour();
+
+    public Behaviour getBehaviour() {
+        return behaviour;
+    }
+
+    public void setBehaviour(Behaviour behaviour) {
+        this.behaviour = behaviour;
+    }
+
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        turn(lastAction);
+        turn();
         return new DoNothingAction();
     }
 

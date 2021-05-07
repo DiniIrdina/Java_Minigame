@@ -12,7 +12,7 @@ public class BrachiosaurEgg extends Egg implements VendingMachineItemsInterface 
 
     public void tick(Location location){
         super.tick(location);
-        if (age == 20){
+        if (age == 40){
             Brachiosaur babyDino = new Brachiosaur(0);
             location.addActor(babyDino);
             Player.updateEcoPoints(1000);

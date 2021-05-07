@@ -13,7 +13,7 @@ public class AllosaurEgg extends Egg implements VendingMachineItemsInterface {
 
     public void tick(Location location){
         super.tick(location);
-        if (age == 20){
+        if (age == 50){
             Allosaur babyDino = new Allosaur(0);
             location.addActor(babyDino);
             Player.updateEcoPoints(1000);

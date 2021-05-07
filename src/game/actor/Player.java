@@ -1,11 +1,8 @@
 package game.actor;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.engine.*;
+import game.action.FeedingAction;
+import game.item.*;
 
 /**
  * Class representing the Player.
@@ -50,4 +47,5 @@ public class Player extends Actor {
 	public static void updateEcoPoints(int EcoPoints){
 		EcoPointStorage += EcoPoints;
 	}
+
 }

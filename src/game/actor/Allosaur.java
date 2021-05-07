@@ -39,6 +39,11 @@ public class Allosaur extends Dinosaur {
         return new Actions(new AttackAction(this));
     }
 
+    @Override
+    public void assignBehaviour() {
+
+    }
+
     /**
      * Figure out what to do next.
      *

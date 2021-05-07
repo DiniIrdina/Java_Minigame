@@ -61,14 +61,15 @@ public class Stegosaur extends Dinosaur {
 	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
 	 */
 
-//	@Override
-//	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-//		Action wander = behaviour.getAction(this, map);
-//		if (wander != null)
-//			return wander;
-//
-//		return new DoNothingAction();
-//	}
+	@Override
+	public void turn(){
+
+	}
+
+	@Override
+	public void assignBehaviour() {
+
+	}
 
 	@Override
 	public boolean canEat(Food food) {
