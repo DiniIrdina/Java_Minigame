@@ -18,7 +18,7 @@ public class Brachiosaur extends Dinosaur {
     public static final char  ADULT_BRACHIOSAUR_DISPLAY = 'B';
 
     public Brachiosaur(int age) {
-        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE);
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
@@ -26,7 +26,7 @@ public class Brachiosaur extends Dinosaur {
     }
 
     public Brachiosaur(int age, char gender) {
-        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE);
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_BRACHIOSAUR_DISPLAY);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
