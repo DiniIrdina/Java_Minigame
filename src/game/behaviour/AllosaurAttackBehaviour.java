@@ -48,6 +48,7 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
             Location goTowards = exit.getDestination();
             if (goTowards.canActorEnter(actor)){
                  move = exit.getDestination().getMoveAction(actor, "around", exit.getHotKey());
+                 break;
             }
         }
         return move;
