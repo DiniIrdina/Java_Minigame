@@ -18,6 +18,11 @@ public class Brachiosaur extends Dinosaur {
     public static final char  BABY_BRACHIOSAUR_DISPLAY = 'b';
     public static final char  ADULT_BRACHIOSAUR_DISPLAY = 'B';
 
+    /**
+     * First overloaded constructor of the Brachiosaur class. All Brachiosaur have 160 hit points. The baby
+     * Brachiosaur will have 'b' as its display and the adult will have 'B'.
+     * @param age the current age of the Brachiosaur to be created for
+     */
     public Brachiosaur(int age) {
         super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY);
         if (age<ADULT_AGE){
@@ -26,6 +31,11 @@ public class Brachiosaur extends Dinosaur {
         behaviour = new WanderBehaviour();
     }
 
+    /**
+     * Second overloaded constructor of the Brachiosaur class.
+     * @param age the current age of the Brachiosaur to be created for
+     * @param gender the gender of the Brachiosaur to be created for
+     */
     public Brachiosaur(int age, char gender) {
         super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_BRACHIOSAUR_DISPLAY);
         if (age<ADULT_AGE){
@@ -34,6 +44,14 @@ public class Brachiosaur extends Dinosaur {
 
         behaviour = new WanderBehaviour();
     }
+
+    /**
+     * Lists all the actions that the other actor can perform on the current actor.
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return           actions
+     */
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         actions = new Actions();
         actions.add(new AttackAction(this));
@@ -51,8 +69,9 @@ public class Brachiosaur extends Dinosaur {
 
     }
 
-
-
+    /**
+     * The behaviours available for the dinosaur.
+     */
     @Override
     public void assignBehaviour() {
 
@@ -97,7 +116,11 @@ public class Brachiosaur extends Dinosaur {
         return new DoNothingAction();
     }
 
-
+    /**
+     * Specifies the different types of food the dinosaur can consume.
+     * @param food the type of food
+     * @return true if food is edible by current dinosaur
+     */
     @Override
     public boolean canEat(Food food) {
         boolean result = false;
@@ -107,6 +130,10 @@ public class Brachiosaur extends Dinosaur {
         return result;
     }
 
+    /**
+     * The eating action.
+     * @param food the type of food
+     */
     @Override
     public void eatsFood(Food food) {
         if (food instanceof Fruit){
@@ -116,6 +143,10 @@ public class Brachiosaur extends Dinosaur {
         }
     }
 
+    /**
+     * Lays an egg object on the current location of the dinosaur.
+     * @param location the location the dinosaur is current at
+     */
     public void LayEgg(Location location){
         location.addItem(new BrachiosaurEgg());
     }

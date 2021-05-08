@@ -27,6 +27,10 @@ public class Player extends Actor {
 		EcoPointStorage = 0;
 	}
 
+	/**
+	 * Figure out what to do next.
+	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
@@ -48,10 +52,18 @@ public class Player extends Actor {
 		return EcoPointStorage;
 	}
 
+	/**
+	 * Removes the amount of eco points specified.
+	 * @param remove the int value to be removed for
+	 */
 	public void removeEcoPoints(int remove){
 		EcoPointStorage = EcoPointStorage - remove;
 	}
 
+	/**
+	 * Updating the eco points.
+	 * @param EcoPoints the ecopoints to be updated for
+	 */
 	public static void updateEcoPoints(int EcoPoints){
 		EcoPointStorage += EcoPoints;
 	}

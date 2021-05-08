@@ -24,10 +24,10 @@ public class Stegosaur extends Dinosaur {
 	public static final char BABY_STEGOSAUR_DISPLAY = 's';
 	public static final char ADULT_STEGOSAUR_DISPLAY = 'S';
 
-	/** 
-	 * Constructor.
-	 * All Stegosaurs are represented by a 'd' and have 100 hit points.
-	 *
+	/**
+	 * First overloaded constructor of the Stegosaur class. All Stegosaurs have 100 hit points. The baby
+	 * Stegosaur will have 's' as its display and the adult will have 'S'.
+	 * @param age the current age of the Stegosaur to be created for
 	 */
 	public Stegosaur(int age) {
 		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,ADULT_STEGOSAUR_DISPLAY);
@@ -36,6 +36,11 @@ public class Stegosaur extends Dinosaur {
 		}
 		behaviour = new WanderBehaviour();
 	}
+	/**
+	 * Second overloaded constructor of the Stegosaur class.
+	 * @param age the current age of the Stegosaur to be created for
+	 * @param gender the gender of the Stegosaur to be created for
+	 */
 	public Stegosaur(int age, char gender) {
 		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,ADULT_STEGOSAUR_DISPLAY);
 		if (age < ADULT_AGE){
@@ -44,6 +49,13 @@ public class Stegosaur extends Dinosaur {
 		behaviour = new WanderBehaviour();
 	}
 
+	/**
+	 * Lists all the actions that the other actor can perform on the current actor.
+	 * @param otherActor the Actor that might be performing attack
+	 * @param direction  String representing the direction of the other Actor
+	 * @param map        current GameMap
+	 * @return           actions
+	 */
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		actions = new Actions();
 		actions.add(new AttackAction(this));
@@ -101,12 +113,19 @@ public class Stegosaur extends Dinosaur {
 	}
 
 
-
+	/**
+	 * The behaviours available for the dinosaur.
+	 */
 	@Override
 	public void assignBehaviour() {
 
 	}
 
+	/**
+	 * Specifies the different types of food the dinosaur can consume.
+	 * @param food the type of food
+	 * @return true if food is edible by current dinosaur
+	 */
 	@Override
 	public boolean canEat(Food food) {
 		boolean result = false;
@@ -116,6 +135,10 @@ public class Stegosaur extends Dinosaur {
 		return result;
 	}
 
+	/**
+	 * The eating action.
+	 * @param food the type of food
+	 */
 	@Override
 	public void eatsFood(Food food) {
 		if (food instanceof Fruit){
@@ -125,6 +148,10 @@ public class Stegosaur extends Dinosaur {
 		}
 	}
 
+	/**
+	 * Lays an egg object on the current location of the dinosaur.
+	 * @param location the location the dinosaur is current at
+	 */
 	public void LayEgg(Location location){
 		location.addItem(new StegosaurEgg());
 	}

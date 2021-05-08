@@ -22,11 +22,18 @@ public class Allosaur extends Dinosaur {
     public static final int PREGNANT_LENGTH = 20;
     public static final char BABY_ALLOSAUR_DISPLAY = 'a';
     public static final char ADULT_ALLOSAUR_DISPLAY = 'A';
+    /**
+     * Array list to keep track of the different dinosaurs attacked.
+     */
     private ArrayList<Dinosaur> attacked_dinosaur = new ArrayList<Dinosaur>();
+    /**
+     * Array list to keep track of the timer for each attacked dinosaur object.
+     */
     private ArrayList<Integer> attacked_dinosaur_count = new ArrayList<Integer>();
 
     /**
-     * First overloaded constructor of the Allosaur class.
+     * First overloaded constructor of the Allosaur class. All Allosaur have 100 hit points. The baby
+     * Allosaur will have 'a' as its display and the adult will have 'A'.
      * @param age the current age of the allosaur to be created for
      */
     public Allosaur(int age) {
@@ -75,13 +82,17 @@ public class Allosaur extends Dinosaur {
     }
 
     /**
-     * Swaps the behaviour of the actor
+     * The behaviours available for the dinosaur.
      */
     @Override
     public void assignBehaviour() {
 
     }
 
+    /**
+     * The eating action.
+     * @param food the type of food
+     */
     @Override
     public void eatsFood(Food food) {
 
@@ -128,7 +139,11 @@ public class Allosaur extends Dinosaur {
         return new DoNothingAction();
     }
 
-
+    /**
+     * Specifies the different types of food the dinosaur can consume.
+     * @param food the type of food
+     * @return true if food is edible by current dinosaur
+     */
     @Override
     public boolean canEat(Food food) {
         boolean result = false;
@@ -138,26 +153,49 @@ public class Allosaur extends Dinosaur {
         return result;
     }
 
+    /**
+     * Lays an egg object on the current location of the dinosaur.
+     * @param location the location the dinosaur is current at
+     */
     public void LayEgg(Location location){
         location.addItem(new AllosaurEgg());
     }
 
+    /**
+     * Adding the dinosaurs that had been attacked to the list.
+     * @param dinosaur
+     */
     public void setAttacked_dinosaur(Dinosaur dinosaur){
         this.attacked_dinosaur.add(dinosaur);
     }
 
+    /**
+     * Returns the list of dinosaurs attacked by the current dinsaur.
+     * @return the list of dinosaurs attacked
+     */
     public ArrayList<Dinosaur> getAttacked_dinosaur(){
         return this.attacked_dinosaur;
     }
 
+    /**
+     * Adding the count to the dinosaurs that had been attacked.
+     * @param count the count value
+     */
     public void setAttacked_dinosaur_count(int count){
         this.attacked_dinosaur_count.add(count);
     }
 
+    /**
+     * Returns the timer of each attacked dinosaur
+     * @return the timer for each attacked dinosaur
+     */
     public ArrayList<Integer> getAttacked_dinosaur_count(){
         return this.attacked_dinosaur_count;
     }
 
+    /**
+     * Updates the timer for every attacked dinosaur.
+     */
     public void updateAttackedDinosaurCount(){
         for (int i=0; i < attacked_dinosaur_count.size(); i++){
             int currentValue = attacked_dinosaur_count.get(i);
@@ -166,6 +204,9 @@ public class Allosaur extends Dinosaur {
         }
     }
 
+    /**
+     * Removes the attacked dinosaur from the list if the cooldown is fulfilled.
+     */
     public void updateAttackDinosaur() {
         int count = 0;
         while (count < attacked_dinosaur_count.size()){
