@@ -1,6 +1,7 @@
 package game.action;
 
 import edu.monash.fit2099.engine.*;
+import game.actor.Dinosaur;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.Food;
@@ -41,7 +42,7 @@ public class CarnivoreEatAction extends Action {
             ((Corpse) this.food).removeCorpse();
         }
         else if (this.food instanceof Egg){
-            actor.heal(10);
+            ((Dinosaur)actor).eatsFood(this.food);
             map.locationOf(actor).removeItem(this.food);
         }
         return menuDescription(actor);

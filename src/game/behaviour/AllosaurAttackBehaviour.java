@@ -17,7 +17,7 @@ import java.util.List;
  * target once before it goes into a cooldown. At the instance, it will locate another target within range to
  * move towards. If no target is found, it defaults back to its wander behaviour.
  */
-public class AllosaurAttackBehaviour extends WanderBehaviour{
+public class AllosaurAttackBehaviour implements Behaviour{
     static final int RADIUS = 50;
 
     /**
