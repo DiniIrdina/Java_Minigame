@@ -2,7 +2,6 @@ package game.behaviour;
 
 import edu.monash.fit2099.engine.*;
 import game.action.AllosaurAttackAction;
-import game.action.AllosaurEatAction;
 import game.action.AttackAction;
 import game.actor.Dinosaur;
 import game.actor.Stegosaur;

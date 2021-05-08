@@ -8,6 +8,9 @@ import game.item.AllosaurEgg;
 import game.item.BrachiosaurEgg;
 import game.item.StegosaurEgg;
 
+/**
+ * Breeding Action used for breeding between dinosaurs of the same species.
+ */
 public class BreedingAction extends Action {
     private Dinosaur target;
 
