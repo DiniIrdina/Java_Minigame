@@ -44,7 +44,7 @@ public class Brachiosaur extends Dinosaur {
      * @param gender the gender of the Brachiosaur to be created for
      */
     public Brachiosaur(int age, char gender) {
-        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_BRACHIOSAUR_DISPLAY,
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY,
                 BREEDING_LEVEL, UNCONSCIOUS_LIMIT);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
