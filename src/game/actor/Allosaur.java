@@ -24,6 +24,7 @@ public class Allosaur extends Dinosaur {
     public static final char BABY_ALLOSAUR_DISPLAY = 'a';
     public static final char ADULT_ALLOSAUR_DISPLAY = 'A';
     public static final int BREEDING_LEVEL =50;
+    public static final int UNCONSCIOUS_LIMIT =20;
     /**
      * Array list to keep track of the different dinosaurs attacked.
      */
@@ -40,7 +41,7 @@ public class Allosaur extends Dinosaur {
      */
     public Allosaur(int age) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,
-                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL) ;
+                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT) ;
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }
@@ -54,7 +55,7 @@ public class Allosaur extends Dinosaur {
      */
     public Allosaur(int age, char gender) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,
-                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL);
+                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT);
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }
@@ -116,6 +117,7 @@ public class Allosaur extends Dinosaur {
         super.turn();
         updateAttackedDinosaurCount();
         updateAttackDinosaur();
+        unconsciousPeriod(map);
         for (Item item: inventory){
             if (item instanceof AllosaurEgg){
                 this.isPregnant = true;

@@ -25,7 +25,9 @@ public abstract class Dinosaur extends Actor {
     protected boolean attackable;
     protected boolean isPregnant;
     protected final int BREEDING_LEVEL;
+    protected final int UNCONSCIOUS_LIMIT;
     protected int pregnancyCounter;
+    protected int deathTimer;
 
     /**
      * Default gender probability.
@@ -44,7 +46,7 @@ public abstract class Dinosaur extends Actor {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
-                    adultDisplay, int breed) {
+                    adultDisplay, int breed, int limit) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.SPECIES = species;
@@ -55,6 +57,7 @@ public abstract class Dinosaur extends Actor {
         this.attackable = true;
         this.ADULT_DISPLAY = adultDisplay;
         this.BREEDING_LEVEL = breed;
+        this.UNCONSCIOUS_LIMIT = limit;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -77,7 +80,7 @@ public abstract class Dinosaur extends Actor {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
-                    char adultDisplay, int breed) {
+                    char adultDisplay, int breed, int limit) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
@@ -88,7 +91,9 @@ public abstract class Dinosaur extends Actor {
         this.gender = gender;
         this.age=age;
         this.pregnancyCounter = 0;
+        this.deathTimer=0;
         this.BREEDING_LEVEL = breed;
+        this.UNCONSCIOUS_LIMIT = limit;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -195,6 +200,32 @@ public abstract class Dinosaur extends Actor {
      */
     public void pregnancyTurn(){
         pregnancyCounter ++;
+    }
+
+    /**
+     * The unconscious timer to determine if death is applicable.
+     */
+    public void deathTimerUpdate(){
+        deathTimer++;
+    }
+
+    /**
+     * The function to execute death if the dinosaur is unconscious for a certain amount of time.
+     * @param map The current instance of the map
+     */
+    public void unconsciousPeriod(GameMap map){
+        if (this.hitPoints <= 0){
+            if (!isConscious() && deathTimer < 15){
+                deathTimerUpdate();
+            }
+            else if (!isConscious() && deathTimer == 15){
+                Death(this, map);
+            }
+        }
+
+        else{
+            this.deathTimer = 0;
+        }
     }
 
     /**
