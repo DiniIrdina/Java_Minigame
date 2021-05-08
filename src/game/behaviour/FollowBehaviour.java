@@ -1,6 +1,7 @@
 package game.behaviour;
 
 import edu.monash.fit2099.engine.*;
+import game.actor.Dinosaur;
 import game.behaviour.Behaviour;
 
 /**
@@ -41,6 +42,7 @@ public class FollowBehaviour implements Behaviour {
 
 		return null;
 	}
+
 
 	/**
 	 * Compute the Manhattan distance between two locations.

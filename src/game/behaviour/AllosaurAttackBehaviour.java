@@ -27,7 +27,13 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
         if (nearbyTarget != null){
             return new AllosaurEatAction((Dinosaur)nearbyTarget);
         }
-        return null;
+
+        Dinosaur target = findTargetInRadius((Dinosaur)actor,map);
+        if (target != null){
+            return new FollowBehaviour(target).getAction(actor, map);
+        }
+
+        return getAction(actor, map);
     }
 
     public Dinosaur findTargetInRadius(Dinosaur actor, GameMap map){
@@ -35,6 +41,7 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
         Dinosaur closestTarget = null;
         int shortestDistance = RADIUS;
         int targetDistance;
+
         for(int x: map.getXRange()){
             for(int y: map.getYRange()){
                 Location targetLocation = map.at(x,y);
