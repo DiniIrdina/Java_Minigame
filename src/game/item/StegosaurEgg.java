@@ -5,14 +5,23 @@ import game.actor.Player;
 import game.actor.Stegosaur;
 
 /**
- * Class creation for the item StegosaurEgg, a Egg item.
+ * Class creation for the item StegosaurEgg, an Egg item.
  */
 public class StegosaurEgg extends Egg {
     public static final int PRICE = 200;
+
+    /**
+     * Overloading constructor of the StegosaurEgg class. StegosaurEgg will be represented by the char 'o'.
+     */
     public StegosaurEgg() {
         super("Stegosaur");
     }
 
+    /**
+     * Tick updates the current turn of game for the class object
+     * Will spawn the specified dinosaur object once the condition has been fulfilled.
+     * @param location The location of the Ground
+     */
     public void tick(Location location){
         super.tick(location);
         if (age == 20){
@@ -22,6 +31,10 @@ public class StegosaurEgg extends Egg {
         }
     }
 
+    /**
+     * Returns the price of the object.
+     * @return the price
+     */
     public int getPrice(){
         return PRICE;
     }

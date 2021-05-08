@@ -5,7 +5,7 @@ import game.actor.Allosaur;
 import game.actor.Player;
 
 /**
- * Class creation for the item AllosaurEgg, a Egg item.
+ * Class creation for the item AllosaurEgg, an Egg item.
  */
 public class AllosaurEgg extends Egg {
     public static final int PRICE = 1000;

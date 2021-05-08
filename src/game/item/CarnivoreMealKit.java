@@ -1,7 +1,7 @@
 package game.item;
 
 /**
- * Class creation for the item CarnivoreMealKit.
+ * Class creation for the item CarnivoreMealKit, a food item.
  */
 public class CarnivoreMealKit extends Food {
     public static final int PRICE = 500;
