@@ -47,6 +47,6 @@ public class HerbivoreEatAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + "has eaten a " + this.food;
+        return actor + " has eaten a " + this.food;
     }
 }

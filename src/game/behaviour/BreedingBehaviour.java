@@ -42,17 +42,18 @@ public class BreedingBehaviour implements Behaviour {
         for (int x: map.getXRange()){
             for (int y: map.getYRange()){
                 Location location = map.at(x,y);
-                Actor target = map.getActorAt(location);
-                if (target instanceof Player){
-                    continue;
-                }else{
-                    if ((dino.isAdult() && ((Dinosaur)target).isAdult()) &&
-                            (dino.getSpecies().equals(((Dinosaur)target).getSpecies())) &&
-                            (dino.getGender() != ((Dinosaur) target).getGender()) && (!dino.isPregnant() &&
-                            !((Dinosaur)target).isPregnant())){
-                        mateList.add((Dinosaur)target);
+                if (location.containsAnActor()){
+                    Actor target = map.getActorAt(location);
+                    if (target instanceof Player){
+                        continue;
+                    }else{
+                        if ((dino.isAdult() && ((Dinosaur)target).isAdult()) &&
+                                (dino.getSpecies().equals(((Dinosaur)target).getSpecies())) &&
+                                (dino.getGender() != ((Dinosaur) target).getGender()) && (!dino.isPregnant() &&
+                                !((Dinosaur)target).isPregnant())){
+                            mateList.add((Dinosaur)target);
                     }
-                }
+                }}
             }
         }
         return mateList;

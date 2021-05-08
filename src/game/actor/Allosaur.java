@@ -2,6 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.action.FeedingAction;
+import game.behaviour.AllosaurAttackBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
 import game.interfaces.NeedsPlayer;
@@ -134,6 +135,9 @@ public class Allosaur extends Dinosaur {
                 removeEgg();
                 this.pregnancyCounter = 0;
             }
+        }
+        if(hitPoints <= HUNGRY_LEVEL){
+            setBehaviour(new AllosaurAttackBehaviour());
         }
 
         if (wander != null)
