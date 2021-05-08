@@ -22,7 +22,6 @@ public abstract class Dinosaur extends Actor {
     protected final int ADULT_AGE;
     protected final char ADULT_DISPLAY;
     protected char gender;
-    protected boolean attackable;
     protected boolean isPregnant;
     protected final int BREEDING_LEVEL;
     protected final int UNCONSCIOUS_LIMIT;
@@ -54,7 +53,6 @@ public abstract class Dinosaur extends Actor {
         this.PREGNANT_LENGTH = pregnant;
         this.ADULT_AGE = adultAge;
         this.age=age;
-        this.attackable = true;
         this.ADULT_DISPLAY = adultDisplay;
         this.BREEDING_LEVEL = breed;
         this.UNCONSCIOUS_LIMIT = limit;
@@ -146,13 +144,6 @@ public abstract class Dinosaur extends Actor {
      */
     public String getSpecies(){
         return SPECIES;}
-    /**
-     * Indicates if the dinosaur has been attacked or null.
-     * @return True if dinosaur been attacked, false if not.
-     */
-    public boolean setAttackable(){
-        return this.attackable = false;
-    }
 
     /**
      * Specifies the different types of food the dinosaur can consume.
@@ -244,11 +235,6 @@ public abstract class Dinosaur extends Actor {
             displayChar = ADULT_DISPLAY;
         }
     }
-
-    /**
-     * The behaviours available for the dinosaur.
-     */
-    public abstract void assignBehaviour();
 
     /**
      * The default behaviour for dinosaurs.

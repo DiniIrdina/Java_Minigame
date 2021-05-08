@@ -116,15 +116,6 @@ public class Stegosaur extends Dinosaur {
 		return new DoNothingAction();
 	}
 
-
-	/**
-	 * The behaviours available for the dinosaur.
-	 */
-	@Override
-	public void assignBehaviour() {
-
-	}
-
 	/**
 	 * Specifies the different types of food the dinosaur can consume.
 	 * @param food the type of food

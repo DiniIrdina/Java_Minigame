@@ -78,14 +78,6 @@ public class Brachiosaur extends Dinosaur {
     }
 
     /**
-     * The behaviours available for the dinosaur.
-     */
-    @Override
-    public void assignBehaviour() {
-
-    }
-
-    /**
      * Figure out what to do next.
      *
      * FIXME: Brachiosaur wanders around at random, or if no suitable MoveActions are available, it

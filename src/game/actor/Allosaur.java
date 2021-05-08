@@ -87,14 +87,6 @@ public class Allosaur extends Dinosaur {
     }
 
     /**
-     * The behaviours available for the dinosaur.
-     */
-    @Override
-    public void assignBehaviour() {
-
-    }
-
-    /**
      * The eating action.
      * @param food the type of food
      */
@@ -175,7 +167,7 @@ public class Allosaur extends Dinosaur {
 
     /**
      * Adding the dinosaurs that had been attacked to the list.
-     * @param dinosaur
+     * @param dinosaur the target attacked dinosaur to be added
      */
     public void setAttacked_dinosaur(Dinosaur dinosaur){
         this.attacked_dinosaur.add(dinosaur);

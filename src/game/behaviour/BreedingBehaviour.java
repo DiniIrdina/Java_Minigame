@@ -10,6 +10,9 @@ import game.actor.Player;
 
 import java.util.ArrayList;
 
+/**
+ * Class creation for BreedingBehaviour
+ */
 public class BreedingBehaviour implements Behaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
