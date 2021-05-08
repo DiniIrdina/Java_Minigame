@@ -3,6 +3,7 @@ package game.behaviour;
 import edu.monash.fit2099.engine.*;
 import game.action.AllosaurAttackAction;
 import game.action.AttackAction;
+import game.actor.Allosaur;
 import game.actor.Dinosaur;
 import game.actor.Stegosaur;
 
@@ -18,9 +19,12 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
         for (Exit exit: exitList){
             Location location = exit.getDestination();
             if (location.containsAnActor()){
-                nearbyTarget = location.getActor();
-                if (nearbyTarget instanceof Stegosaur){
-                    break;
+                Actor currentTarget = location.getActor();
+                if (currentTarget instanceof Stegosaur){
+                    if (!((Allosaur)actor).getAttacked_dinosaur().contains(currentTarget)){
+                        nearbyTarget = currentTarget;
+                        break;
+                    }
                 }
             }
         }
@@ -48,7 +52,7 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
                 if (targetLocation.containsAnActor() && targetLocation.getActor() instanceof Stegosaur) {
                     targetDistance = FollowBehaviour.distance(location, targetLocation);
                     Dinosaur target = (Dinosaur) targetLocation.getActor();
-                    if (target instanceof Stegosaur){
+                    if (target instanceof Stegosaur && !((Allosaur)actor).getAttacked_dinosaur().contains(target)){
                         if (targetDistance < shortestDistance) {
                             shortestDistance = targetDistance;
                             closestTarget = target;
