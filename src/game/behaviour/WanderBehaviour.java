@@ -72,8 +72,16 @@ public class WanderBehaviour implements Behaviour {
 			}
 		}
 
+		List<Exit> exitList = map.locationOf(actor).getExits();
+		Location nearestBush = getNearestBush(actor,map);
+		if (nearestBush != null && actor instanceof Stegosaur){
+			if (exitList.contains(nearestBush)){
+				return moveTo(actor,map,location,nearestBush);
+			}
+		}
 
-		for (Exit exit : map.locationOf(actor).getExits()) {
+
+		for (Exit exit : exitList) {
 			Location destination = exit.getDestination();
 			if (destination.canActorEnter(actor)) {
 				actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
@@ -107,6 +115,23 @@ public class WanderBehaviour implements Behaviour {
 			}
 		}
 		return nearestBush;
+	}
+
+	public Action moveTo(Actor actor, GameMap map, Location startLocation, Location endLocation){
+		Action action = null;
+		List<Exit> exitList = map.locationOf(actor).getExits();
+		int distance = FollowBehaviour.distance(startLocation,endLocation);
+		for (Exit exit: exitList){
+			Location place = exit.getDestination();
+			if (place.canActorEnter(actor)){
+				if (FollowBehaviour.distance(place,endLocation) < distance){
+					String direction = exit.getName();
+					action = new MoveActorAction(place, direction);
+					break;
+				}
+			}
+		}
+		return action;
 	}
 }
 

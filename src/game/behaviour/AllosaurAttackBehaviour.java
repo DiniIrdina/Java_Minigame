@@ -15,7 +15,8 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
     static final int RADIUS = 50;
 
     /**
-     * This behaviour allows the Allosaur to find and
+     * This behaviour allows the Allosaur to find and attack or consume its food source. It checks if the current location
+     * has a food source, and returns a new Carnivore
      * @param actor the Actor enacting the behaviour
      * @param map the map that actor is currently on
      * @return
