@@ -30,7 +30,9 @@ public class WanderBehaviour implements Behaviour {
 
 	/**
 	 * Returns a MoveAction to wander to a random location, if possible.  
-	 * If no movement is possible, returns null.
+	 * If no movement is possible, returns null. It checks the actor's current location to get any food instances
+	 * on the ground. The actor will proceed to eat if suitable. If not, it will check the adjacent area around it for
+	 * food sources.
 	 * 
 	 * @param actor the Actor enacting the behaviour
 	 * @param map the map that actor is currently on
@@ -96,7 +98,6 @@ public class WanderBehaviour implements Behaviour {
 					return moveTo(actor,map,location,nearestTree);
 				}
 			}
-
 
 
 		for (Exit exit : exitList) {
