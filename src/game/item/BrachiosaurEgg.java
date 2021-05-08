@@ -1,11 +1,12 @@
 package game.item;
 
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.interfaces.VendingMachineItemsInterface;
+import game.interfaces.VendingMachineItemsInterface;
 import game.actor.Brachiosaur;
 import game.actor.Player;
 
 public class BrachiosaurEgg extends Egg implements VendingMachineItemsInterface {
+    public static final int PRICE = 500;
     public BrachiosaurEgg() {
         super();
     }
