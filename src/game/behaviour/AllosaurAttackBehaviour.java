@@ -32,15 +32,22 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
 
     public Dinosaur findTargetInRadius(Dinosaur actor, GameMap map){
         Location location = map.locationOf(actor);
-        Dinosaur target = null;
+        Dinosaur closestTarget = null;
+        int shortestDistance = RADIUS;
         int targetDistance;
         for(int x: map.getXRange()){
             for(int y: map.getYRange()){
                 Location targetLocation = map.at(x,y);
-                if (targetLocation.containsAnActor()){
+                if (targetLocation.containsAnActor() && targetLocation.getActor() instanceof Stegosaur){
                     targetDistance = FollowBehaviour.distance(location,targetLocation);
+                    Dinosaur target = (Dinosaur)targetLocation.getActor();
+                    if (targetDistance < shortestDistance){
+                        shortestDistance = targetDistance;
+                        closestTarget = target;
+                    }
                 }
             }
         }
+        return closestTarget;
     }
 }

@@ -110,7 +110,7 @@ public abstract class Dinosaur extends Actor {
 
     public void removeEgg(){
         for(Item item: inventory){
-            if (item.toString().equals("Egg")){
+            if (item.toString().equals(this.getSpecies()+"Egg")){
                 this.removeItemFromInventory(item);
                 break;
             }
