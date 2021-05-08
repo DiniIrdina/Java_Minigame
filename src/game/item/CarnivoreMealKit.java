@@ -1,8 +1,6 @@
 package game.item;
 
-import game.interfaces.VendingMachineItemsInterface;
-
-public class CarnivoreMealKit extends Food implements VendingMachineItemsInterface {
+public class CarnivoreMealKit extends Food {
     public static final int PRICE = 500;
     public static final int FEED_POINTS = 100;
     public CarnivoreMealKit() {

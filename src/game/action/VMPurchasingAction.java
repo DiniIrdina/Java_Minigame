@@ -1,7 +1,6 @@
 package game.action;
 
 import edu.monash.fit2099.engine.*;
-import game.interfaces.VendingMachineItemsInterface;
 import game.actor.Player;
 import game.item.*;
 
@@ -15,7 +14,6 @@ public class VMPurchasingAction extends Action {
         AllosaurEgg,
         LaserGun
     }
-
 
     Item selection;
 

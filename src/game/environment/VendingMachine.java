@@ -1,7 +1,6 @@
 package game.environment;
 
 import edu.monash.fit2099.engine.*;
-import game.interfaces.VendingMachineItemsInterface;
 import game.action.VMPurchasingAction;
 import game.item.*;
 
