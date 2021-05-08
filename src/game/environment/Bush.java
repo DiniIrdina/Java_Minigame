@@ -6,6 +6,10 @@ import game.item.Fruit;
 
 import java.util.ArrayList;
 
+/**
+ * Class creation for the Bush objects found in the game. Bushes will generate fruits based upon
+ * a set probability.
+ */
 public class Bush extends Ground {
     /**
      * Array list to store the fruit objects

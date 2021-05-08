@@ -7,7 +7,8 @@ import game.item.*;
 import java.util.ArrayList;
 
 /**
- * Class creation of vending machine object/
+ * Class creation of vending machine object. The vending machine hosts multiple items that could be
+ * purchased by the player by executing the VMPurchasingAction.
  */
 public class VendingMachine extends Ground {
     /***

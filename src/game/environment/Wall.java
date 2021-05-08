@@ -3,6 +3,10 @@ package game.environment;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 
+/**
+ * Class creation for the Wall objects found in the game. Wall objects are tangible and cannot be bypassed.
+ * Firing projectiles behind a wall will not be possible.
+ */
 public class Wall extends Ground {
 
 	/**

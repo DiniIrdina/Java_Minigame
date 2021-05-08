@@ -3,7 +3,7 @@ package game.item;
 import edu.monash.fit2099.engine.WeaponItem;
 
 /**
- * Class creation for the item LaserGun, a WeaponItem.
+ * Class creation for the item LaserGun, a WeaponItem. Can be used by the player to attack dinosaurs as a weapon.
  */
 public class LaserGun extends WeaponItem {
     public static final int PRICE = 500;

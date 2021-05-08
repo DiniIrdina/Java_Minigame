@@ -7,6 +7,10 @@ import game.item.Fruit;
 
 import java.util.ArrayList;
 
+/**
+ * Class creation for the Tree objects found in the game. Trees will generate fruits based upon
+ * a set probability.
+ */
 public class Tree extends Ground {
 	private int age = 0;
 

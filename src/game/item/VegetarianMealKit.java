@@ -1,7 +1,7 @@
 package game.item;
 
 /**
- * Class creation for the item VegetarianMealKit, a food item.
+ * Class creation for the item VegetarianMealKit, a food item. Could on be used on herbivorous dinosaurs.
  */
 public class VegetarianMealKit extends Food {
     public static final int PRICE = 100;
@@ -15,7 +15,7 @@ public class VegetarianMealKit extends Food {
     }
 
     /**
-     * Returns the total restorative points of the object
+     * A static method that returns the total restorative points of the object
      * @return the feed points
      */
     public static int getFeedPoints() {
