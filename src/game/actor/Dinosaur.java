@@ -205,7 +205,7 @@ public abstract class Dinosaur extends Actor {
      * @param map The current instance of the map
      */
     public void unconsciousPeriod(GameMap map){
-        if (this.hitPoints <= 0){
+        if (hitPoints <= 0){
             if (!isConscious() && deathTimer < 15){
                 deathTimerUpdate();
             }

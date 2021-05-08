@@ -11,15 +11,23 @@ import game.item.Food;
 
 import java.util.List;
 
+/**
+ * A class that figures out the AllosaurAttackBehaviour for allosaurs. Allosaurs will continuously look
+ * for preys to feast upon and move to their respective locations. The allosaur can only attack a specified
+ * target once before it goes into a cooldown. At the instance, it will locate another target within range to
+ * move towards. If no target is found, it defaults back to its wander behaviour.
+ */
 public class AllosaurAttackBehaviour extends WanderBehaviour{
     static final int RADIUS = 50;
 
     /**
-     * This behaviour allows the Allosaur to find and attack or consume its food source. It checks if the current location
-     * has a food source, and returns an action to indicate
+     * This behaviour allows the Allosaur to find and attack or consume its food source.
+     * It checks if the current location has a food source,
+     * and returns an action to indicate either at the
+     * location it was the dinosaur or was it a corpse
      * @param actor the Actor enacting the behaviour
      * @param map the map that actor is currently on
-     * @return
+     * @return CarnivoreEatAction if the a corpse is found, AllosaurAttackAction if a stegosaur was found
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
@@ -67,6 +75,14 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
         return move;
     }
 
+    /**
+     * This method locates the nearest target (stegosaur) and provides the locational details on
+     * where the target is currently at. It returns the target that is the closest in proximity to
+     * the current allosaur actor.
+     * @param actor
+     * @param map
+     * @return
+     */
     public Dinosaur findTargetInRadius(Dinosaur actor, GameMap map){
         Location location = map.locationOf(actor);
         Dinosaur closestTarget = null;

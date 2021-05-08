@@ -18,10 +18,15 @@ import game.environment.Tree;
 import game.item.Food;
 import game.item.Fruit;
 
+/**
+ * A class that figures out the default behaviour for all dinosaurs, which is wandering around.
+ * The class will utilize the methods associated to call upon and execute all the
+ * different behaviors dependent on the species of the dinosaur. Behaviours that could be invoked includes
+ * BreedingBehaviour, FollowBehaviour and so forth. The movement is automatically generated and is randomized.
+ */
 public class WanderBehaviour implements Behaviour {
 	
 	private Random random = new Random();
-
 
 	/**
 	 * Returns a MoveAction to wander to a random location, if possible.  
@@ -90,7 +95,6 @@ public class WanderBehaviour implements Behaviour {
 				if (exitList.contains(nearestTree)){
 					return moveTo(actor,map,location,nearestTree);
 				}
-
 			}
 
 
@@ -108,9 +112,15 @@ public class WanderBehaviour implements Behaviour {
 			return null;
 		}
 
-		}
+	}
 
-
+	/**
+	 * This method locates the nearest bush object relative to the current actor's position.
+	 * The method is only applicable for the Stegosaur dinosaur and it returns the nearest bush object.
+	 * @param actor the current selected actor, always a Stegosaur.
+	 * @param map the current instance of the map
+	 * @return the nearest bush object within search radius
+	 */
 	public Location getNearestBush(Actor actor, GameMap map){
 		Location location = map.locationOf(actor);
 		Location nearestBush = null;
@@ -131,6 +141,13 @@ public class WanderBehaviour implements Behaviour {
 		return nearestBush;
 	}
 
+	/**
+	 * This method locates the nearest tree object relative to the current actor's position.
+	 * The method is only applicable for the Brachiosaur dinosaur and it returns the nearest tree object.
+	 * @param actor the current selected actor, always a Brachiosaur.
+	 * @param map the current instance of the map
+	 * @return the nearest tree object within search radius
+	 */
 	public Location getNearestTree(Actor actor, GameMap map){
 		Location location = map.locationOf(actor);
 		Location nearestTree = null;
@@ -151,6 +168,14 @@ public class WanderBehaviour implements Behaviour {
 		return nearestTree;
 	}
 
+	/**
+	 * The moveTo method executes the movement orders based on the FollowBehaviour.
+	 * @param actor the current actor executing the behaviour
+	 * @param map the current instance of the map
+	 * @param startLocation the current start location before moving
+	 * @param endLocation the location to move and end at
+	 * @return the MoveActorAction, which moves the actor towards the correct direction
+	 */
 	public Action moveTo(Actor actor, GameMap map, Location startLocation, Location endLocation){
 		Action action = null;
 		List<Exit> exitList = map.locationOf(actor).getExits();
