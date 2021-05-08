@@ -22,6 +22,7 @@ public class Allosaur extends Dinosaur {
     public static final int PREGNANT_LENGTH = 20;
     public static final char BABY_ALLOSAUR_DISPLAY = 'a';
     public static final char ADULT_ALLOSAUR_DISPLAY = 'A';
+    public static final int BREEDING_LEVEL =50;
     /**
      * Array list to keep track of the different dinosaurs attacked.
      */
@@ -37,7 +38,8 @@ public class Allosaur extends Dinosaur {
      * @param age the current age of the allosaur to be created for
      */
     public Allosaur(int age) {
-        super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,ADULT_ALLOSAUR_DISPLAY) ;
+        super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,
+                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL) ;
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }
@@ -50,7 +52,8 @@ public class Allosaur extends Dinosaur {
      * @param gender the gender of the allosaur to be created for
      */
     public Allosaur(int age, char gender) {
-        super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,ADULT_ALLOSAUR_DISPLAY);
+        super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,
+                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL);
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }

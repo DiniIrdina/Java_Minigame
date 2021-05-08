@@ -3,6 +3,7 @@ import static java.util.Objects.isNull;
 import edu.monash.fit2099.engine.*;
 import game.action.AttackAction;
 import game.behaviour.Behaviour;
+import game.behaviour.BreedingBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.interfaces.NeedsPlayer;
 import game.item.BrachiosaurEgg;
@@ -23,6 +24,7 @@ public abstract class Dinosaur extends Actor {
     protected char gender;
     protected boolean attackable;
     protected boolean isPregnant;
+    protected final int BREEDING_LEVEL;
     protected int pregnancyCounter;
 
     /**
@@ -42,7 +44,7 @@ public abstract class Dinosaur extends Actor {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
-                    adultDisplay) {
+                    adultDisplay, int breed) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.SPECIES = species;
@@ -52,6 +54,7 @@ public abstract class Dinosaur extends Actor {
         this.age=age;
         this.attackable = true;
         this.ADULT_DISPLAY = adultDisplay;
+        this.BREEDING_LEVEL = breed;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -74,7 +77,7 @@ public abstract class Dinosaur extends Actor {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
-                    char adultDisplay) {
+                    char adultDisplay, int breed) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
@@ -85,6 +88,7 @@ public abstract class Dinosaur extends Actor {
         this.gender = gender;
         this.age=age;
         this.pregnancyCounter = 0;
+        this.BREEDING_LEVEL = breed;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -178,6 +182,11 @@ public abstract class Dinosaur extends Actor {
     public void turn(){
         Age();
         increaseHunger();
+        if(hitPoints >= BREEDING_LEVEL && isAdult() && !isPregnant()){
+            setBehaviour(new BreedingBehaviour());
+        }else if (isPregnant()){
+            setBehaviour(getWanderBehaviour());
+        }
 
     }
 

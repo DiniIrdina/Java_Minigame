@@ -3,6 +3,7 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.action.AttackAction;
 import game.action.FeedingAction;
+import game.behaviour.BreedingBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.interfaces.NeedsPlayer;
 import game.item.*;
@@ -20,6 +21,7 @@ public class Brachiosaur extends Dinosaur {
     public static final int PREGNANT_LENGTH = 30;
     public static final char  BABY_BRACHIOSAUR_DISPLAY = 'b';
     public static final char  ADULT_BRACHIOSAUR_DISPLAY = 'B';
+    public static final int BREEDING_LEVEL =70;
 
     /**
      * First overloaded constructor of the Brachiosaur class. All Brachiosaur have 160 hit points. The baby
@@ -27,7 +29,8 @@ public class Brachiosaur extends Dinosaur {
      * @param age the current age of the Brachiosaur to be created for
      */
     public Brachiosaur(int age) {
-        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY);
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,
+                ADULT_BRACHIOSAUR_DISPLAY, BREEDING_LEVEL);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
@@ -40,7 +43,8 @@ public class Brachiosaur extends Dinosaur {
      * @param gender the gender of the Brachiosaur to be created for
      */
     public Brachiosaur(int age, char gender) {
-        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_BRACHIOSAUR_DISPLAY);
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_BRACHIOSAUR_DISPLAY,
+                BREEDING_LEVEL);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
@@ -112,6 +116,8 @@ public class Brachiosaur extends Dinosaur {
                 this.pregnancyCounter = 0;
             }
         }
+
+
 
         if (wander != null)
             return wander;

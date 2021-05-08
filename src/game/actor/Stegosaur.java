@@ -22,6 +22,7 @@ public class Stegosaur extends Dinosaur {
 	public static final int PREGNANT_LENGTH = 10;
 	public static final char BABY_STEGOSAUR_DISPLAY = 's';
 	public static final char ADULT_STEGOSAUR_DISPLAY = 'S';
+	public static final int BREEDING_LEVEL =50;
 
 	/**
 	 * First overloaded constructor of the Stegosaur class. All Stegosaurs have 100 hit points. The baby
@@ -29,7 +30,8 @@ public class Stegosaur extends Dinosaur {
 	 * @param age the current age of the Stegosaur to be created for
 	 */
 	public Stegosaur(int age) {
-		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,ADULT_STEGOSAUR_DISPLAY);
+		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
+				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL);
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}
@@ -41,7 +43,8 @@ public class Stegosaur extends Dinosaur {
 	 * @param gender the gender of the Stegosaur to be created for
 	 */
 	public Stegosaur(int age, char gender) {
-		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,ADULT_STEGOSAUR_DISPLAY);
+		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
+				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL);
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}
