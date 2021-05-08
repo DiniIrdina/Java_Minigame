@@ -12,6 +12,8 @@ import game.actor.Brachiosaur;
 import game.actor.Dinosaur;
 import game.actor.Stegosaur;
 import game.behaviour.Behaviour;
+import game.environment.Bush;
+import game.environment.Dirt;
 import game.environment.Tree;
 import game.item.Food;
 import game.item.Fruit;
@@ -52,11 +54,20 @@ public class WanderBehaviour implements Behaviour {
 				}
 			}
 		Ground ground = location.getGround();
-		if (actor instanceof Stegosaur && ground instanceof Tree) {
-            List<Fruit> fruits = ((Tree) ground).getFruits();
-            if (!fruits.isEmpty()){
-            	for(Fruit fruit: fruits){
-            		return new HerbivoreEatAction(fruit);
+		if (actor instanceof Brachiosaur) {
+			if (ground instanceof Tree) {
+				List<Fruit> fruits = ((Tree) ground).getFruits();
+				if (!fruits.isEmpty()) {
+					for (Fruit fruit : fruits) {
+						return new HerbivoreEatAction(fruit);
+					}
+				}
+			}
+			else if (ground instanceof Bush){
+				double killBushChance = Math.random();
+				if (killBushChance > 0.5){
+					Dirt dirt = new Dirt();
+					location.setGround(dirt);
 				}
 			}
 		}
