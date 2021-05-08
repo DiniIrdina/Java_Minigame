@@ -89,17 +89,16 @@ public class Allosaur extends Dinosaur {
         }
 
         if (this.isPregnant){
-            if (pregnencyCounter < 20){
+            if (this.pregnencyCounter < 20){
                 pregnencyTurn();
             }
             else {
                 this.isPregnant = false;
                 LayEgg(map.locationOf(this));
                 removeEgg();
-                pregnencyCounter = 0;
+                this.pregnencyCounter = 0;
             }
         }
-
 
         if (wander != null)
             return wander;

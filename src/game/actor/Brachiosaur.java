@@ -79,6 +79,18 @@ public class Brachiosaur extends Dinosaur {
             }
         }
 
+        if (this.isPregnant){
+            if (this.pregnencyCounter < 20){
+                pregnencyTurn();
+            }
+            else {
+                this.isPregnant = false;
+                LayEgg(map.locationOf(this));
+                removeEgg();
+                this.pregnencyCounter = 0;
+            }
+        }
+
         if (wander != null)
             return wander;
 
@@ -102,5 +114,9 @@ public class Brachiosaur extends Dinosaur {
         }else if(food instanceof VegetarianMealKit){
             heal(maxHitPoints-hitPoints);
         }
+    }
+
+    public void LayEgg(Location location){
+        location.addItem(new BrachiosaurEgg());
     }
 }

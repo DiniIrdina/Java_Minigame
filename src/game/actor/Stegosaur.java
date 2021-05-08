@@ -82,6 +82,18 @@ public class Stegosaur extends Dinosaur {
 			}
 		}
 
+		if (this.isPregnant){
+			if (this.pregnencyCounter < 20){
+				pregnencyTurn();
+			}
+			else {
+				this.isPregnant = false;
+				LayEgg(map.locationOf(this));
+				removeEgg();
+				this.pregnencyCounter = 0;
+			}
+		}
+
 		if (wander != null)
 			return wander;
 
@@ -113,5 +125,7 @@ public class Stegosaur extends Dinosaur {
 		}
 	}
 
-
+	public void LayEgg(Location location){
+		location.addItem(new StegosaurEgg());
+	}
 }
