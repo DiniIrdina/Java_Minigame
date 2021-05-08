@@ -11,8 +11,10 @@ import game.item.*;
  * Class representing the Player.
  */
 public class Player extends Actor {
-
 	private Menu menu = new Menu();
+	/**
+	 * The total EcoPoints the player possesses. Static variable.
+	 */
 	public static int EcoPointStorage;
 
 	/**
