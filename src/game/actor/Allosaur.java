@@ -2,6 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.action.FeedingAction;
+import game.action.LayEggAction;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
 import game.interfaces.NeedsPlayer;
@@ -59,6 +60,11 @@ public class Allosaur extends Dinosaur {
 
     }
 
+    @Override
+    public void eatsFood(Food food) {
+
+    }
+
     /**
      * Figure out what to do next.
      *
@@ -81,6 +87,20 @@ public class Allosaur extends Dinosaur {
                 this.isPregnant = false;
             }
         }
+
+        if (this.isPregnant){
+            if (pregnencyCounter < 20){
+                pregnencyTurn();
+            }
+            else {
+                this.isPregnant = false;
+                LayEgg(map.locationOf(this));
+                removeEgg();
+                pregnencyCounter = 0;
+            }
+        }
+
+
         if (wander != null)
             return wander;
 
@@ -97,11 +117,8 @@ public class Allosaur extends Dinosaur {
         return result;
     }
 
-    @Override
-    public void eatsFood(Food food) {
-        if (food instanceof Corpse){
-
-        }
+    public void LayEgg(Location location){
+        location.addItem(new AllosaurEgg());
     }
 
     public void setAttacked_dinosaur(Dinosaur dinosaur){

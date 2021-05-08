@@ -21,6 +21,7 @@ public abstract class Dinosaur extends Actor {
     protected char gender;
     protected boolean attackable;
     protected boolean isPregnant;
+    protected int pregnencyCounter;
 
 
     private double genderProbability = 0.5;
@@ -120,6 +121,11 @@ public abstract class Dinosaur extends Actor {
         increaseHunger();
 
     }
+
+    public void pregnencyTurn(){
+        pregnencyCounter ++;
+    }
+
     public void increaseHunger(){
         hurt(1);
     }

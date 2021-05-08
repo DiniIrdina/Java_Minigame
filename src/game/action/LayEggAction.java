@@ -11,6 +11,7 @@ import game.item.Egg;
 import game.item.StegosaurEgg;
 
 public class LayEggAction extends Action {
+
     @Override
     public String execute(Actor actor, GameMap map) {
         Location location = map.locationOf(actor);
