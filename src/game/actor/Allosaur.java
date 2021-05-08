@@ -2,7 +2,6 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.action.FeedingAction;
-import game.action.LayEggAction;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
 import game.interfaces.NeedsPlayer;
