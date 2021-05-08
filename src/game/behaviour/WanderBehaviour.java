@@ -34,14 +34,13 @@ public class WanderBehaviour implements Behaviour {
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		ArrayList<Action> actions = new ArrayList<Action>();
-		Location location = map.locationOf(actor);
-		Ground ground = location.getGround();
 
+		Location location = map.locationOf(actor);
 		List<Item> itemsHere = location.getItems();
 		if (!itemsHere.isEmpty()) {
 			for (Item item : itemsHere) {
 				if (item instanceof Food) {
-					if (actor instanceof Stegosaur && !(ground instanceof Tree)) {
+					if (actor instanceof Stegosaur) {
 						if (((Dinosaur) actor).canEat((Food) item)) {
 							return new HerbivoreEatAction((Food) item);
 						}
@@ -54,7 +53,7 @@ public class WanderBehaviour implements Behaviour {
 					}
 				}
 			}
-
+		Ground ground = location.getGround();
 		if (actor instanceof Brachiosaur) {
 			if (ground instanceof Tree) {
 				List<Fruit> fruits = ((Tree) ground).getFruits();

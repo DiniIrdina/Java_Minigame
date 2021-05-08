@@ -16,7 +16,7 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
 
     /**
      * This behaviour allows the Allosaur to find and attack or consume its food source. It checks if the current location
-     * has a food source, and returns a new Carnivore
+     * has a food source, and returns an action to indicate
      * @param actor the Actor enacting the behaviour
      * @param map the map that actor is currently on
      * @return
