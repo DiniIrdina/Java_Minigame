@@ -19,14 +19,14 @@ public class BrachiosaurEatAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        assert actor instanceof Dinosaur;
+//        assert actor instanceof Dinosaur;
 //        Location location = map.locationOf(actor);
 //        Ground ground = location.getGround();
 //        if (ground instanceof Tree) {
 //            List<Fruit> fruits = ((Tree) ground).getFruits();
 //            if (!fruits.isEmpty()){
 //                for (Fruit fruit: fruits) {
-//
+//                    actor.heal(5);
 //            }}
 //        }
         return menuDescription(actor);

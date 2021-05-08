@@ -60,11 +60,11 @@ public class AllosaurEatAction extends Action {
             }
         }
 
-        return "Allosaur eaten for " + this.damage;
+        return menuDescription(actor);
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return actor +" has eaten and healed for "+damage;
     }
 }
