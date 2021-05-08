@@ -115,6 +115,13 @@ public abstract class Dinosaur extends Actor {
 
         }
     }
+    public boolean isAdult(){
+        if (age >= ADULT_AGE){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     /**
      * Returns the name of the dinosaur
