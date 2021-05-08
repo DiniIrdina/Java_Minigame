@@ -6,9 +6,7 @@ import game.action.FeedingAction;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
 import game.interfaces.NeedsPlayer;
-import game.item.Food;
-import game.item.Fruit;
-import game.item.VegetarianMealKit;
+import game.item.*;
 
 import static java.util.Objects.isNull;
 
@@ -71,11 +69,26 @@ public class Stegosaur extends Dinosaur {
 	 * 
 	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
 	 */
-
 	@Override
-	public void turn(){
+	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		Action wander = behaviour.getAction(this, map);
+		super.turn();
+		for (Item item: inventory){
+			if (item instanceof StegosaurEgg){
+				this.isPregnant = true;
+				break;
+			}else{
+				this.isPregnant = false;
+			}
+		}
 
+		if (wander != null)
+			return wander;
+
+		return new DoNothingAction();
 	}
+
+
 
 	@Override
 	public void assignBehaviour() {

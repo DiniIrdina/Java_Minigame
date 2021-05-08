@@ -47,7 +47,8 @@ public class BreedingBehaviour implements Behaviour {
                     continue;
                 }else{
                     if (dino.getSpecies().equals(((Dinosaur)target).getSpecies()) &&
-                            dino.getGender() != ((Dinosaur) target).getGender()){
+                            dino.getGender() != ((Dinosaur) target).getGender() && !dino.isPregnant() &&
+                            !((Dinosaur)target).isPregnant()){
                         mateList.add((Dinosaur)target);
                     }
                 }

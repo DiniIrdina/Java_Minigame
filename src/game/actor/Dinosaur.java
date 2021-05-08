@@ -5,6 +5,7 @@ import game.action.AttackAction;
 import game.behaviour.Behaviour;
 import game.behaviour.WanderBehaviour;
 import game.interfaces.NeedsPlayer;
+import game.item.BrachiosaurEgg;
 import game.item.Corpse;
 import game.item.Food;
 
@@ -19,6 +20,7 @@ public abstract class Dinosaur extends Actor {
     protected final char ADULT_DISPLAY;
     protected char gender;
     protected boolean attackable;
+    protected boolean isPregnant;
 
 
     private double genderProbability = 0.5;
@@ -100,6 +102,9 @@ public abstract class Dinosaur extends Actor {
 
     public abstract boolean canEat(Food food);
 
+    public boolean isPregnant() {
+        return isPregnant;
+    }
 
     public void removeEgg(){
         for(Item item: inventory){
@@ -112,8 +117,11 @@ public abstract class Dinosaur extends Actor {
 
     public void turn(){
         Age();
-        hurt(1);
+        increaseHunger();
 
+    }
+    public void increaseHunger(){
+        hurt(1);
     }
 
     public void Age(){
@@ -137,11 +145,11 @@ public abstract class Dinosaur extends Actor {
         this.behaviour = behaviour;
     }
 
-    @Override
-    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        turn();
-        return new DoNothingAction();
-    }
+//    @Override
+//    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+//        turn();
+//        return new DoNothingAction();
+//    }
 
     public abstract void eatsFood(Food food);
 

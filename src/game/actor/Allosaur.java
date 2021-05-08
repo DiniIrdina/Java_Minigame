@@ -70,11 +70,21 @@ public class Allosaur extends Dinosaur {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         Action wander = behaviour.getAction(this, map);
+        super.turn();
+        for (Item item: inventory){
+            if (item instanceof AllosaurEgg){
+                this.isPregnant = true;
+                break;
+            }else{
+                this.isPregnant = false;
+            }
+        }
         if (wander != null)
             return wander;
 
         return new DoNothingAction();
     }
+
 
     @Override
     public boolean canEat(Food food) {

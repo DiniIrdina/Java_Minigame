@@ -15,6 +15,14 @@ public class Tree extends Ground {
 		super('+');
 	}
 
+	public ArrayList<Fruit> getFruits() {
+		return fruits;
+	}
+
+	public void removeFruit(){
+		fruits.remove(fruits.size()-1);
+	}
+
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
