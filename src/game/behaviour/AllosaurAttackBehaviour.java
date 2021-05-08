@@ -1,8 +1,7 @@
 package game.behaviour;
 
 import edu.monash.fit2099.engine.*;
-import game.action.AllosaurEatAction;
-import game.action.AttackAction;
+import game.action.AllosaurAttackAction;
 import game.actor.Dinosaur;
 import game.actor.Stegosaur;
 
@@ -25,7 +24,7 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
             }
         }
         if (nearbyTarget != null){
-            return new AllosaurEatAction((Dinosaur)nearbyTarget);
+            return new AllosaurAttackAction((Dinosaur)nearbyTarget);
         }
 
         Dinosaur target = findTargetInRadius((Dinosaur)actor,map);
