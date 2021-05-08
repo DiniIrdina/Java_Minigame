@@ -46,7 +46,7 @@ public class FeedingAction extends Action {
         if (food instanceof Fruit){
             Player.updateEcoPoints(10);
         }
-        return menuDescription(actor);
+        return "Player fed " + food + " to "+ target;
     }
 
     /**
@@ -56,6 +56,6 @@ public class FeedingAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Player feeds food to "+target;
+        return "Player feed food to "+target;
     }
 }
