@@ -85,14 +85,14 @@ public class WanderBehaviour implements Behaviour {
 			}
 		}
 
-		Location nearestTree = getNearestTree(actor,map){
+		Location nearestTree = getNearestTree(actor,map);
 			if (nearestTree!=null && !(actor instanceof Allosaur)){
 				if (exitList.contains(nearestTree)){
 					return moveTo(actor,map,location,nearestTree);
 				}
 
 			}
-		}
+
 
 
 		for (Exit exit : exitList) {
