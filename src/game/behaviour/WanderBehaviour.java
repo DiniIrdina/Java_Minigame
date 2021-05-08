@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
-import game.action.AllosaurEatAction;
 import game.action.CarnivoreEatAction;
 import game.action.HerbivoreEatAction;
 import game.actor.Allosaur;
