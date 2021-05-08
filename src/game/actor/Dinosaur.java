@@ -21,7 +21,7 @@ public abstract class Dinosaur extends Actor {
     protected char gender;
     protected boolean attackable;
     protected boolean isPregnant;
-    protected int pregnencyCounter;
+    protected int pregnancyCounter;
 
 
     private double genderProbability = 0.5;
@@ -57,7 +57,7 @@ public abstract class Dinosaur extends Actor {
         this.ADULT_DISPLAY = adultDisplay;
         this.gender = gender;
         this.age=age;
-        this.pregnencyCounter = 0;
+        this.pregnancyCounter = 0;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -102,12 +102,24 @@ public abstract class Dinosaur extends Actor {
         return this.attackable = false;
     }
 
+    /**
+     * Specifies the different types of food the dinosaur can consume.
+     * @param food the type of food
+     * @return true if food is edible by current dinosaur
+     */
     public abstract boolean canEat(Food food);
 
+    /**
+     * Checks if the current dinosaur is pregnant.
+     * @return true if pregnant, false if not
+     */
     public boolean isPregnant() {
         return isPregnant;
     }
 
+    /**
+     * Removes the current egg within the dinosaur inventory.
+     */
     public void removeEgg(){
         for(Item item: inventory){
             if (item.toString().equals(this.getSpecies()+"Egg")){
@@ -117,20 +129,32 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    /**
+     * The generalized turn counter to update age and hungry values.
+     */
     public void turn(){
         Age();
         increaseHunger();
 
     }
 
-    public void pregnencyTurn(){
-        pregnencyCounter ++;
+    /**
+     * The pregnancy turn counter for keeping track and updating the pregnancy duration.
+     */
+    public void pregnancyTurn(){
+        pregnancyCounter ++;
     }
 
+    /**
+     * Reduces the health points of a dinosaur based on a hunger threshold.
+     */
     public void increaseHunger(){
         hurt(1);
     }
 
+    /**
+     * Updates the age of the dinosaur.
+     */
     public void Age(){
         age++;
         if(age== ADULT_AGE){
@@ -138,28 +162,45 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    /**
+     * The behaviours available for the dinosaur.
+     */
     public abstract void assignBehaviour();
 
+    /**
+     * The default behaviour for dinosaurs.
+     * @return the wander behaviour class execution
+     */
     public WanderBehaviour getWanderBehaviour(){
         return new WanderBehaviour();
     }
 
+    /**
+     * Returns the current behaviour of the dinosaur.
+     * @return the behaviour
+     */
     public Behaviour getBehaviour() {
         return behaviour;
     }
 
+    /**
+     * Sets the current behaviour of the dinosaur.
+     * @param behaviour the behaviour
+     */
     public void setBehaviour(Behaviour behaviour) {
         this.behaviour = behaviour;
     }
 
-//    @Override
-//    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-//        turn();
-//        return new DoNothingAction();
-//    }
-
+    /**
+     * The eating action.
+     * @param food the type of food
+     */
     public abstract void eatsFood(Food food);
 
+    /**
+     * Returns the current hit points of the dinosaur.
+     * @return the current hit points
+     */
     public int getHitPoints(){
         return this.hitPoints;
     }

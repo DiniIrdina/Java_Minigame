@@ -80,14 +80,14 @@ public class Brachiosaur extends Dinosaur {
         }
 
         if (this.isPregnant){
-            if (this.pregnencyCounter < 20){
-                pregnencyTurn();
+            if (this.pregnancyCounter < 20){
+                pregnancyTurn();
             }
             else {
                 this.isPregnant = false;
                 LayEgg(map.locationOf(this));
                 removeEgg();
-                this.pregnencyCounter = 0;
+                this.pregnancyCounter = 0;
             }
         }
 

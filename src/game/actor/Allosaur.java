@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 import static java.util.Objects.isNull;
 
+/**
+ * Class creation for the allosaur dinosaurs.
+ */
 public class Allosaur extends Dinosaur {
     public static final String SPECIES = "Allosaur";
     public static final int ADULT_AGE = 50;
@@ -22,6 +25,10 @@ public class Allosaur extends Dinosaur {
     private ArrayList<Dinosaur> attacked_dinosaur = new ArrayList<Dinosaur>();
     private ArrayList<Integer> attacked_dinosaur_count = new ArrayList<Integer>();
 
+    /**
+     * First overloaded constructor of the Allosaur class.
+     * @param age the current age of the allosaur to be created for
+     */
     public Allosaur(int age) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,ADULT_ALLOSAUR_DISPLAY) ;
         if(age<ADULT_AGE){
@@ -30,6 +37,11 @@ public class Allosaur extends Dinosaur {
         behaviour = new WanderBehaviour();
     }
 
+    /**
+     * Second overloaded constructor of the Allosaur class.
+     * @param age the current age of the allosaur to be created for
+     * @param gender the gender of the allosaur to be created for
+     */
     public Allosaur(int age, char gender) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,ADULT_ALLOSAUR_DISPLAY);
         if(age<ADULT_AGE){
@@ -38,6 +50,13 @@ public class Allosaur extends Dinosaur {
         behaviour = new WanderBehaviour();
     }
 
+    /**
+     * Lists all the actions that the other actor can perform on the current actor.
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return           actions
+     */
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         actions = new Actions();
         actions.add(new AttackAction(this));
@@ -54,6 +73,10 @@ public class Allosaur extends Dinosaur {
         return actions;
 
     }
+
+    /**
+     * Swaps the behaviour of the actor
+     */
     @Override
     public void assignBehaviour() {
 
@@ -88,14 +111,14 @@ public class Allosaur extends Dinosaur {
         }
 
         if (this.isPregnant){
-            if (this.pregnencyCounter < 20){
-                pregnencyTurn();
+            if (this.pregnancyCounter < 20){
+                pregnancyTurn();
             }
             else {
                 this.isPregnant = false;
                 LayEgg(map.locationOf(this));
                 removeEgg();
-                this.pregnencyCounter = 0;
+                this.pregnancyCounter = 0;
             }
         }
 

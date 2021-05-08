@@ -6,14 +6,24 @@ import game.item.*;
 
 import java.util.ArrayList;
 
+/**
+ * Class creation of vending machine object/
+ */
 public class VendingMachine extends Ground {
     /***
-     * Constructor.
+     * Overloading constructor of the VendingMachine class.
      */
     public VendingMachine() {
         super('V');
     }
 
+    /**
+     * This method adds a list of the items dispensable by the vending machine.
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return the purchasing action
+     */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction){
         ArrayList<Item> itemArrayList = new ArrayList<Item>();

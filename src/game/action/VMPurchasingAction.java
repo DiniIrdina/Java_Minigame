@@ -4,7 +4,13 @@ import edu.monash.fit2099.engine.*;
 import game.actor.Player;
 import game.item.*;
 
+/**
+ * Special interactive purchasing action for the vending machine class.
+ */
 public class VMPurchasingAction extends Action {
+    /**
+     * Enums generated to store different types of items dispensable from the vending machine.
+     */
     enum Types {
         Fruit,
         VegetarianMealKit,
@@ -15,18 +21,34 @@ public class VMPurchasingAction extends Action {
         LaserGun
     }
 
+    /**
+     * The item selected from the vending machine, by the player.
+     */
     Item selection;
 
+    /**
+     * The constructor of the VMPurchasingAction class.
+     * @param selection the item selected from the vending machine, by the player.
+     */
     public VMPurchasingAction(Item selection) {
         this.selection = selection;
     }
 
+    /**
+     * This method is used to execute the purchasing action for the vending machine class. Based on the selection
+     * type returned from the vending machine class, the method will dispense the item specified, only if the player
+     * has sufficient eco points.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Player player = (Player)actor;
         int itemPrice = 0;
         String message;
 
+        //Converts the selection to a string format and makes the enum safe.
         Types whichSelection = Types.valueOf(selection.toString());
 
         switch (whichSelection){
@@ -66,6 +88,11 @@ public class VMPurchasingAction extends Action {
         return message;
     }
 
+    /**
+     * Returns a descriptive string, in this case, the items available in the vending machine.
+     * @param actor The actor performing the action.
+     * @return the text we put on the menu
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "Item: " + selection.toString();

@@ -6,7 +6,6 @@ import edu.monash.fit2099.engine.GameMap;
 import game.actor.Dinosaur;
 import game.item.AllosaurEgg;
 import game.item.BrachiosaurEgg;
-import game.item.Egg;
 import game.item.StegosaurEgg;
 
 public class BreedingAction extends Action {
@@ -14,7 +13,7 @@ public class BreedingAction extends Action {
 
     /**
      * The constructor for the Breeding Action
-     * @param dino
+     * @param dino the target dinosaur to be breed with
      */
     public BreedingAction(Dinosaur dino){
         this.target = dino;
@@ -26,7 +25,7 @@ public class BreedingAction extends Action {
      * female's inventory.
      * @param actor The actor executing the action.
      * @param map The map the actor is currently on.
-     * @return
+     * @return    The menudescription of the action, a string.
      */
     @Override
     public String execute(Actor actor, GameMap map) {
