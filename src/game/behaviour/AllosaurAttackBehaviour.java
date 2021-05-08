@@ -3,14 +3,16 @@ package game.behaviour;
 import edu.monash.fit2099.engine.*;
 import game.action.AllosaurAttackAction;
 import game.action.AttackAction;
+import game.action.CarnivoreEatAction;
 import game.actor.Allosaur;
 import game.actor.Dinosaur;
 import game.actor.Stegosaur;
+import game.item.Food;
 
 import java.util.List;
 
 public class AllosaurAttackBehaviour extends WanderBehaviour{
-    static final int RADIUS = 40;
+    static final int RADIUS = 50;
 
     /**
      * This behaviour allows the Allosaur to find and
@@ -20,6 +22,16 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
+        Location actorLocation = map.locationOf(actor);
+        List<Item> itemsHere = actorLocation.getItems();
+        if (!itemsHere.isEmpty()) {
+            for (Item item : itemsHere) {
+                if (item instanceof Food){
+                    if (((Dinosaur)actor).canEat((Food)item)){
+                        return new CarnivoreEatAction((Food)item);
+                }}
+            }}
+
         List<Exit> exitList = map.locationOf(actor).getExits();
         Actor nearbyTarget = null;
         Action move = null;
