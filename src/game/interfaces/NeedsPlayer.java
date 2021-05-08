@@ -6,7 +6,11 @@ import edu.monash.fit2099.engine.Location;
 import game.actor.Player;
 
 public interface NeedsPlayer {
-
+    /**
+     * An interface that is used to return the Player object.
+     * @param map where the player is located
+     * @return PLayer instance
+     */
     static Player retrievePlayer(GameMap map){
         for (int x: map.getXRange()){
             for (int y:map.getYRange()){
