@@ -37,7 +37,7 @@ public class HerbivoreEatAction extends Action {
         else if (actor instanceof Brachiosaur){
             ((Brachiosaur) actor).eatsFood(this.food);
         }
-        return actor + "eaten " + this.food;
+        return menuDescription(actor);
     }
 
     /**
@@ -47,6 +47,6 @@ public class HerbivoreEatAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return actor + "has eaten a " + this.food;
     }
 }

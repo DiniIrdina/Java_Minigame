@@ -53,7 +53,7 @@ public class AllosaurAttackAction extends Action {
                 actor.heal(damage);
             }
         }
-        return actor + " attacked " + target + " for " + this.damage;
+        return menuDescription(actor);
     }
 
     /**
@@ -63,6 +63,6 @@ public class AllosaurAttackAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return actor + " attacked " + target + " for " + this.damage;
     }
 }

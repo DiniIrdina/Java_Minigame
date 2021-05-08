@@ -42,7 +42,7 @@ public class CarnivoreEatAction extends Action {
             actor.heal(10);
             map.locationOf(actor).removeItem(this.food);
         }
-        return actor + " ate " + this.food;
+        return menuDescription(actor);
     }
 
     /**
@@ -52,6 +52,6 @@ public class CarnivoreEatAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return actor + " ate " + this.food;
     }
 }
