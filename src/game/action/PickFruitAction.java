@@ -7,7 +7,8 @@ import game.environment.Tree;
 import game.item.Fruit;
 
 /**
- * This class represents an Action that allows the player to pick fruits from
+ * A class that tackles the PickFruitAction for players to pluck fruits from bushes or trees.
+ * There is a set probability that a fruit could be pluck from the object if the player is at its location.
  */
 public class PickFruitAction extends Action {
     /**

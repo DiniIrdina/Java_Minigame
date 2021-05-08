@@ -9,7 +9,8 @@ import game.item.BrachiosaurEgg;
 import game.item.StegosaurEgg;
 
 /**
- * Breeding Action used for breeding between dinosaurs of the same species.
+ * A class that tackles the BreedingAction from the dinosaurs to breed. Once the breeding has been concluded,
+ * an Egg will be added to the female dinosaur's inventory.
  */
 public class BreedingAction extends Action {
     private Dinosaur target;

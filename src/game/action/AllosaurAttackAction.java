@@ -7,7 +7,8 @@ import game.actor.Allosaur;
 import game.actor.Dinosaur;
 
 /**
- * Special Action for Allosaurs to attack other dinosaurs.
+ * A class that tackles the AllosaurAttackAction for allosaurs. The allosaur can only attack a specified
+ * target once before it goes into a cooldown. The target species is always a stegosaur.
  */
 public class AllosaurAttackAction extends Action {
     /**

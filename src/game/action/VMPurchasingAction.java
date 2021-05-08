@@ -5,7 +5,9 @@ import game.actor.Player;
 import game.item.*;
 
 /**
- * Special interactive purchasing action for the vending machine class.
+ * A class that tackles the VMPurchasingAction for players to interact and purchase items from the vending machine.
+ * The vending machine items heavily depend on the eco points currently available on the player. If a purchase has
+ * to be made, the player must have sufficient eco points.
  */
 public class VMPurchasingAction extends Action {
     /**

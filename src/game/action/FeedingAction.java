@@ -9,7 +9,9 @@ import game.item.Food;
 import game.item.Fruit;
 
 /**
- * Special action that deals with feeding dinosaurs with items from the player.
+ * A class that tackles the FeedingAction from the player for dinosaurs. Items could be fed are located in
+ * player's inventory and is consumed when used. Items could be found on the ground, e.g fruits or purchased
+ * from the vending machine.
  */
 public class FeedingAction extends Action {
     /**

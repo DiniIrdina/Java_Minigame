@@ -6,7 +6,9 @@ import game.item.Egg;
 import game.item.Food;
 
 /**
- * Special eat action specified for carnivore dinosaurs.
+ * A class that tackles the CarnivoreEatAction for carnivorous dinosaurs. Corpses are currently the only
+ * non-vegetative items that could be found on the map naturally. Excludes the CarnivoreMealKit found in vending
+ * machines
  */
 public class CarnivoreEatAction extends Action {
     private Food food;

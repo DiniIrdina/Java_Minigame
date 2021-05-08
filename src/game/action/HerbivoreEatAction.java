@@ -8,7 +8,8 @@ import game.actor.Stegosaur;
 import game.item.Food;
 
 /**
- * Special eat action specified for herbivore dinosaurs.
+ * A class that tackles the HerbivoreEatAction for herbivorous dinosaurs. Most items found on the map contains
+ * Fruits which is an vegetative item.
  */
 public class HerbivoreEatAction extends Action {
     private Food food;
