@@ -11,9 +11,18 @@ import game.actor.Player;
 import java.util.ArrayList;
 
 /**
- * Class creation for BreedingBehaviour
+ * A class that figures out the BreedingBehaviour for dinosaurs. The dinosaur that
+ * is looking to mate will execute this behaviour and begin to look for potential
+ * mates within the map instance. Once found, they will move over to the selected
+ * partner and initiate the breeding action.
  */
 public class BreedingBehaviour implements Behaviour {
+    /**
+     * This behaviour allows the dinosaurs of the same species to find a partner to breed with.
+     * @param actor the Actor enacting the behaviour
+     * @param map the map that actor is currently on
+     * @return either a FollowBehaviour if the mate is not nearby or if the mate is within range, BreedingAction
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur mate = null;
@@ -40,6 +49,14 @@ public class BreedingBehaviour implements Behaviour {
         }
     }
 
+    /**
+     * This method locates the nearest dinosaur of the same species to be mated with. The method will search
+     * the entirety of the map till the mate has been located. Once the location has been found, it is added to
+     * an array list to be returned.
+     * @param dino  the dinosaur that's looking to mate
+     * @param map   the current instance of the map
+     * @return      array list of potential mates
+     */
     public ArrayList<Dinosaur> getMates(Dinosaur dino, GameMap map){
         ArrayList<Dinosaur> mateList = new ArrayList<>();
         for (int x: map.getXRange()){

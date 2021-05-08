@@ -13,7 +13,7 @@ public class FollowBehaviour implements Behaviour {
 	private Actor target;
 
 	/**
-	 * Constructor.
+	 * Constructor for the FollowBehaviour class.
 	 * 
 	 * @param subject the Actor to follow
 	 */
@@ -21,6 +21,12 @@ public class FollowBehaviour implements Behaviour {
 		this.target = subject;
 	}
 
+	/**
+	 * This behaviour allows the actor to locate a target, and move over to the target's location.
+	 * @param actor the Actor enacting the behaviour
+	 * @param map the map that actor is currently on
+	 * @return MoveActorAction, which executes the move order or null if not found
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))
@@ -48,7 +54,7 @@ public class FollowBehaviour implements Behaviour {
 	 * Compute the Manhattan distance between two locations.
 	 * 
 	 * @param a the first location
-	 * @param b the first location
+	 * @param b the final location
 	 * @return the number of steps between a and b if you only move in the four cardinal directions.
 	 */
 	static int distance(Location a, Location b) {
