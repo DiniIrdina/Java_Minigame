@@ -13,7 +13,7 @@ import game.item.Food;
 /**
  * Abstract class creation of Dinosaur. Used as the template for all relation types of dinosaurs
  */
-public abstract class Dinosaur extends Actor {
+public abstract class Dinosaur extends Actor implements NeedsPlayer {
     protected Behaviour behaviour;
     protected Actions actions;
     protected final String SPECIES;
