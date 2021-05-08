@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class VendingMachine extends Ground {
     /***
-     * Overloading constructor of the VendingMachine class.
+     * Overloading constructor of the VendingMachine class. VendingMachine will be represented by the char 'V'.
      */
     public VendingMachine() {
         super('V');

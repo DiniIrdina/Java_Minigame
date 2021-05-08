@@ -7,18 +7,29 @@ import game.item.Fruit;
 import java.util.ArrayList;
 
 public class Bush extends Ground {
-    private ArrayList<Fruit> fruits = new ArrayList<>();
     /**
-     * Constructor
+     * Array list to store the fruit objects
+     */
+    private ArrayList<Fruit> fruits = new ArrayList<>();
+
+    /**
+     * Overloading constructor of the Bush class. Bush will be represented by the char 'w'.
      */
     public Bush(){
         super('w');
     }
 
+    /**
+     * Removes the fruit from the array list
+     */
     public void removeFruit(){
         fruits.remove(fruits.size()-1);
     }
 
+    /**
+     * Tick updates the current turn of game for the class object
+     * @param location The location of the Ground
+     */
     public void tick(Location location){
         super.tick(location);
         double fruitPossibility = 0.1;

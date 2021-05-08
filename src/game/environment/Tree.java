@@ -9,20 +9,38 @@ import java.util.ArrayList;
 
 public class Tree extends Ground {
 	private int age = 0;
+
+	/**
+	 * Array list to store the fruit objects
+	 */
 	private ArrayList<Fruit> fruits = new ArrayList<>();
 
+	/**
+	 * Overloading constructor of the Tree class. Tree will be represented by the char '+'.
+	 */
 	public Tree() {
 		super('+');
 	}
 
+	/**
+	 * Returns the fruits list.
+	 * @return Returns the fruits list
+	 */
 	public ArrayList<Fruit> getFruits() {
 		return fruits;
 	}
 
+	/**
+	 * Removes the fruit from the array list
+	 */
 	public void removeFruit(){
 		fruits.remove(fruits.size()-1);
 	}
 
+	/**
+	 * Tick updates the current turn of game for the class object
+	 * @param location The location of the Ground
+	 */
 	@Override
 	public void tick(Location location) {
 		super.tick(location);

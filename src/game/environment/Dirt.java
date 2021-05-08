@@ -13,9 +13,17 @@ public class Dirt extends Ground {
 	final double DEFAULT_BUSH_CHANCE = 	0.01;
 	final double TWO_BUSH_CHANCE = 0.1;
 
+	/**
+	 * Overloading constructor of the Dirt class. Dirt will be represented by the char '.'
+	 */
 	public Dirt() {
 		super('.');
 	}
+
+	/**
+	 * Grows a bush if the current dirt object does not have a tree instance
+	 * @param location The location of the Ground
+	 */
 	public void growBush(Location location){
 		double possibility = Math.random();
 		int bushes = 0;
@@ -41,7 +49,10 @@ public class Dirt extends Ground {
 		}
 	}
 
-
+	/**
+	 * Tick updates the current turn of game for the class object
+	 * @param location The location of the Ground
+	 */
 	public void tick(Location location){
 		super.tick(location);
 		growBush(location);
