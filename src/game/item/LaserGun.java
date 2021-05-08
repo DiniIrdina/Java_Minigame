@@ -4,8 +4,12 @@ import edu.monash.fit2099.engine.WeaponItem;
 import game.interfaces.VendingMachineItemsInterface;
 
 public class LaserGun extends WeaponItem implements VendingMachineItemsInterface {
-    public static final int price = 500;
+    public static final int PRICE = 500;
     public LaserGun(){
-        super("Laser Gun",'g',100,"zaps");
+        super("LaserGun",'g',100,"zaps");
+    }
+
+    public int getPrice(){
+        return PRICE;
     }
 }

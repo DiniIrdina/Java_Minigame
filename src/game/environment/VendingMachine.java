@@ -8,8 +8,6 @@ import game.item.*;
 import java.util.ArrayList;
 
 public class VendingMachine extends Ground {
-    private ArrayList<VendingMachineItemsInterface> itemArrayList = new ArrayList<VendingMachineItemsInterface>();
-
     /***
      * Constructor.
      */
@@ -19,6 +17,7 @@ public class VendingMachine extends Ground {
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction){
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
         itemArrayList.add(new Fruit());
         itemArrayList.add(new VegetarianMealKit());
         itemArrayList.add(new CarnivoreMealKit());
@@ -29,7 +28,7 @@ public class VendingMachine extends Ground {
 
         Actions action = new Actions();
 
-        for (VendingMachineItemsInterface i: itemArrayList){
+        for (Item i: itemArrayList){
             action.add(new VMPurchasingAction(i));
         }
         return action;

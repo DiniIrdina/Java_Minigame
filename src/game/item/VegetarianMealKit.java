@@ -6,10 +6,14 @@ public class VegetarianMealKit extends Food implements VendingMachineItemsInterf
     public static final int PRICE = 100;
     public static final int FEED_POINTS = 160;
     public VegetarianMealKit() {
-        super("Vegetarian Meal Kit", '&');
+        super("VegetarianMealKit", '&');
     }
 
     public static int getFeedPoints() {
         return FEED_POINTS;
+    }
+
+    public int getPrice(){
+        return PRICE;
     }
 }

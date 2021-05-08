@@ -19,4 +19,8 @@ public class StegosaurEgg extends Egg implements VendingMachineItemsInterface {
             Player.updateEcoPoints(100);
         }
     }
+
+    public int getPrice(){
+        return PRICE;
+    }
 }

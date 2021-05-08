@@ -19,4 +19,8 @@ public class BrachiosaurEgg extends Egg implements VendingMachineItemsInterface 
             Player.updateEcoPoints(1000);
         }
     }
+
+    public int getPrice(){
+        return PRICE;
+    }
 }
