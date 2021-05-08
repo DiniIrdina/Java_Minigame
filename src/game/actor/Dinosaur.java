@@ -57,6 +57,7 @@ public abstract class Dinosaur extends Actor {
         this.ADULT_DISPLAY = adultDisplay;
         this.gender = gender;
         this.age=age;
+        this.pregnencyCounter = 0;
 
         if (probability<=genderProbability){
             this.gender = 'F';
