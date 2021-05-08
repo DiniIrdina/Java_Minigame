@@ -64,7 +64,7 @@ public class Application {
 		gameMap.at(30,15).addActor(new Brachiosaur(50,'M'));
 		gameMap.at(25,23).addActor(new Brachiosaur(50,'F'));
 		gameMap.at(35,2).addActor(new Brachiosaur(50,'M'));
-		//gameMap.at(33,12).addActor(new Allosaur(50,'M'));
+		gameMap.at(33,12).addActor(new Allosaur(50,'M'));
 
 		world.run();
 	}

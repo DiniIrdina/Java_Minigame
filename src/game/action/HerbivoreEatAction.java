@@ -3,6 +3,7 @@ package game.action;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
 import game.actor.Brachiosaur;
 import game.actor.Stegosaur;
 import game.item.Food;
@@ -34,9 +35,11 @@ public class HerbivoreEatAction extends Action {
     public String execute(Actor actor, GameMap map) {
         if (actor instanceof Stegosaur){
             ((Stegosaur) actor).eatsFood(this.food);
+            map.locationOf(actor).removeItem(this.food);
         }
         else if (actor instanceof Brachiosaur){
             ((Brachiosaur) actor).eatsFood(this.food);
+            map.locationOf(actor).removeItem(this.food);
         }
         return menuDescription(actor);
     }
