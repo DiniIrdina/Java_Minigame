@@ -9,7 +9,9 @@ import game.item.BrachiosaurEgg;
 import game.item.Corpse;
 import game.item.Food;
 
-
+/**
+ * Abstract class creation of Dinosaur. Used as the template for all relation types of dinosaurs
+ */
 public abstract class Dinosaur extends Actor {
     protected Behaviour behaviour;
     protected Actions actions;
@@ -23,9 +25,22 @@ public abstract class Dinosaur extends Actor {
     protected boolean isPregnant;
     protected int pregnancyCounter;
 
-
+    /**
+     * Default gender probability.
+     */
     private double genderProbability = 0.5;
 
+    /**
+     * First constructor of the Dinosaur class. Has multiple intake variables to help build separate dinosaur types.
+     * @param species the species specified
+     * @param displayChar the display char of the species
+     * @param age the age
+     * @param maxHitPoints the maximum hit points
+     * @param hitPoints the current hit points
+     * @param pregnant if the dinosaur is pregnant
+     * @param adultAge the age of a fully grown dinosaur
+     * @param adultDisplay the display char of the fully grown dinosaur
+     */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
                     adultDisplay) {
         super(species, displayChar, hitPoints);
@@ -46,6 +61,18 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    /**
+     * Second constructor of the Dinosaur class. Has multiple intake variables to help build separate dinosaur types.
+     * @param species the species specified
+     * @param displayChar the display char of the species
+     * @param gender the gender of the dinosaur
+     * @param age the age
+     * @param maxHitPoints the maximum hit points
+     * @param hitPoints the current hit points
+     * @param pregnant if the dinosaur is pregnant
+     * @param adultAge the age of a fully grown dinosaur
+     * @param adultDisplay the display char of the fully grown dinosaur
+     */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
                     char adultDisplay) {
         super(species, displayChar, hitPoints);
@@ -67,6 +94,10 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    /**
+     * Returns the gender
+     * @return gender
+     */
     public char getGender() {
         return gender;
     }
@@ -84,6 +115,11 @@ public abstract class Dinosaur extends Actor {
 
         }
     }
+
+    /**
+     * Returns the name of the dinosaur
+     * @return name
+     */
     public String getName(){
         return this.name;
     }

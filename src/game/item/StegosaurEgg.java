@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.Location;
 import game.actor.Player;
 import game.actor.Stegosaur;
 
+/**
+ * Class creation for the item StegosaurEgg, a Egg item.
+ */
 public class StegosaurEgg extends Egg {
     public static final int PRICE = 200;
     public StegosaurEgg() {

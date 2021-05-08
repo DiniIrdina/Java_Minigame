@@ -3,12 +3,20 @@ package game.item;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * Class creation for the item Corpse, a food item.
+ */
 public class Corpse extends Food {
     private int timer;
     private int despawn_timer;
     private String species;
     private GameMap map;
 
+    /**
+     * The overloaded constructor for the Corpse class. Will execute the despawn timer when instantiated.
+     * @param species the species of the dinosaur
+     * @param map the current instance of the map
+     */
     public Corpse(String species, GameMap map) {
         super("Corpse", '8');
         this.species = species;
@@ -17,14 +25,27 @@ public class Corpse extends Food {
         setDespawn_timer();
     }
 
+    /**
+     * Returns the species.
+     * @return species
+     */
     public String getSpecies() {
         return species;
     }
 
+    /**
+     * Sets the species of the corpse.
+     * @param species the specified species
+     * @return the updated species
+     */
     public String setSpecies(String species) {
         return this.species = species;
     }
 
+    /**
+     * The despawn timer for the corpse object removal from the game map when conditions are fulfilled.
+     * Each species has a different despawn timer for their relation corpses.
+     */
     public void setDespawn_timer(){
         if (species.equals("Allosaur") || species.equals("Stegosaur")){
             despawn_timer = 20;
@@ -34,6 +55,11 @@ public class Corpse extends Food {
         }
     }
 
+    /**
+     * Tick updates the current turn of game for the class object. Keeps track of the current timer and if aligns
+     * with the despawn timer, removes the corpse object.
+     * @param currentLocation The location of the ground on which we lie.
+     */
     public void tick(Location currentLocation){
         super.tick(currentLocation);
         this.timer++;
@@ -50,6 +76,9 @@ public class Corpse extends Food {
         }
     }
 
+    /**
+     * Removes the corpse object from the game map.
+     */
     public void removeCorpse(){
         Location location = getLocation(map, this);
         if (location != null) {

@@ -3,6 +3,8 @@ package game.item;
 public class Fruit extends Food {
     public static final int PRICE = 30;
     public static final int FEED_POINTS = 20;
+
+
     public Fruit(){
         super("Fruit", '*');
     }

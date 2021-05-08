@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import static java.util.Objects.isNull;
 
 /**
- * Class creation for the allosaur dinosaurs.
+ * Class creation for the Allosaur, a carnivorous dinosaur.
  */
 public class Allosaur extends Dinosaur {
     public static final String SPECIES = "Allosaur";

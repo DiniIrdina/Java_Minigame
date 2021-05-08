@@ -9,6 +9,9 @@ import game.item.*;
 
 import static java.util.Objects.isNull;
 
+/**
+ * Class creation for Brachiosaur, a herbivorous dinosaur.
+ */
 public class Brachiosaur extends Dinosaur {
     public static final String SPECIES = "Brachiosaur";
     public static final int ADULT_AGE = 50;

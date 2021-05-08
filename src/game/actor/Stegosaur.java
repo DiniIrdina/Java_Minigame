@@ -11,8 +11,7 @@ import game.item.*;
 import static java.util.Objects.isNull;
 
 /**
- * A herbivorous dinosaur.
- *
+ * Class creation for Stegosaur, a herbivorous dinosaur.
  */
 public class Stegosaur extends Dinosaur {
 	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
