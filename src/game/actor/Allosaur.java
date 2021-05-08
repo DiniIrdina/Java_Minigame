@@ -141,6 +141,9 @@ public class Allosaur extends Dinosaur {
         if(hitPoints <= HUNGRY_LEVEL){
             setBehaviour(new AllosaurAttackBehaviour());
         }
+        else{
+            setBehaviour(new WanderBehaviour());
+        }
 
         if (wander != null)
             return wander;
