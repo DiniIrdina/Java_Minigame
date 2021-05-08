@@ -1,24 +1,21 @@
 package game.action;
 
-import edu.monash.fit2099.engine.*;
+import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.GameMap;
 import game.actor.Allosaur;
 import game.actor.Dinosaur;
-import game.item.Corpse;
-import game.item.Egg;
 
-import java.util.List;
-
-public class AllosaurEatAction extends Action {
+public class AllosaurAttackAction extends Action {
     /**
      * The dinosaur to be attacked for food source
      */
     protected Dinosaur target;
     private int damage;
 
-    public AllosaurEatAction(Dinosaur target){
+    public AllosaurAttackAction(Dinosaur target){
         this.target = target;
     }
-
     @Override
     public String execute(Actor actor, GameMap map) {
         if (target.getSpecies().equals("Stegosaur")) {
@@ -38,29 +35,7 @@ public class AllosaurEatAction extends Action {
                 actor.heal(damage);
             }
         }
-
-        else {
-            Location location = map.locationOf(actor);
-            List<Item> items = location.getItems();
-            for (Item i : items){
-                if (i instanceof Corpse){
-                    if (((Corpse) i).getSpecies().equals("Allosaur") || ((Corpse) i).getSpecies().equals("Stegosaur")){
-                        actor.heal(50);
-                    }
-                    else if (((Corpse) i).getSpecies().equals("Brachiosaur")){
-                        actor.heal(100);
-                    }
-                    location.removeItem(i);
-                }
-
-                else if (i instanceof Egg){
-                    actor.heal(10);
-                    location.removeItem(i);
-                }
-            }
-        }
-
-        return "Allosaur eaten for " + this.damage;
+        return actor + " attacked " + target + " for " + this.damage;
     }
 
     @Override
