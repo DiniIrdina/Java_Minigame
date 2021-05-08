@@ -3,10 +3,11 @@ package game.action;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.actor.Dinosaur;
-import game.actor.Player;
+import game.actor.*;
+import game.item.CarnivoreMealKit;
 import game.item.Food;
 import game.item.Fruit;
+import game.item.VegetarianMealKit;
 
 /**
  * A class that tackles the FeedingAction from the player for dinosaurs. Items could be fed are located in
@@ -58,6 +59,6 @@ public class FeedingAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Player feed food to "+target;
+        return "Player feed " +food+" to "+target;
     }
 }
