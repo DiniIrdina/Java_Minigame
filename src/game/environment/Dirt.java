@@ -29,12 +29,14 @@ public class Dirt extends Ground {
 			}
 		}
 		if (bushes >= 2){
-			if (possibility < TWO_BUSH_CHANCE){
-				createBush(location);
+			if (possibility <= TWO_BUSH_CHANCE){
+				Bush bush = new Bush();
+				location.setGround(bush);
 			}
 		}else{
-			if (possibility < DEFAULT_BUSH_CHANCE){
-				createBush(location);
+			if (possibility <= DEFAULT_BUSH_CHANCE){
+				Bush bush = new Bush();
+				location.setGround(bush);
 			}
 		}
 	}
@@ -45,8 +47,4 @@ public class Dirt extends Ground {
 		growBush(location);
 	}
 
-	public void createBush(Location location){
-		Bush bush = new Bush();
-		location.setGround(bush);
-	}
 }

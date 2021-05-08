@@ -3,6 +3,7 @@ import static java.util.Objects.isNull;
 import edu.monash.fit2099.engine.*;
 import game.action.AttackAction;
 import game.behaviour.Behaviour;
+import game.behaviour.WanderBehaviour;
 import game.interfaces.NeedsPlayer;
 import game.item.Corpse;
 import game.item.Food;
@@ -123,6 +124,10 @@ public abstract class Dinosaur extends Actor {
     }
 
     public abstract void assignBehaviour();
+
+    public WanderBehaviour getWanderBehaviour(){
+        return new WanderBehaviour();
+    }
 
     public Behaviour getBehaviour() {
         return behaviour;
