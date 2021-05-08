@@ -9,7 +9,7 @@ import game.actor.Player;
 public class AllosaurEgg extends Egg implements VendingMachineItemsInterface {
     public static final int PRICE = 1000;
     public AllosaurEgg() {
-        super();
+        super("Allosaur");
     }
 
     public void tick(Location location){

@@ -7,8 +7,8 @@ public abstract class Egg extends Food {
     protected int age = 0;
     static final int FEED_POINTS = 10;
 
-    public Egg() {
-        super("Egg", 'o');
+    public Egg(String species) {
+        super(species+" Egg", 'o');
         setSpecies(this.species);
     }
 
