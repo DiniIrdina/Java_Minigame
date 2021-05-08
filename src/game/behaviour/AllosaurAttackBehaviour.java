@@ -12,10 +12,17 @@ import java.util.List;
 public class AllosaurAttackBehaviour extends WanderBehaviour{
     static final int RADIUS = 40;
 
+    /**
+     * This behaviour allows the Allosaur to find and
+     * @param actor the Actor enacting the behaviour
+     * @param map the map that actor is currently on
+     * @return
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         List<Exit> exitList = map.locationOf(actor).getExits();
         Actor nearbyTarget = null;
+        Action move = null;
         for (Exit exit: exitList){
             Location location = exit.getDestination();
             if (location.containsAnActor()){
@@ -37,7 +44,13 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
             return new FollowBehaviour(target).getAction(actor, map);
         }
 
-        return getAction(actor, map);
+        for (Exit exit: exitList){
+            Location goTowards = exit.getDestination();
+            if (goTowards.canActorEnter(actor)){
+                 move = exit.getDestination().getMoveAction(actor, "around", exit.getHotKey());
+            }
+        }
+        return move;
     }
 
     public Dinosaur findTargetInRadius(Dinosaur actor, GameMap map){
