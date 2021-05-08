@@ -71,6 +71,8 @@ public class Allosaur extends Dinosaur {
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         Action wander = behaviour.getAction(this, map);
         super.turn();
+        updateAttackedDinosaurCount();
+        updateAttackDinosaur();
         for (Item item: inventory){
             if (item instanceof AllosaurEgg){
                 this.isPregnant = true;
@@ -116,5 +118,26 @@ public class Allosaur extends Dinosaur {
 
     public ArrayList<Integer> getAttacked_dinosaur_count(){
         return this.attacked_dinosaur_count;
+    }
+
+    public void updateAttackedDinosaurCount(){
+        for (int i=0; i < attacked_dinosaur_count.size(); i++){
+            int currentValue = attacked_dinosaur_count.get(i);
+            currentValue ++;
+            attacked_dinosaur_count.set(i, currentValue);
+        }
+    }
+
+    public void updateAttackDinosaur() {
+        int count = 0;
+        while (count < attacked_dinosaur_count.size()){
+            int currentValue = attacked_dinosaur_count.get(count);
+            if (currentValue == 20){
+                attacked_dinosaur.remove(count);
+                attacked_dinosaur_count.remove(count);
+                count--;
+            }
+            count++;
+        }
     }
 }
