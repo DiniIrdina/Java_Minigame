@@ -37,6 +37,11 @@ public class WanderBehaviour implements Behaviour {
 
 		Location location = map.locationOf(actor);
 		List<Item> itemsHere = location.getItems();
+
+		if (!actor.isConscious()){
+			return new DoNothingAction();
+		}
+
 		if (!itemsHere.isEmpty()) {
 			for (Item item : itemsHere) {
 				if (item instanceof Food) {
@@ -80,6 +85,15 @@ public class WanderBehaviour implements Behaviour {
 			}
 		}
 
+		Location nearestTree = getNearestTree(actor,map){
+			if (nearestTree!=null && !(actor instanceof Allosaur)){
+				if (exitList.contains(nearestTree)){
+					return moveTo(actor,map,location,nearestTree);
+				}
+
+			}
+		}
+
 
 		for (Exit exit : exitList) {
 			Location destination = exit.getDestination();
@@ -115,6 +129,26 @@ public class WanderBehaviour implements Behaviour {
 			}
 		}
 		return nearestBush;
+	}
+
+	public Location getNearestTree(Actor actor, GameMap map){
+		Location location = map.locationOf(actor);
+		Location nearestTree = null;
+		int shortestDistance = 999999;
+		for (int x: map.getXRange()){
+			for (int y: map.getYRange()){
+				Location currentLocation = map.at(x,y);
+				Ground ground = currentLocation.getGround();
+				if (ground instanceof Tree){
+					int currentDistance = FollowBehaviour.distance(location,currentLocation);
+					if (currentDistance < shortestDistance){
+						nearestTree = currentLocation;
+						shortestDistance = currentDistance;
+					}
+				}
+			}
+		}
+		return nearestTree;
 	}
 
 	public Action moveTo(Actor actor, GameMap map, Location startLocation, Location endLocation){
