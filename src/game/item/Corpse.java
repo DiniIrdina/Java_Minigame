@@ -18,7 +18,7 @@ public class Corpse extends Food {
      * @param map the current instance of the map
      */
     public Corpse(String species, GameMap map) {
-        super("Corpse", '8');
+        super("Corpse", '%');
         this.species = species;
         this.timer = 0;
         this.map = map;

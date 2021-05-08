@@ -88,6 +88,7 @@ public class Stegosaur extends Dinosaur {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		Action wander = behaviour.getAction(this, map);
 		super.turn();
+		unconsciousPeriod(map);
 		for (Item item: inventory){
 			if (item instanceof StegosaurEgg){
 				this.isPregnant = true;
