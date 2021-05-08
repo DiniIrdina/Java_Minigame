@@ -3,7 +3,6 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.action.AttackAction;
 import game.action.FeedingAction;
-import game.actor.Dinosaur;
 import game.behaviour.WanderBehaviour;
 import game.interfaces.NeedsPlayer;
 import game.item.*;
@@ -38,7 +37,7 @@ public class Brachiosaur extends Dinosaur {
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         actions = new Actions();
         actions.add(new AttackAction(this));
-        Player player = NeedsPlayer.getPlayer(map);
+        Player player = NeedsPlayer.retrievePlayer(map);
         if (!isNull(player)){
             for(Item item: player.getInventory()){
                 if (item instanceof Fruit){

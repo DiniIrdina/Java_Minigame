@@ -47,7 +47,7 @@ public class Stegosaur extends Dinosaur {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		actions = new Actions();
 		actions.add(new AttackAction(this));
-		Player player = NeedsPlayer.getPlayer(map);
+		Player player = NeedsPlayer.retrievePlayer(map);
 		if (!isNull(player)){
 			for(Item item: player.getInventory()){
 				if (item instanceof Fruit){

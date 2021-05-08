@@ -7,7 +7,7 @@ import game.actor.Player;
 
 public interface NeedsPlayer {
 
-    static Player getPlayer(GameMap map){
+    static Player retrievePlayer(GameMap map){
         for (int x: map.getXRange()){
             for (int y:map.getYRange()){
                 Location location = map.at(x,y);
