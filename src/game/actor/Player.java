@@ -2,6 +2,9 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.action.FeedingAction;
+import game.action.PickFruitAction;
+import game.environment.Bush;
+import game.environment.Tree;
 import game.item.*;
 
 /**
@@ -29,6 +32,11 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+		Location location = map.locationOf(this);
+		Ground ground = location.getGround();
+		if (ground instanceof Tree || ground instanceof Bush){
+			actions.add(new PickFruitAction());
+		}
 		return menu.showMenu(this, actions, display);
 	}
 

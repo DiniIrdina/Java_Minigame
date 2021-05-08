@@ -2,7 +2,6 @@ package game.item;
 
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-import game.item.PortableItem;
 
 public class Corpse extends Food {
     private int timer;
@@ -52,7 +51,7 @@ public class Corpse extends Food {
     }
 
     public void removeCorpse(){
-        Location location = getItemLocation(map, this);
+        Location location = getLocation(map, this);
         if (location != null) {
             location.removeItem(this);
         }

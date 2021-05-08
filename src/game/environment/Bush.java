@@ -15,6 +15,10 @@ public class Bush extends Ground {
         super('w');
     }
 
+    public void removeFruit(){
+        fruits.remove(fruits.size()-1);
+    }
+
     public void tick(Location location){
         super.tick(location);
         double fruitPossibility = 0.1;
