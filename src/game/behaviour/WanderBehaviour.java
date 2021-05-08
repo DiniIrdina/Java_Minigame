@@ -87,7 +87,28 @@ public class WanderBehaviour implements Behaviour {
 		}
 
 		}
+
+
+	public Location getNearestBush(Actor actor, GameMap map){
+		Location location = map.locationOf(actor);
+		Location nearestBush = null;
+		int shortestDistance = 999999;
+		for (int x: map.getXRange()){
+			for (int y: map.getYRange()){
+				Location currentLocation = map.at(x,y);
+				Ground ground = currentLocation.getGround();
+				if (ground instanceof Bush){
+					int currentDistance = FollowBehaviour.distance(location,currentLocation);
+					if (currentDistance < shortestDistance){
+						nearestBush = currentLocation;
+						shortestDistance = currentDistance;
+					}
+				}
+			}
+		}
+		return nearestBush;
 	}
+}
 
 
 

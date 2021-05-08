@@ -45,13 +45,15 @@ public class AllosaurAttackBehaviour extends WanderBehaviour{
         for(int x: map.getXRange()){
             for(int y: map.getYRange()){
                 Location targetLocation = map.at(x,y);
-                if (targetLocation.containsAnActor() && targetLocation.getActor() instanceof Stegosaur){
-                    targetDistance = FollowBehaviour.distance(location,targetLocation);
-                    Dinosaur target = (Dinosaur)targetLocation.getActor();
-                    if (targetDistance < shortestDistance){
-                        shortestDistance = targetDistance;
-                        closestTarget = target;
-                    }
+                if (targetLocation.containsAnActor() && targetLocation.getActor() instanceof Stegosaur) {
+                    targetDistance = FollowBehaviour.distance(location, targetLocation);
+                    Dinosaur target = (Dinosaur) targetLocation.getActor();
+                    if (target instanceof Stegosaur){
+                        if (targetDistance < shortestDistance) {
+                            shortestDistance = targetDistance;
+                            closestTarget = target;
+                        }
+                }
                 }
             }
         }
