@@ -6,6 +6,7 @@ public class LaserGun extends WeaponItem {
     public static final int PRICE = 500;
     public LaserGun(){
         super("LaserGun",'g',100,"zaps");
+        this.asWeapon();
     }
 
     public int getPrice(){
