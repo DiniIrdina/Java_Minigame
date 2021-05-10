@@ -42,7 +42,7 @@ public class PickFruitAction extends Action {
             }
             output = "Fruit collected!";
         }else{
-            output = "You search the tree or bush for fruit, but you can't find any ripe ones.";
+            output = "Player search the tree or bush for fruit, but you can't find any ripe ones.";
         }
         return output;
     }
@@ -54,6 +54,6 @@ public class PickFruitAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "You pick Fruit from Tree/Bush";
+        return "Player pick Fruit from Tree/Bush";
     }
 }
