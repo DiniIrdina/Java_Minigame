@@ -10,8 +10,8 @@ import java.util.List;
  * A class that represents bare dirt.
  */
 public class Dirt extends Ground {
-	final double DEFAULT_BUSH_CHANCE = 	0.001;
-	final double TWO_BUSH_CHANCE = 0.01;
+	final double DEFAULT_BUSH_CHANCE = 	0.01;
+	final double TWO_BUSH_CHANCE = 0.1;
 
 	/**
 	 * Overloading constructor of the Dirt class. Dirt will be represented by the char '.'
@@ -55,7 +55,10 @@ public class Dirt extends Ground {
 	 */
 	public void tick(Location location){
 		super.tick(location);
-		growBush(location);
+		Ground ground = location.getGround();
+		if (ground instanceof Dirt){
+			growBush(location);
+		}
 	}
 
 }
