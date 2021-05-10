@@ -31,7 +31,7 @@ public class Brachiosaur extends Dinosaur {
      */
     public Brachiosaur(int age) {
         super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,
-                ADULT_BRACHIOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT);
+                ADULT_BRACHIOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
@@ -45,7 +45,7 @@ public class Brachiosaur extends Dinosaur {
      */
     public Brachiosaur(int age, char gender) {
         super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY,
-                BREEDING_LEVEL, UNCONSCIOUS_LIMIT);
+                BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
@@ -88,7 +88,7 @@ public class Brachiosaur extends Dinosaur {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         Action wander = behaviour.getAction(this, map);
-        super.turn();
+        super.turn(map);
         unconsciousPeriod(map);
         for (Item item: inventory){
             if (item instanceof BrachiosaurEgg){

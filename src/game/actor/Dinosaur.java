@@ -14,6 +14,7 @@ import game.item.Food;
  * Abstract class creation of Dinosaur. Used as the template for all relation types of dinosaurs
  */
 public abstract class Dinosaur extends Actor implements NeedsPlayer {
+    protected final int HUNGRY_LEVEL;
     protected Behaviour behaviour;
     protected Actions actions;
     protected final String SPECIES;
@@ -45,7 +46,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
-                    adultDisplay, int breed, int limit) {
+                    adultDisplay, int breed, int limit, int hunger) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.SPECIES = species;
@@ -56,6 +57,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.ADULT_DISPLAY = adultDisplay;
         this.BREEDING_LEVEL = breed;
         this.UNCONSCIOUS_LIMIT = limit;
+        this.HUNGRY_LEVEL = hunger;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -78,7 +80,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
-                    char adultDisplay, int breed, int limit) {
+                    char adultDisplay, int breed, int limit, int hunger) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
@@ -92,6 +94,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.deathTimer=0;
         this.BREEDING_LEVEL = breed;
         this.UNCONSCIOUS_LIMIT = limit;
+        this.HUNGRY_LEVEL = hunger;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -175,9 +178,9 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     /**
      * The generalized turn counter to update age and hungry values.
      */
-    public void turn(){
+    public void turn(GameMap map){
         Age();
-        increaseHunger();
+        increaseHunger(map);
         if(hitPoints >= BREEDING_LEVEL && isAdult() && !isPregnant()){
             setBehaviour(new BreedingBehaviour());
         }else if (isPregnant()){
@@ -222,7 +225,11 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     /**
      * Reduces the health points of a dinosaur based on a hunger threshold.
      */
-    public void increaseHunger(){
+    public void increaseHunger(GameMap map){
+        Location location = map.locationOf(this);
+        if (hitPoints < HUNGRY_LEVEL){
+            System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is hungry!");
+        }
         hurt(1);
     }
 
