@@ -1,12 +1,9 @@
 package game.actor;
-import static java.util.Objects.isNull;
 import edu.monash.fit2099.engine.*;
-import game.action.AttackAction;
 import game.behaviour.Behaviour;
 import game.behaviour.BreedingBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.interfaces.NeedsPlayer;
-import game.item.BrachiosaurEgg;
 import game.item.Corpse;
 import game.item.Food;
 
@@ -14,20 +11,22 @@ import game.item.Food;
  * Abstract class creation of Dinosaur. Used as the template for all relation types of dinosaurs
  */
 public abstract class Dinosaur extends Actor implements NeedsPlayer {
-    protected final int HUNGRY_LEVEL;
+    final int HUNGRY_LEVEL;
     protected Behaviour behaviour;
     protected Actions actions;
-    protected final String SPECIES;
-    protected int age;
-    protected final int PREGNANT_LENGTH;
-    protected final int ADULT_AGE;
-    protected final char ADULT_DISPLAY;
-    protected char gender;
-    protected boolean isPregnant;
-    protected final int BREEDING_LEVEL;
-    protected final int UNCONSCIOUS_LIMIT;
-    protected int pregnancyCounter;
-    protected int deathTimer;
+    final String SPECIES;
+    int age;
+    final int PREGNANT_LENGTH;
+    final int ADULT_AGE;
+    final char ADULT_DISPLAY;
+    char gender;
+    boolean isPregnant;
+    final int BREEDING_LEVEL;
+    final int UNCONSCIOUS_LIMIT;
+    int pregnancyCounter;
+    int deathTimer;
+    final int MAX_THIRST;
+    int thirst;
 
     /**
      * Default gender probability.
@@ -46,7 +45,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
-                    adultDisplay, int breed, int limit, int hunger) {
+                    adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.SPECIES = species;
@@ -58,6 +57,8 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.BREEDING_LEVEL = breed;
         this.UNCONSCIOUS_LIMIT = limit;
         this.HUNGRY_LEVEL = hunger;
+        this.MAX_THIRST = maxThirst;
+        this.thirst = thirst;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -80,7 +81,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
-                    char adultDisplay, int breed, int limit, int hunger) {
+                    char adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
@@ -95,13 +96,9 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.BREEDING_LEVEL = breed;
         this.UNCONSCIOUS_LIMIT = limit;
         this.HUNGRY_LEVEL = hunger;
+        this.MAX_THIRST = maxThirst;
+        this.thirst = thirst;
 
-        if (probability<=genderProbability){
-            this.gender = 'F';
-        }
-        else{
-            this.gender = 'M';
-        }
     }
 
     /**

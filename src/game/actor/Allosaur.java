@@ -16,15 +16,18 @@ import static java.util.Objects.isNull;
  * Class creation for the Allosaur, a carnivorous dinosaur.
  */
 public class Allosaur extends Dinosaur {
-    public static final String SPECIES = "Allosaur";
-    public static final int ADULT_AGE = 50;
-    public static final int MAX_HIT_POINTS = 100;
-    public static final int HUNGRY_LEVEL = 80;
-    public static final int PREGNANT_LENGTH = 20;
-    public static final char BABY_ALLOSAUR_DISPLAY = 'a';
-    public static final char ADULT_ALLOSAUR_DISPLAY = 'A';
-    public static final int BREEDING_LEVEL =50;
-    public static final int UNCONSCIOUS_LIMIT =20;
+    static final String SPECIES = "Allosaur";
+    static final int ADULT_AGE = 50;
+    static final int MAX_HIT_POINTS = 100;
+    static final int HUNGRY_LEVEL = 80;
+    static final int PREGNANT_LENGTH = 20;
+    static final char BABY_ALLOSAUR_DISPLAY = 'a';
+    static final char ADULT_ALLOSAUR_DISPLAY = 'A';
+    static final int BREEDING_LEVEL =50;
+    static final int UNCONSCIOUS_LIMIT =20;
+    static final int MAX_THIRST = 100;
+    static final int STARTING_THIRST = 60;
+
     /**
      * Array list to keep track of the different dinosaurs attacked.
      */
@@ -41,7 +44,7 @@ public class Allosaur extends Dinosaur {
      */
     public Allosaur(int age) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,
-                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL) ;
+                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST) ;
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }
@@ -55,7 +58,7 @@ public class Allosaur extends Dinosaur {
      */
     public Allosaur(int age, char gender) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,
-                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL);
+                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL,MAX_THIRST, STARTING_THIRST);
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }

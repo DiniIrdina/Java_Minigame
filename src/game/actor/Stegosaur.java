@@ -15,15 +15,17 @@ import static java.util.Objects.isNull;
  */
 public class Stegosaur extends Dinosaur {
 	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
-	public static final String SPECIES = "Stegosaur";
-	public static final int ADULT_AGE = 20;
-	public static final int MAX_HIT_POINTS=100;
-	public static final int HUNGRY_LEVEL = 90;
-	public static final int PREGNANT_LENGTH = 10;
-	public static final char BABY_STEGOSAUR_DISPLAY = 's';
-	public static final char ADULT_STEGOSAUR_DISPLAY = 'S';
-	public static final int BREEDING_LEVEL =50;
-	public static final int UNCONSCIOUS_LIMIT =20;
+	static final String SPECIES = "Stegosaur";
+	static final int ADULT_AGE = 20;
+	static final int MAX_HIT_POINTS=100;
+	static final int HUNGRY_LEVEL = 90;
+	static final int PREGNANT_LENGTH = 10;
+	static final char BABY_STEGOSAUR_DISPLAY = 's';
+	static final char ADULT_STEGOSAUR_DISPLAY = 'S';
+	static final int BREEDING_LEVEL =50;
+	static final int UNCONSCIOUS_LIMIT =20;
+	static final int MAX_THIRST = 100;
+	static final int STARTING_THIRST = 60;
 
 	/**
 	 * First overloaded constructor of the Stegosaur class. All Stegosaurs have 100 hit points. The baby
@@ -32,7 +34,7 @@ public class Stegosaur extends Dinosaur {
 	 */
 	public Stegosaur(int age) {
 		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
-				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL);
+				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST);
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}
@@ -45,7 +47,7 @@ public class Stegosaur extends Dinosaur {
 	 */
 	public Stegosaur(int age, char gender) {
 		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
-				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL);
+				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST);
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}

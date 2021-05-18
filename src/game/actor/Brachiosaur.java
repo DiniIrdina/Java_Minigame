@@ -14,15 +14,17 @@ import static java.util.Objects.isNull;
  * Class creation for Brachiosaur, a herbivorous dinosaur.
  */
 public class Brachiosaur extends Dinosaur {
-    public static final String SPECIES = "Brachiosaur";
-    public static final int ADULT_AGE = 50;
-    public static final int MAX_HIT_POINTS=160;
-    public static final int HUNGRY_LEVEL = 140;
-    public static final int PREGNANT_LENGTH = 30;
-    public static final char BABY_BRACHIOSAUR_DISPLAY = 'b';
-    public static final char ADULT_BRACHIOSAUR_DISPLAY = 'B';
-    public static final int BREEDING_LEVEL =70;
-    public static final int UNCONSCIOUS_LIMIT =15;
+    static final String SPECIES = "Brachiosaur";
+    static final int ADULT_AGE = 50;
+    static final int MAX_HIT_POINTS=160;
+    static final int HUNGRY_LEVEL = 140;
+    static final int PREGNANT_LENGTH = 30;
+    static final char BABY_BRACHIOSAUR_DISPLAY = 'b';
+    static final char ADULT_BRACHIOSAUR_DISPLAY = 'B';
+    static final int BREEDING_LEVEL =70;
+    static final int UNCONSCIOUS_LIMIT =15;
+    static final int MAX_THIRST = 200;
+    static final int STARTING_THIRST = 120;
 
     /**
      * First overloaded constructor of the Brachiosaur class. All Brachiosaur have 160 hit points. The baby
@@ -31,7 +33,7 @@ public class Brachiosaur extends Dinosaur {
      */
     public Brachiosaur(int age) {
         super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,
-                ADULT_BRACHIOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL);
+                ADULT_BRACHIOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
@@ -45,7 +47,7 @@ public class Brachiosaur extends Dinosaur {
      */
     public Brachiosaur(int age, char gender) {
         super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY,
-                BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL);
+                BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST);
         if (age<ADULT_AGE){
             this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
         }
