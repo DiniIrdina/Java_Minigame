@@ -184,7 +184,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         if(hitPoints >= BREEDING_LEVEL && isAdult() && !isPregnant()){
             setBehaviour(new BreedingBehaviour());
         }else if (isPregnant()){
-            setBehaviour(getWanderBehaviour());
+            setBehaviour(new WanderBehaviour());
         }
 
     }
@@ -234,8 +234,9 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     }
 
     public void increaseThirst(GameMap map){
+        this.thirst -= 1;
         Location location = map.locationOf(this);
-        if (thirst < HUNGRY_LEVEL){
+        if (thirst < THIRSTY_LEVEL){
             System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is thirsty!");
         }
     }
@@ -250,13 +251,6 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         }
     }
 
-    /**
-     * The default behaviour for dinosaurs.
-     * @return the wander behaviour class execution
-     */
-    public WanderBehaviour getWanderBehaviour(){
-        return new WanderBehaviour();
-    }
 
     /**
      * Returns the current behaviour of the dinosaur.
@@ -279,6 +273,8 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param food the type of food
      */
     public abstract void eatsFood(Food food);
+
+    public abstract void drinksWater();
 
     /**
      * Returns the current hit points of the dinosaur.

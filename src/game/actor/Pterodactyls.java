@@ -51,6 +51,11 @@ public class Pterodactyls extends Dinosaur{
 
     }
 
+    @Override
+    public void drinksWater() {
+        this.thirst += 30;
+    }
+
     @java.lang.Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         return null;

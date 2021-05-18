@@ -24,6 +24,10 @@ public class Lake extends Ground {
 
     }
 
+    public void reduceSip(){
+        sips -= 1;
+    }
+
     public void tick(Location location){
         super.tick(location);
         double fishProbability = Math.random();

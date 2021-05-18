@@ -99,6 +99,11 @@ public class Allosaur extends Dinosaur {
 
     }
 
+    @Override
+    public void drinksWater() {
+        this.thirst += 30;
+    }
+
     /**
      * Figure out what to do next.
      *

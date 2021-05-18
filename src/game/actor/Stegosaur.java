@@ -149,6 +149,11 @@ public class Stegosaur extends Dinosaur {
 		}
 	}
 
+	@Override
+	public void drinksWater() {
+		this.thirst += 30;
+	}
+
 	/**
 	 * Lays an egg object on the current location of the dinosaur.
 	 * @param location the location the dinosaur is current at

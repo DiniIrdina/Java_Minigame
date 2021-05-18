@@ -147,6 +147,11 @@ public class Brachiosaur extends Dinosaur {
         }
     }
 
+    @Override
+    public void drinksWater() {
+        this.thirst += 80;
+    }
+
     /**
      * Lays an egg object on the current location of the dinosaur.
      * @param location the location the dinosaur is current at
