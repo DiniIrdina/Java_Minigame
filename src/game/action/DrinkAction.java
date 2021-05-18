@@ -13,9 +13,13 @@ public class DrinkAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Ground lakeGround = lakeLocation.getGround();
-        ((Lake)lakeGround).reduceSip();
-        ((Dinosaur)actor).drinksWater();
-        return menuDescription(actor);
+        if (((Lake)lakeGround).getSips() < 0){
+            return actor + " cannot drink because lake is empty!";
+        }else {
+            ((Lake) lakeGround).reduceSip();
+            ((Dinosaur) actor).drinksWater();
+            return menuDescription(actor);
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.behaviour.Behaviour;
 import game.behaviour.BreedingBehaviour;
+import game.behaviour.ThirstyBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.interfaces.NeedsPlayer;
 import game.item.Corpse;
@@ -196,6 +197,8 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
             setBehaviour(new BreedingBehaviour());
         }else if (isPregnant()){
             setBehaviour(new WanderBehaviour());
+        }else if (thirst <= THIRSTY_LEVEL){
+            setBehaviour(new ThirstyBehaviour());
         }
 
     }
