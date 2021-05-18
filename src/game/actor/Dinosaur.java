@@ -234,9 +234,8 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     }
 
     public void increaseThirst(GameMap map){
-        this.thirst -= 1;
         Location location = map.locationOf(this);
-        if (thirst < THIRSTY_LEVEL){
+        if (thirst < HUNGRY_LEVEL){
             System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is thirsty!");
         }
     }
@@ -251,6 +250,13 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         }
     }
 
+    /**
+     * The default behaviour for dinosaurs.
+     * @return the wander behaviour class execution
+     */
+    public WanderBehaviour getWanderBehaviour(){
+        return new WanderBehaviour();
+    }
 
     /**
      * Returns the current behaviour of the dinosaur.
