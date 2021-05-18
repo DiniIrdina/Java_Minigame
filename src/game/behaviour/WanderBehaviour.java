@@ -177,7 +177,7 @@ public class WanderBehaviour implements Behaviour {
 	 * @param endLocation the location to move and end at
 	 * @return the MoveActorAction, which moves the actor towards the correct direction
 	 */
-	public Action moveTo(Actor actor, GameMap map, Location startLocation, Location endLocation){
+	public static Action moveTo(Actor actor, GameMap map, Location startLocation, Location endLocation){
 		Action action = null;
 		List<Exit> exitList = map.locationOf(actor).getExits();
 		int distance = FollowBehaviour.distance(startLocation,endLocation);
