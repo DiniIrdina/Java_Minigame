@@ -48,6 +48,10 @@ public class Lake extends Ground {
         sips += moreSip;
     }
 
+    public int getSips(){
+        return sips;
+    }
+
     public void tick(Location location){
         currentTurn += 1;
         super.tick(location);
