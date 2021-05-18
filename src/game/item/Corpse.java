@@ -41,6 +41,13 @@ public class Corpse extends Food {
     }
 
     /**
+     * Deduces the total health of the corpse.
+     */
+    public void deductHealth(int damage){
+        health = health - damage;
+    }
+
+    /**
      * Returns the species.
      * @return species
      */

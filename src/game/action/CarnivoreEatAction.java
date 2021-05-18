@@ -2,6 +2,7 @@ package game.action;
 
 import edu.monash.fit2099.engine.*;
 import game.actor.Dinosaur;
+import game.actor.Pterodactyl;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.Food;
@@ -13,9 +14,6 @@ import game.item.Food;
  */
 public class CarnivoreEatAction extends Action {
     private Food food;
-    private String stegosaur = "Stegosaur";
-    private String allosaur = "Allosaur";
-    private String brachiosaur = "Brachiosaur";
 
     /**
      * The constructor for the CarnivoreEatAction class.
@@ -36,13 +34,19 @@ public class CarnivoreEatAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (this.food instanceof Corpse){
-            if (((Corpse) this.food ).getSpecies().equals(allosaur) || ((Corpse) this.food ).getSpecies().equals(stegosaur)){
-                actor.heal(50);
+            if (actor instanceof Pterodactyl){
+                int damage = 10;
+                actor.heal(damage);
+                ((Corpse) this.food).deductHealth(damage);
+                if (((Corpse) this.food).getHealth() <= 0){
+                    ((Corpse) this.food).removeCorpse();
+                }
             }
-            else if (((Corpse) this.food ).getSpecies().equals(brachiosaur)){
-                actor.heal(100);
+            else {
+                int points = ((Corpse) this.food ).getHealth();
+                actor.heal(points);
+                ((Corpse) this.food).removeCorpse();
             }
-            ((Corpse) this.food).removeCorpse();
         }
         else if (this.food instanceof Egg){
             ((Dinosaur)actor).eatsFood(this.food);

@@ -9,7 +9,7 @@ import game.item.Corpse;
 import game.item.Fish;
 import game.item.Food;
 
-public class Pterodactyls extends Dinosaur{
+public class Pterodactyl extends Dinosaur{
     static final String SPECIES = "Pterodactyl";
     static final int ADULT_AGE = 20;
     static final int MAX_HIT_POINTS=100;
@@ -25,11 +25,11 @@ public class Pterodactyls extends Dinosaur{
     static final int CORPSE_HEALTH = 30;
 
 
-    public Pterodactyls(int age) {
+    public Pterodactyl(int age) {
         super(SPECIES, ADULT_PTERODACTYL_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_PTERODACTYL_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);    }
 
-    public Pterodactyls(int age, char gender) {
+    public Pterodactyl(int age, char gender) {
         super(SPECIES, ADULT_PTERODACTYL_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_PTERODACTYL_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
         if (age < ADULT_AGE){
