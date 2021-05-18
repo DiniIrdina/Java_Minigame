@@ -15,7 +15,7 @@ public class AllosaurAttackAction extends Action {
      * The dinosaur to be attacked for food source
      */
     protected Dinosaur target;
-
+    private String stegosaur = "Stegosaur";
     private int damage;
 
     /**
@@ -37,7 +37,7 @@ public class AllosaurAttackAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (target.getSpecies().equals("Stegosaur")) {
+        if (target.getSpecies().equals(stegosaur)) {
             if (((Allosaur) actor).getAttacked_dinosaur().contains(target)) {
                 return "Can't attack same dinosaur";
             } else {

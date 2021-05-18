@@ -26,6 +26,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     int pregnancyCounter;
     int deathTimer;
     final int MAX_THIRST;
+    final int THIRSTY_LEVEL;
     int thirst;
 
     /**
@@ -45,7 +46,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
-                    adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst) {
+                    adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.SPECIES = species;
@@ -59,6 +60,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.HUNGRY_LEVEL = hunger;
         this.MAX_THIRST = maxThirst;
         this.thirst = thirst;
+        this.THIRSTY_LEVEL = thirstyLevel;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -81,7 +83,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
-                    char adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst) {
+                    char adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
@@ -98,6 +100,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.HUNGRY_LEVEL = hunger;
         this.MAX_THIRST = maxThirst;
         this.thirst = thirst;
+        this.THIRSTY_LEVEL = thirstyLevel;
 
     }
 
@@ -228,6 +231,13 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
             System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is hungry!");
         }
         hurt(1);
+    }
+
+    public void increaseThirst(GameMap map){
+        Location location = map.locationOf(this);
+        if (thirst < HUNGRY_LEVEL){
+            System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is thirsty!");
+        }
     }
 
     /**

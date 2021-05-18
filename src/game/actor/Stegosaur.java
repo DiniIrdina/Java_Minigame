@@ -26,6 +26,7 @@ public class Stegosaur extends Dinosaur {
 	static final int UNCONSCIOUS_LIMIT =20;
 	static final int MAX_THIRST = 100;
 	static final int STARTING_THIRST = 60;
+	static final int THIRSTY_LEVEL = 40;
 
 	/**
 	 * First overloaded constructor of the Stegosaur class. All Stegosaurs have 100 hit points. The baby
@@ -34,7 +35,7 @@ public class Stegosaur extends Dinosaur {
 	 */
 	public Stegosaur(int age) {
 		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
-				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST);
+				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL);
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}
@@ -47,7 +48,7 @@ public class Stegosaur extends Dinosaur {
 	 */
 	public Stegosaur(int age, char gender) {
 		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
-				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST);
+				ADULT_STEGOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL);
 		if (age < ADULT_AGE){
 			this.displayChar = BABY_STEGOSAUR_DISPLAY;
 		}

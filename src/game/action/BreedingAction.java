@@ -14,6 +14,10 @@ import game.item.StegosaurEgg;
  */
 public class BreedingAction extends Action {
     private Dinosaur target;
+    private String stegosaur = "Stegosaur";
+    private String brachiosaur = "Brachiosaur";
+    private String allosaur = "Allosaur";
+    private String pterodactyl = "Pterodactyl";
 
     /**
      * The constructor for the Breeding Action
@@ -36,25 +40,25 @@ public class BreedingAction extends Action {
         if (target.getGender() != ((Dinosaur)actor).getGender()){
             if (target.getSpecies().equals(((Dinosaur)actor).getSpecies())){
                 if (((Dinosaur)actor).getGender() == 'F' && target.getGender()=='M'){
-                    if (target.getSpecies().equals("Stegosaur")){
+                    if (target.getSpecies().equals(stegosaur)){
                         actor.addItemToInventory(new StegosaurEgg());
                     }
-                    else if (target.getSpecies().equals("Brachiosaur")){
+                    else if (target.getSpecies().equals(brachiosaur)){
                         actor.addItemToInventory(new BrachiosaurEgg());
                     }
-                    else if (target.getSpecies().equals("Allosaur")){
+                    else if (target.getSpecies().equals(allosaur)){
                         actor.addItemToInventory(new AllosaurEgg());
                     }
 
                 }
                 else{
-                    if (target.getSpecies().equals("Stegosaur")){
+                    if (target.getSpecies().equals(stegosaur)){
                         target.addItemToInventory(new StegosaurEgg());
                     }
-                    else if (target.getSpecies().equals("Brachiosaur")){
+                    else if (target.getSpecies().equals(brachiosaur)){
                         target.addItemToInventory(new BrachiosaurEgg());
                     }
-                    else if (target.getSpecies().equals("Allosaur")){
+                    else if (target.getSpecies().equals(allosaur)){
                         target.addItemToInventory(new AllosaurEgg());
                     }
                 }

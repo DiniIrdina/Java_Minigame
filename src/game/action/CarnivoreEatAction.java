@@ -13,6 +13,9 @@ import game.item.Food;
  */
 public class CarnivoreEatAction extends Action {
     private Food food;
+    private String stegosaur = "Stegosaur";
+    private String allosaur = "Allosaur";
+    private String brachiosaur = "Brachiosaur";
 
     /**
      * The constructor for the CarnivoreEatAction class.
@@ -33,10 +36,10 @@ public class CarnivoreEatAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (this.food instanceof Corpse){
-            if (((Corpse) this.food ).getSpecies().equals("Allosaur") || ((Corpse) this.food ).getSpecies().equals("Stegosaur")){
+            if (((Corpse) this.food ).getSpecies().equals(allosaur) || ((Corpse) this.food ).getSpecies().equals(stegosaur)){
                 actor.heal(50);
             }
-            else if (((Corpse) this.food ).getSpecies().equals("Brachiosaur")){
+            else if (((Corpse) this.food ).getSpecies().equals(brachiosaur)){
                 actor.heal(100);
             }
             ((Corpse) this.food).removeCorpse();

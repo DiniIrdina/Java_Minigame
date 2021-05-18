@@ -27,6 +27,7 @@ public class Allosaur extends Dinosaur {
     static final int UNCONSCIOUS_LIMIT =20;
     static final int MAX_THIRST = 100;
     static final int STARTING_THIRST = 60;
+    static final int THIRSTY_LEVEL = 40;
 
     /**
      * Array list to keep track of the different dinosaurs attacked.
@@ -44,7 +45,7 @@ public class Allosaur extends Dinosaur {
      */
     public Allosaur(int age) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,
-                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST) ;
+                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL) ;
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }
@@ -58,7 +59,7 @@ public class Allosaur extends Dinosaur {
      */
     public Allosaur(int age, char gender) {
         super(SPECIES, ADULT_ALLOSAUR_DISPLAY,gender, age, MAX_HIT_POINTS, 50,PREGNANT_LENGTH,ADULT_AGE,
-                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL,MAX_THIRST, STARTING_THIRST);
+                ADULT_ALLOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL,MAX_THIRST, STARTING_THIRST,THIRSTY_LEVEL);
         if(age<ADULT_AGE){
             this.displayChar = BABY_ALLOSAUR_DISPLAY;
         }
