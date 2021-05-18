@@ -40,7 +40,7 @@ public class GameDriver {
         int entered_ecopoints = scanner.nextInt();
         System.out.printf(
                         "Great! Your input for EcoPoints win condition is %d%n" +
-                        "Now, %n" + "Please Enter the amount of EcoPoints required to win:  %n" + entered_ecopoints);
+                        "Now, %n" + "Please Enter the maximum number of moves required before the game ends:  %n",entered_ecopoints);
         int entered_num_moves = scanner.nextInt();
         System.out.println("Your input for maximum number of moves is " + entered_num_moves);
 
