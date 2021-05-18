@@ -11,18 +11,33 @@ public class Corpse extends Food {
     private int despawn_timer;
     private String species;
     private GameMap map;
+    private int health;
+    private String stegosaur = "Stegosaur";
+    private String brachiosaur = "Brachiosaur";
+    private String allosaur = "Allosaur";
+    private String pterodactyl = "Pterodactyl";
+
 
     /**
      * The overloaded constructor for the Corpse class. Will execute the despawn timer when instantiated.
      * @param species the species of the dinosaur
      * @param map the current instance of the map
      */
-    public Corpse(String species, GameMap map) {
+    public Corpse(String species, GameMap map, int health) {
         super("Corpse", '%');
         this.species = species;
         this.timer = 0;
         this.map = map;
+        this.health = health;
         setDespawn_timer();
+    }
+
+    /**
+     * Returns the health.
+     * @return health
+     */
+    public int getHealth() {
+        return health;
     }
 
     /**
@@ -47,10 +62,10 @@ public class Corpse extends Food {
      * Each species has a different despawn timer for their relation corpses.
      */
     public void setDespawn_timer(){
-        if (species.equals("Allosaur") || species.equals("Stegosaur")){
+        if (species.equals(allosaur) || species.equals(stegosaur) || species.equals(pterodactyl)){
             despawn_timer = 20;
         }
-        else if (species.equals("Brachiosaur")){
+        else if (species.equals(brachiosaur)){
             despawn_timer = 40;
         }
     }
@@ -63,13 +78,13 @@ public class Corpse extends Food {
     public void tick(Location currentLocation){
         super.tick(currentLocation);
         this.timer++;
-        if (species.equals("Allosaur") || species.equals("Stegosaur")){
+        if (species.equals(allosaur) || species.equals(stegosaur) || species.equals(pterodactyl)){
             if (timer == despawn_timer) {
                 removeCorpse();
             }
         }
 
-        else if (species.equals("Brachiosaur")) {
+        else if (species.equals(brachiosaur)) {
             if (timer == despawn_timer){
                 removeCorpse();
             }

@@ -28,6 +28,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     final int MAX_THIRST;
     final int THIRSTY_LEVEL;
     int thirst;
+    final int CORPSE_HEALTH;
 
     /**
      * Default gender probability.
@@ -46,7 +47,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
-                    adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel) {
+                    adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.SPECIES = species;
@@ -61,6 +62,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.MAX_THIRST = maxThirst;
         this.thirst = thirst;
         this.THIRSTY_LEVEL = thirstyLevel;
+        this.CORPSE_HEALTH = corpse_health;
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -83,7 +85,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
-                    char adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel) {
+                    char adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
@@ -101,7 +103,16 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.MAX_THIRST = maxThirst;
         this.thirst = thirst;
         this.THIRSTY_LEVEL = thirstyLevel;
+        this.CORPSE_HEALTH = corpse_health;
 
+    }
+
+    /**
+     * Returns the corpse's health
+     * @return corpse's health
+     */
+    public int getCorpseHealth() {
+        return CORPSE_HEALTH;
     }
 
     /**
@@ -117,9 +128,9 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param target represents the current dinosaur
      * @param map represents the current game map
      */
-    public void Death(Dinosaur target, GameMap map) {
+    public void Death(Dinosaur target, GameMap map, int health) {
         if (!target.isConscious()) {
-            Corpse corpse = new Corpse(target.getSpecies(), map);
+            Corpse corpse = new Corpse(target.getSpecies(), map, health);
             map.locationOf(target).addItem(corpse);
             map.removeActor(target);
 
@@ -213,7 +224,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
                 deathTimerUpdate();
             }
             else if (!isConscious() && deathTimer == 15){
-                Death(this, map);
+                Death(this, map, CORPSE_HEALTH);
             }
         }
 

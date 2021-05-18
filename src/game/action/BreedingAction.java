@@ -18,6 +18,8 @@ public class BreedingAction extends Action {
     private String brachiosaur = "Brachiosaur";
     private String allosaur = "Allosaur";
     private String pterodactyl = "Pterodactyl";
+    private Character male = 'M';
+    private Character female = 'F';
 
     /**
      * The constructor for the Breeding Action
@@ -39,7 +41,7 @@ public class BreedingAction extends Action {
     public String execute(Actor actor, GameMap map) {
         if (target.getGender() != ((Dinosaur)actor).getGender()){
             if (target.getSpecies().equals(((Dinosaur)actor).getSpecies())){
-                if (((Dinosaur)actor).getGender() == 'F' && target.getGender()=='M'){
+                if (((Dinosaur)actor).getGender() == female && target.getGender()== male){
                     if (target.getSpecies().equals(stegosaur)){
                         actor.addItemToInventory(new StegosaurEgg());
                     }

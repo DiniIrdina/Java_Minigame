@@ -45,7 +45,7 @@ public class AllosaurAttackAction extends Action {
                 this.damage = damage;
                 target.hurt(damage);
                 if (target.getHitPoints() <= 0) {
-                    target.Death(target, map);
+                    target.Death(target, map, target.getCorpseHealth());
                 }
                 else {
                     ((Allosaur) actor).setAttacked_dinosaur(target);
