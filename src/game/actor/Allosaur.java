@@ -119,7 +119,7 @@ public class Allosaur extends Dinosaur {
         super.turn(map);
         updateAttackedDinosaurCount();
         updateAttackDinosaur();
-        unconsciousPeriod(map);
+
         for (Item item: inventory){
             if (item instanceof AllosaurEgg){
                 this.isPregnant = true;

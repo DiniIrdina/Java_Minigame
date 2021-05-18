@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class Tree extends Ground {
 	private int age = 0;
+	final double RAIN_PROBABILITY = 0.2;
+	private boolean isRaining;
 
 	/**
 	 * Array list to store the fruit objects
@@ -24,6 +26,7 @@ public class Tree extends Ground {
 	 */
 	public Tree() {
 		super('+');
+		isRaining = false;
 	}
 
 	/**
@@ -68,6 +71,18 @@ public class Tree extends Ground {
 			Fruit fruit = new Fruit();
 			location.addItem(fruit);
 		}
+
+		if (age%10 == 0){
+			double rainChance = Math.random();
+			if (rainChance <= RAIN_PROBABILITY){
+				isRaining = true;
+			}
+		}else{
+			isRaining = false;
+		}
 	}
 
+	public boolean isRaining() {
+		return isRaining;
+	}
 }

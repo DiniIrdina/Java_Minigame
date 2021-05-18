@@ -4,6 +4,9 @@ import game.behaviour.Behaviour;
 import game.behaviour.BreedingBehaviour;
 import game.behaviour.ThirstyBehaviour;
 import game.behaviour.WanderBehaviour;
+import game.environment.Bush;
+import game.environment.Dirt;
+import game.environment.Tree;
 import game.interfaces.NeedsPlayer;
 import game.item.Corpse;
 import game.item.Food;
@@ -193,6 +196,8 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     public void turn(GameMap map){
         Age();
         increaseHunger(map);
+        unconsciousPeriod(map);
+
         if(hitPoints >= BREEDING_LEVEL && isAdult() && !isPregnant()){
             setBehaviour(new BreedingBehaviour());
         }else if (isPregnant()){
@@ -201,6 +206,19 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
             setBehaviour(new ThirstyBehaviour());
         }
 
+        Location location = map.locationOf(this);
+        Ground ground = location.getGround();
+        if (!isConscious() && thirst <= 0) {
+            if (ground instanceof Tree && ((Tree)ground).isRaining()){
+                thirst = 10;
+            }
+            if (ground instanceof Bush && ((Bush)ground).isRaining()){
+                thirst = 10;
+            }
+            if (ground instanceof Dirt && ((Dirt)ground).isRaining()){
+                thirst = 10;
+            }
+        }
     }
 
     /**
@@ -222,7 +240,8 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param map The current instance of the map
      */
     public void unconsciousPeriod(GameMap map){
-        if (hitPoints <= 0){
+
+        if (hitPoints <= 0 || thirst <=0){
             if (!isConscious() && deathTimer < 15){
                 deathTimerUpdate();
             }
@@ -230,7 +249,6 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
                 Death(this, map, CORPSE_HEALTH);
             }
         }
-
         else{
             this.deathTimer = 0;
         }
@@ -249,7 +267,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
 
     public void increaseThirst(GameMap map){
         Location location = map.locationOf(this);
-        if (thirst < HUNGRY_LEVEL){
+        if (thirst < THIRSTY_LEVEL){
             System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is thirsty!");
         }
     }

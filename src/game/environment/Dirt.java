@@ -10,14 +10,19 @@ import java.util.List;
  * A class that represents bare dirt.
  */
 public class Dirt extends Ground {
-	final double DEFAULT_BUSH_CHANCE = 	0.01;
-	final double TWO_BUSH_CHANCE = 0.1;
+	final double DEFAULT_BUSH_CHANCE = 	0.001;
+	final double TWO_BUSH_CHANCE = 0.01;
+	final double RAIN_PROBABILITY = 0.2;
+	private int currentTurn;
+	private boolean isRaining;
 
 	/**
 	 * Overloading constructor of the Dirt class. Dirt will be represented by the char '.'
 	 */
 	public Dirt() {
 		super('.');
+		currentTurn = 1;
+		isRaining = false;
 	}
 
 	/**
@@ -49,6 +54,11 @@ public class Dirt extends Ground {
 		}
 	}
 
+	public boolean isRaining(){
+		return isRaining;
+	}
+
+
 	/**
 	 * Tick updates the current turn of game for the class object
 	 * @param location The location of the Ground
@@ -56,9 +66,17 @@ public class Dirt extends Ground {
 	public void tick(Location location){
 		super.tick(location);
 		Ground ground = location.getGround();
+		currentTurn++;
 		if (ground instanceof Dirt){
 			growBush(location);
 		}
-	}
+		if (currentTurn%10 == 0){
+			double rainChance = Math.random();
+			if (rainChance <= RAIN_PROBABILITY){
+				isRaining = true;
+			}
+		}else{
+			isRaining = false;
+		}
 
-}
+}}

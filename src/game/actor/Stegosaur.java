@@ -93,7 +93,6 @@ public class Stegosaur extends Dinosaur {
 		Action wander = behaviour.getAction(this, map);
 		super.turn(map);
 		Location location = map.locationOf(this);
-		unconsciousPeriod(map);
 
 
 		for (Item item: inventory){
