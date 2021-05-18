@@ -1,12 +1,10 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
-import game.Application;
-import game.action.FeedingAction;
+import game.WorldBuilder;
 import game.action.PickFruitAction;
 import game.environment.Bush;
 import game.environment.Tree;
-import game.item.*;
 
 /**
  * Class representing the Player.
@@ -45,15 +43,15 @@ public class Player extends Actor {
 			actions.add(new PickFruitAction());
 		}
 
-		//Relocating player to second map.
-		Location original_map_north = Application.MAPS.get(0).at(map.locationOf(this).x(), 0);
-		Location new_map_south = Application.MAPS.get(1).at(map.locationOf(this).x(), map.getYRange().max());
+		//Relocating player between 2 instances of maps.
+		Location original_map_north = WorldBuilder.MAPS.get(0).at(map.locationOf(this).x(), 0);
+		Location new_map_south = WorldBuilder.MAPS.get(1).at(map.locationOf(this).x(), map.getYRange().max());
 
-		if (map.locationOf(this).y() == 0 && map == Application.MAPS.get(0)){
-			actions.add(new MoveActorAction(new_map_south, "to park 2", "9"));
+		if (map.locationOf(this).y() == 0 && map == WorldBuilder.MAPS.get(0)){
+			actions.add(new MoveActorAction(new_map_south, "North", "8"));
 		}
-		else if (map.locationOf(this).y() == map.getYRange().max() && map == Application.MAPS.get(1)){
-			actions.add(new MoveActorAction(original_map_north, "to park 1", "8"));
+		else if (map.locationOf(this).y() == map.getYRange().max() && map == WorldBuilder.MAPS.get(1)){
+			actions.add(new MoveActorAction(original_map_north, "South", "2"));
 		}
 
 		return menu.showMenu(this, actions, display);

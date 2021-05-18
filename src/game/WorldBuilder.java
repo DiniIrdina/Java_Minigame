@@ -16,10 +16,10 @@ import game.actor.Stegosaur;
 import game.environment.*;
 
 /**
- * The main class for the Jurassic World game.
+ * The class that generates the map and all other world instances for the Jurassic World game.
  *
  */
-public class Application {
+public class WorldBuilder {
 	public static ArrayList<GameMap> MAPS = new ArrayList<GameMap>();
 
 	public void generateMaps(){
