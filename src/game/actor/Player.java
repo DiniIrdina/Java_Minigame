@@ -1,6 +1,7 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.Application;
 import game.action.FeedingAction;
 import game.action.PickFruitAction;
 import game.environment.Bush;
@@ -43,6 +44,18 @@ public class Player extends Actor {
 		if (ground instanceof Tree || ground instanceof Bush){
 			actions.add(new PickFruitAction());
 		}
+
+		//Relocating player to second map.
+		Location original_map_north = Application.MAPS.get(0).at(map.locationOf(this).x(), 0);
+		Location new_map_south = Application.MAPS.get(1).at(map.locationOf(this).x(), map.getYRange().max());
+
+		if (map.locationOf(this).y() == 0 && map == Application.MAPS.get(0)){
+			actions.add(new MoveActorAction(new_map_south, "to park 2", "9"));
+		}
+		else if (map.locationOf(this).y() == map.getYRange().max() && map == Application.MAPS.get(1)){
+			actions.add(new MoveActorAction(original_map_north, "to park 1", "8"));
+		}
+
 		return menu.showMenu(this, actions, display);
 	}
 
