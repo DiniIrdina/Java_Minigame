@@ -17,6 +17,11 @@ public class Player extends Actor {
 	public static int EcoPointStorage;
 
 	/**
+	 * The current turn the player game instance is at. Static variable.
+	 */
+	public static int TurnCounter;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param name        Name to call the player in the UI
@@ -26,6 +31,7 @@ public class Player extends Actor {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		EcoPointStorage = 0;
+		TurnCounter = 0;
 	}
 
 	/**
@@ -53,6 +59,9 @@ public class Player extends Actor {
 		else if (map.locationOf(this).y() == map.getYRange().max() && map == WorldBuilder.MAPS.get(1)){
 			actions.add(new MoveActorAction(original_map_north, "South", "2"));
 		}
+
+		// Updating the current game turn
+		TurnCounter++;
 
 		return menu.showMenu(this, actions, display);
 	}
