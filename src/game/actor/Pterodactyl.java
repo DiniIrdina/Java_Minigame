@@ -28,10 +28,6 @@ public class Pterodactyl extends Dinosaur{
     public Pterodactyl(int age, char gender) {
         super(SPECIES, ADULT_PTERODACTYL_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_PTERODACTYL_DISPLAY,BABY_PTERODACTYL_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
-        if (age < ADULT_AGE){
-            this.displayChar = BABY_PTERODACTYL_DISPLAY;
-        }
-        behaviour = new WanderBehaviour();
     }
 
     @java.lang.Override
@@ -45,7 +41,11 @@ public class Pterodactyl extends Dinosaur{
 
     @java.lang.Override
     public void eatsFood(Food food) {
-
+        if (food instanceof Fish){
+            heal(5);
+        }else if (food instanceof Corpse){
+            heal(10);
+        }
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Pterodactyl extends Dinosaur{
 
     @java.lang.Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        Action wander = behaviour.getAction(this, map);
         super.turn(map);
-
         Location location = map.locationOf(this);
 
 
@@ -80,7 +80,10 @@ public class Pterodactyl extends Dinosaur{
                 this.pregnancyCounter = 0;
             }
         }
-        return null;
+        if (wander != null)
+            return wander;
+
+        return new DoNothingAction();
     }
 
     @Override
