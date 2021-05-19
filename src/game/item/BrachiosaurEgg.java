@@ -27,6 +27,7 @@ public class BrachiosaurEgg extends Egg {
         if (age == 40){
             Brachiosaur babyDino = new Brachiosaur(0);
             location.addActor(babyDino);
+            location.removeItem(this);
             Player.updateEcoPoints(1000);
         }
     }

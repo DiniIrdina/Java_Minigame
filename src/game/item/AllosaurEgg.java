@@ -27,6 +27,7 @@ public class AllosaurEgg extends Egg {
         if (age == 50){
             Allosaur babyDino = new Allosaur(0);
             location.addActor(babyDino);
+            location.removeItem(this);
             Player.updateEcoPoints(1000);
         }
     }

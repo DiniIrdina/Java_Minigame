@@ -3,7 +3,9 @@ package game.environment;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.actor.Player;
+import game.item.Egg;
 import game.item.Fruit;
+import game.item.PterodactylEgg;
 
 import java.util.ArrayList;
 
@@ -15,6 +17,8 @@ public class Tree extends Ground {
 	private int age = 0;
 	final double RAIN_PROBABILITY = 0.2;
 	private boolean isRaining;
+	private boolean occupied;
+	private Egg egg;
 
 	/**
 	 * Array list to store the fruit objects
@@ -27,6 +31,24 @@ public class Tree extends Ground {
 	public Tree() {
 		super('+');
 		isRaining = false;
+	}
+
+	public boolean isOccupied() {
+		return occupied;
+	}
+
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
+	}
+
+	public void addEgg(){
+		egg = new PterodactylEgg();
+		setOccupied(true);
+	}
+
+	public void removeEgg(){
+		egg = null;
+		setOccupied(false);
 	}
 
 	/**

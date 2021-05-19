@@ -1,13 +1,9 @@
 package game.actor;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
 import game.behaviour.WanderBehaviour;
-import game.item.Corpse;
-import game.item.Fish;
-import game.item.Food;
+import game.environment.Tree;
+import game.item.*;
 
 public class Pterodactyl extends Dinosaur{
     static final String SPECIES = "Pterodactyl";
@@ -59,6 +55,37 @@ public class Pterodactyl extends Dinosaur{
 
     @java.lang.Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        super.turn(map);
+
+        Location location = map.locationOf(this);
+
+
+        for (Item item: inventory){
+            if (item instanceof PterodactylEgg){
+                this.isPregnant = true;
+                break;
+            }else{
+                this.isPregnant = false;
+            }
+        }
+
+        if (this.isPregnant){
+            if (this.pregnancyCounter < 20){
+                pregnancyTurn();
+            }
+            else if (this.pregnancyCounter >= 20 && location.getGround() instanceof Tree){
+                this.isPregnant = false;
+                LayEgg(map.locationOf(this));
+                removeEgg();
+                this.pregnancyCounter = 0;
+            }
+        }
         return null;
+    }
+
+    @Override
+    public void LayEgg(Location location) {
+        Tree tree = (Tree) location.getGround();
+        tree.addEgg();
     }
 }

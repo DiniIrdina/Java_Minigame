@@ -27,6 +27,7 @@ public class StegosaurEgg extends Egg {
         if (age == 20){
             Stegosaur babyDino = new Stegosaur(0);
             location.addActor(babyDino);
+            location.removeItem(this);
             Player.updateEcoPoints(100);
         }
     }

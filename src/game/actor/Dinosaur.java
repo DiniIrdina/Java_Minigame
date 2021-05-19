@@ -322,5 +322,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         return this.hitPoints;
     }
 
+    public abstract void LayEgg(Location location);
+
 
 }
