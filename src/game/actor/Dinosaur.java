@@ -23,6 +23,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     final int PREGNANT_LENGTH;
     final int ADULT_AGE;
     final char ADULT_DISPLAY;
+    final char BABY_DISPLAY;
     char gender;
     boolean isPregnant;
     final int BREEDING_LEVEL;
@@ -51,7 +52,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
-                    adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {
+                    adultDisplay, char babyDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.SPECIES = species;
@@ -67,6 +68,12 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.thirst = thirst;
         this.THIRSTY_LEVEL = thirstyLevel;
         this.CORPSE_HEALTH = corpse_health;
+        this.BABY_DISPLAY = babyDisplay;
+
+        if (age < ADULT_AGE){
+            this.displayChar = BABY_DISPLAY;
+        }
+        behaviour = new WanderBehaviour();
 
         if (probability<=genderProbability){
             this.gender = 'F';
@@ -89,7 +96,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param adultDisplay the display char of the fully grown dinosaur
      */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
-                    char adultDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {
+                    char adultDisplay,char babyDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {
         super(species, displayChar, hitPoints);
         double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
@@ -108,7 +115,12 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.thirst = thirst;
         this.THIRSTY_LEVEL = thirstyLevel;
         this.CORPSE_HEALTH = corpse_health;
+        this.BABY_DISPLAY = babyDisplay;
 
+        if (age < ADULT_AGE){
+            this.displayChar = BABY_DISPLAY;
+        }
+        behaviour = new WanderBehaviour();
     }
 
     /**

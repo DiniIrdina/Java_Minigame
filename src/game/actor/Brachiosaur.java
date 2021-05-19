@@ -35,11 +35,8 @@ public class Brachiosaur extends Dinosaur {
      */
     public Brachiosaur(int age) {
         super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,
-                ADULT_BRACHIOSAUR_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
-        if (age<ADULT_AGE){
-            this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
-        }
-        behaviour = new WanderBehaviour();
+                ADULT_BRACHIOSAUR_DISPLAY, BABY_BRACHIOSAUR_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
+
     }
 
     /**
@@ -49,12 +46,8 @@ public class Brachiosaur extends Dinosaur {
      */
     public Brachiosaur(int age, char gender) {
         super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY,
-                BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
-        if (age<ADULT_AGE){
-            this.displayChar = BABY_BRACHIOSAUR_DISPLAY;
-        }
+                BABY_BRACHIOSAUR_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
 
-        behaviour = new WanderBehaviour();
     }
 
     /**
