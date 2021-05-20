@@ -13,26 +13,33 @@ public class GameDriver {
 
     public static void main(String[] args) {
         int choice;
+        boolean user_input_format = true;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.printf("Welcome to Jurassic Park Simulator! %n" +
-                              "Please select your desired game mode: %n" +
-                              "1. Challenge %n" +
-                              "2. Sandbox %n" +
-                              "3. Quit %n");
+                    "Please select your desired game mode: %n" +
+                    "1. Challenge %n" +
+                    "2. Sandbox %n" +
+                    "3. Quit %n");
             choice = scanner.nextInt();
-            if (choice == 1){
+            if (choice <=0 || choice > 3){
+                user_input_format = false;
+            }
+            else if (choice == 1) {
                 challengeMode = true;
                 challengeSettings();
-
             }
-            else {
+            else if (choice == 2) {
                 System.out.println("You have selected sandbox! Please enjoy the game!");
             }
+            else if (choice == 3) {
+                break;
+            }
+
             WorldBuilder worldBuilder = new WorldBuilder();
             worldBuilder.generateMaps();
             System.out.println();
-        } while (choice!=3);
+        } while (user_input_format);
     }
 
     public static void challengeSettings(){
