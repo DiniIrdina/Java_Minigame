@@ -3,21 +3,19 @@ package game.behaviour;
 import edu.monash.fit2099.engine.*;
 import game.action.CarnivoreEatAction;
 import game.action.DrinkAction;
-import game.action.HerbivoreEatAction;
-import game.actor.Allosaur;
-import game.actor.Dinosaur;
 import game.actor.Pterodactyl;
-import game.actor.Stegosaur;
 import game.environment.Lake;
 import game.environment.Tree;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.Fish;
 import game.item.Food;
-
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Behaviour class specifically for Pterodactyl as it handles flying, landing on trees, catching fish, and going to nearest
+ * food source (either lake, corpse, or egg).
+ */
 public class PterodactylBehaviour implements Behaviour{
     private int flyDuration;
     private Pterodactyl pterodactylActor;
@@ -38,7 +36,7 @@ public class PterodactylBehaviour implements Behaviour{
         }
 
         Location nearestTree = getNearestTree(actor, map);
-        Location nearestLake = getNearestLake(actor, map);
+        Location nearestFoodSource = getNearestFoodSource(actor, map);
         if (ground instanceof Tree) {
             pterodactylActor.resetFlyDuration();
             pterodactylActor.setOnGround(false);
@@ -49,20 +47,14 @@ public class PterodactylBehaviour implements Behaviour{
             }
         }
 
-        if (ground instanceof Lake){
-            catchFish(location);
-            return new DrinkAction(location);
-        }
-
-
-        return null;
+        return new DoNothingAction();
 
         }
 
     /**
      * This method locates the nearest tree object relative to the current actor's position.
      * @param actor the current selected actor
-     * @param map the current instance of the map
+     * @param map the map the actor is in
      * @return the nearest tree object within search radius
      */
     public Location getNearestTree(Actor actor, GameMap map){
@@ -85,47 +77,14 @@ public class PterodactylBehaviour implements Behaviour{
         return nearestTree;
     }
 
-    public Location getNearestLake(Actor actor, GameMap map){
-        Location location = map.locationOf(actor);
-        Location nearestLake = null;
-        int shortestDistance =999999;
-        for (int x: map.getXRange()){
-            for (int y: map.getYRange()){
-                Location currentLocation = map.at(x, y);
-                Ground ground = currentLocation.getGround();
-                if (ground instanceof Lake){
-                    int currentDistance = FollowBehaviour.distance(location,currentLocation);
-                    if (currentDistance < shortestDistance){
-                        nearestLake = currentLocation;
-                        shortestDistance = currentDistance;
-                    }
-                }
-            }
-        }
 
-        return nearestLake;
-    }
-
-    public void catchFish(Location location){
-        double catchOneChance = 0.33;
-        double catchTwoChance = 0.66;
-        Lake lake = (Lake)location.getGround();
-        double fishChance = Math.random();
-        if (lake.getFishPopulation().size() > 2){
-            if (fishChance <=0.33){
-                lake.reduceFishPopulation(1);
-                pterodactylActor.eatsFood(new Fish());
-            }else if(fishChance >= 0.66){
-                lake.reduceFishPopulation(2);
-                pterodactylActor.eatsFood(new Fish());
-                pterodactylActor.eatsFood(new Fish());
-            }
-        }else if (lake.getFishPopulation().size() == 1){
-            lake.reduceFishPopulation(1);
-            pterodactylActor.eatsFood(new Fish());
-        }
-    }
-
+    /**
+     * This method checks the entire map and returns the location of the nearest food source relative to the actor. The
+     * food source in this case is either an egg or a corpse item.
+     * @param actor the current actor
+     * @param map the map the actor is in
+     * @return location of the nearest food source
+     */
     public Location getNearestFoodSource(Actor actor, GameMap map){
         Location location = map.locationOf(actor);
         Location nearestFood = null;

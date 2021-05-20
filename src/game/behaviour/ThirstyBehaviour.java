@@ -23,7 +23,13 @@ public class ThirstyBehaviour implements Behaviour{
         }
         return null;
     }
-
+    /**
+     *
+     * This method checks the entire map and returns the location of the nearest lake relative to the actor's location.
+     * @param actor the current actor.
+     * @param map the map the actor is in.
+     * @return location of the nearest lake to the actor
+     */
     public Location getNearestLake(Actor actor, GameMap map){
         Location location = map.locationOf(actor);
         Location nearestLake = null;

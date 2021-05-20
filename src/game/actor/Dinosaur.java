@@ -1,9 +1,6 @@
 package game.actor;
 import edu.monash.fit2099.engine.*;
-import game.behaviour.Behaviour;
-import game.behaviour.BreedingBehaviour;
-import game.behaviour.ThirstyBehaviour;
-import game.behaviour.WanderBehaviour;
+import game.behaviour.*;
 import game.environment.Bush;
 import game.environment.Dirt;
 import game.environment.Tree;
@@ -218,6 +215,8 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
             setBehaviour(new WanderBehaviour());
         }else if (thirst <= THIRSTY_LEVEL){
             setBehaviour(new ThirstyBehaviour());
+        }else if (hitPoints <= BREEDING_LEVEL){
+            setBehaviour(new HungryBehaviour());
         }
 
         Location location = map.locationOf(this);
