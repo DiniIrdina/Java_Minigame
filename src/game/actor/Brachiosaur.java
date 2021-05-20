@@ -5,6 +5,8 @@ import game.action.AttackAction;
 import game.action.FeedingAction;
 import game.behaviour.BreedingBehaviour;
 import game.behaviour.WanderBehaviour;
+import game.environment.Bush;
+import game.environment.Dirt;
 import game.interfaces.NeedsPlayer;
 import game.item.*;
 
@@ -84,6 +86,17 @@ public class Brachiosaur extends Dinosaur {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        Location location = map.locationOf(this);
+        Ground ground = location.getGround();
+        if (ground instanceof Bush){
+            double killBushChance = Math.random();
+            if (killBushChance > 0.5){
+                Dirt dirt = new Dirt();
+                location.setGround(dirt);
+            }
+        }
+
+
         Action wander = behaviour.getAction(this, map);
         super.turn(map);
         for (Item item: inventory){

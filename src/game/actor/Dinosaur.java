@@ -69,6 +69,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.THIRSTY_LEVEL = thirstyLevel;
         this.CORPSE_HEALTH = corpse_health;
         this.BABY_DISPLAY = babyDisplay;
+        this.pregnancyCounter = 0;
 
         if (age < ADULT_AGE){
             this.displayChar = BABY_DISPLAY;
@@ -116,6 +117,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.THIRSTY_LEVEL = thirstyLevel;
         this.CORPSE_HEALTH = corpse_health;
         this.BABY_DISPLAY = babyDisplay;
+        this.pregnancyCounter = 0;
 
         if (age < ADULT_AGE){
             this.displayChar = BABY_DISPLAY;
@@ -153,11 +155,11 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         }
     }
     public boolean isAdult(){
+        boolean result = false;
         if (age >= ADULT_AGE){
-            return true;
-        }else{
-            return false;
+            result = true;
         }
+        return result;
     }
 
     /**

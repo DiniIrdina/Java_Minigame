@@ -7,10 +7,7 @@ import java.util.Random;
 import edu.monash.fit2099.engine.*;
 import game.action.CarnivoreEatAction;
 import game.action.HerbivoreEatAction;
-import game.actor.Allosaur;
-import game.actor.Brachiosaur;
-import game.actor.Dinosaur;
-import game.actor.Stegosaur;
+import game.actor.*;
 import game.behaviour.Behaviour;
 import game.environment.Bush;
 import game.environment.Dirt;
@@ -40,7 +37,7 @@ public class WanderBehaviour implements Behaviour {
 	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
-		ArrayList<Action> actions = new ArrayList<Action>();
+		ArrayList<Action> actions = new ArrayList<>();
 
 		Location location = map.locationOf(actor);
 		List<Item> itemsHere = location.getItems();
@@ -75,14 +72,8 @@ public class WanderBehaviour implements Behaviour {
 					}
 				}
 			}
-			else if (ground instanceof Bush){
-				double killBushChance = Math.random();
-				if (killBushChance > 0.5){
-					Dirt dirt = new Dirt();
-					location.setGround(dirt);
-				}
-			}
 		}
+
 
 		List<Exit> exitList = map.locationOf(actor).getExits();
 		Location nearestBush = getNearestBush(actor,map);

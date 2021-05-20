@@ -1,12 +1,11 @@
 package game.behaviour;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 import game.action.BreedingAction;
 import game.actor.Dinosaur;
 import game.actor.Player;
+import game.actor.Pterodactyl;
+import game.environment.Tree;
 
 import java.util.ArrayList;
 
@@ -27,23 +26,32 @@ public class BreedingBehaviour implements Behaviour {
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur mate = null;
         Location actorLocation = map.locationOf(actor);
-        ArrayList<Dinosaur> potentialMates = getMates((Dinosaur)actor,map);
-        if (potentialMates.isEmpty()){
+        Ground ground = actorLocation.getGround();
+        ArrayList<Dinosaur> potentialMates = getMates((Dinosaur) actor, map);
+        if (potentialMates.isEmpty()) {
             return (((Dinosaur) actor).getWanderBehaviour().getAction(actor, map));
-        }else{
+        } else {
             int shortestDistance = 9999999;
-            for(int i = 0; i < potentialMates.size();i++){
+            for (int i = 0; i < potentialMates.size(); i++) {
                 mate = potentialMates.get(i);
                 Location mateLocation = map.locationOf(mate);
-                int currentDistance = FollowBehaviour.distance(actorLocation,mateLocation);
-                if (currentDistance < shortestDistance){
+                int currentDistance = FollowBehaviour.distance(actorLocation, mateLocation);
+                if (currentDistance < shortestDistance) {
                     shortestDistance = currentDistance;
                 }
             }
 
-            if (shortestDistance > 1){
+             if (shortestDistance == 1 && actor instanceof Pterodactyl) {  //breeding for Pterodactyl only
+                 Location mateLocation = map.locationOf(mate);
+                 Ground mateGround = mateLocation.getGround();
+                 if (mateGround instanceof Tree && ground instanceof Tree) {
+                     return new BreedingAction(mate);
+                 }
+             }
+
+            if (shortestDistance > 1) {  //breeding for all dinosaurs except Pterodactyl
                 return new FollowBehaviour(mate).getAction(actor, map);
-            }else{
+            } else {
                 return new BreedingAction(mate);
             }
         }
@@ -64,15 +72,12 @@ public class BreedingBehaviour implements Behaviour {
                 Location location = map.at(x,y);
                 if (location.containsAnActor()){
                     Actor target = map.getActorAt(location);
-                    if (target instanceof Player){
-                        continue;
-                    }else{
-                        if ((dino.isAdult() && ((Dinosaur)target).isAdult()) &&
+                    if ((dino.isAdult() && ((Dinosaur)target).isAdult()) &&
                                 (dino.getSpecies().equals(((Dinosaur)target).getSpecies())) &&
                                 (dino.getGender() != ((Dinosaur) target).getGender()) && (!dino.isPregnant() &&
                                 !((Dinosaur)target).isPregnant())){
                             mateList.add((Dinosaur)target);
-                    }
+
                 }}
             }
         }

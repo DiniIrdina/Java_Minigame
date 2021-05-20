@@ -20,14 +20,21 @@ public class Pterodactyl extends Dinosaur{
     static final int THIRSTY_LEVEL = 40;
     static final int CORPSE_HEALTH = 30;
 
+    private int flyDuration;
+    private boolean onGround;
 
     public Pterodactyl(int age) {
         super(SPECIES, ADULT_PTERODACTYL_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,
-                ADULT_PTERODACTYL_DISPLAY, BABY_PTERODACTYL_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);    }
+                ADULT_PTERODACTYL_DISPLAY, BABY_PTERODACTYL_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
+        flyDuration = 0;
+        onGround = false;
+    }
 
     public Pterodactyl(int age, char gender) {
         super(SPECIES, ADULT_PTERODACTYL_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_PTERODACTYL_DISPLAY,BABY_PTERODACTYL_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
+        flyDuration = 0;
+        onGround = false;
     }
 
     @java.lang.Override
@@ -90,5 +97,21 @@ public class Pterodactyl extends Dinosaur{
     public void LayEgg(Location location) {
         Tree tree = (Tree) location.getGround();
         tree.addEgg();
+    }
+
+    public int getFlyDuration() {
+        return flyDuration;
+    }
+
+    public void setFlyDuration(int flyDuration) {
+        this.flyDuration = flyDuration;
+    }
+
+    public boolean isOnGround() {
+        return onGround;
+    }
+
+    public void setOnGround(boolean onGround) {
+        this.onGround = onGround;
     }
 }

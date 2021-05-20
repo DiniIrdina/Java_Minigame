@@ -2,7 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.action.FeedingAction;
-import game.behaviour.AllosaurAttackBehaviour;
+import game.behaviour.AllosaurHungryBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.action.AttackAction;
 import game.interfaces.NeedsPlayer;
@@ -33,11 +33,11 @@ public class Allosaur extends Dinosaur {
     /**
      * Array list to keep track of the different dinosaurs attacked.
      */
-    private ArrayList<Dinosaur> attacked_dinosaur = new ArrayList<Dinosaur>();
+    private ArrayList<Dinosaur> attacked_dinosaur = new ArrayList<>();
     /**
      * Array list to keep track of the timer for each attacked dinosaur object.
      */
-    private ArrayList<Integer> attacked_dinosaur_count = new ArrayList<Integer>();
+    private ArrayList<Integer> attacked_dinosaur_count = new ArrayList<>();
 
     /**
      * First overloaded constructor of the Allosaur class. All Allosaur have 100 hit points. The baby
@@ -135,7 +135,7 @@ public class Allosaur extends Dinosaur {
             }
         }
         if(hitPoints <= HUNGRY_LEVEL){
-            setBehaviour(new AllosaurAttackBehaviour());
+            setBehaviour(new AllosaurHungryBehaviour());
         }
         else{
             setBehaviour(new WanderBehaviour());
