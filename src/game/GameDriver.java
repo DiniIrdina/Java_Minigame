@@ -7,6 +7,10 @@ import java.util.Scanner;
  *
  */
 public class GameDriver {
+    private static int challengeTurn;
+    private static int challengeEcoPoints;
+    private static boolean challengeMode = false;
+
     public static void main(String[] args) {
         int choice;
         Scanner scanner = new Scanner(System.in);
@@ -18,14 +22,16 @@ public class GameDriver {
                               "3. Quit %n");
             choice = scanner.nextInt();
             if (choice == 1){
+                challengeMode = true;
                 challengeSettings();
 
             }
             else {
-
+                System.out.println("You have selected sandbox! Please enjoy the game!");
             }
             WorldBuilder worldBuilder = new WorldBuilder();
             worldBuilder.generateMaps();
+            System.out.println();
         } while (choice!=3);
     }
 
@@ -37,12 +43,33 @@ public class GameDriver {
                         "Please tweak the settings for EcoPoints and Number of Moves.%n" +
                         "Starting from EcoPoints,%n" +
                         "Please Enter the amount of EcoPoints required to win:  %n");
-        int entered_ecopoints = scanner.nextInt();
+        challengeEcoPoints = scanner.nextInt();
         System.out.printf(
                         "Great! Your input for EcoPoints win condition is %d%n" +
-                        "Now, %n" + "Please Enter the maximum number of moves required before the game ends:  %n",entered_ecopoints);
-        int entered_num_moves = scanner.nextInt();
-        System.out.println("Your input for maximum number of moves is " + entered_num_moves);
+                        "Now, %n" + "Please Enter the maximum number of moves required before the game ends:  %n",challengeEcoPoints);
+        challengeTurn = scanner.nextInt();
+        System.out.println("Your input for maximum number of moves is " + challengeTurn);
 
     }
+
+    public static boolean isChallengeMode(){
+        return challengeMode;
+    }
+
+    public static int getChallengeTurn(){
+        return challengeTurn;
+    }
+
+    public static void setChallengeTurn(int turn){
+        challengeTurn = turn;
+    }
+
+    public static int getChallengeEcoPoints(){
+        return challengeEcoPoints;
+    }
+
+    public static void setChallengeEcoPoints(int points){
+        challengeEcoPoints = points;
+    }
+
 }

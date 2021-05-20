@@ -1,7 +1,10 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.GameDriver;
 import game.WorldBuilder;
+import game.action.GameCompletionAction;
+import game.action.GameQuitAction;
 import game.action.PickFruitAction;
 import game.environment.Bush;
 import game.environment.Tree;
@@ -22,6 +25,16 @@ public class Player extends Actor {
 	public static int TurnCounter;
 
 	/**
+	 * The current turn the player game instance is at. Static variable.
+	 */
+	public static boolean ChallengeOver = false;
+
+	/**
+	 * The current turn the player game instance is at. Static variable.
+	 */
+	public static boolean ChallengeCompleted = false;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param name        Name to call the player in the UI
@@ -40,6 +53,34 @@ public class Player extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		// Updating the current game turn
+		TurnCounter++;
+		System.out.println("Current Turn: " + TurnCounter);
+
+		//adding quit option
+		actions.add(new GameQuitAction("0"));
+
+		//Challenge Mode game ending sequences
+		if (GameDriver.isChallengeMode()){
+			if (TurnCounter >= GameDriver.getChallengeTurn()){
+				if (EcoPointStorage < GameDriver.getChallengeEcoPoints()){
+					//System.out.println("You failed to achieve the challenge!");
+					map.removeActor(this);
+					ChallengeOver = true;
+					return new GameCompletionAction();
+				}
+			}
+			else {
+				if (EcoPointStorage >= GameDriver.getChallengeEcoPoints()){
+					//System.out.println("Congratulations! You just completed the game in challenge mode!");
+					map.removeActor(this);
+					ChallengeOver = true;
+					ChallengeCompleted = true;
+					return new GameCompletionAction();
+				}
+			}
+		}
+
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -50,18 +91,15 @@ public class Player extends Actor {
 		}
 
 		//Relocating player between 2 instances of maps.
-		Location original_map_north = WorldBuilder.MAPS.get(0).at(map.locationOf(this).x(), 0);
-		Location new_map_south = WorldBuilder.MAPS.get(1).at(map.locationOf(this).x(), map.getYRange().max());
+		Location original_map_north = WorldBuilder.MAPS.get(0).at(location.x(), 0);
+		Location new_map_south = WorldBuilder.MAPS.get(1).at(location.x(), map.getYRange().max());
 
-		if (map.locationOf(this).y() == 0 && map == WorldBuilder.MAPS.get(0)){
+		if (location.y() == 0 && map == WorldBuilder.MAPS.get(0)){
 			actions.add(new MoveActorAction(new_map_south, "North", "8"));
 		}
-		else if (map.locationOf(this).y() == map.getYRange().max() && map == WorldBuilder.MAPS.get(1)){
+		else if (location.y() == map.getYRange().max() && map == WorldBuilder.MAPS.get(1)){
 			actions.add(new MoveActorAction(original_map_north, "South", "2"));
 		}
-
-		// Updating the current game turn
-		TurnCounter++;
 
 		return menu.showMenu(this, actions, display);
 	}
@@ -88,6 +126,22 @@ public class Player extends Actor {
 	 */
 	public static void updateEcoPoints(int EcoPoints){
 		EcoPointStorage += EcoPoints;
+	}
+
+	/**
+	 * Getter method which signifies if the challenge mode is over
+	 * @return True if the game has ended. False if not.
+	 */
+	public boolean isChallengeOver(){
+		return ChallengeOver;
+	}
+
+	/**
+	 * Getter method which signifies if the challenge mode has been completed.
+	 * @return True if the game has ended. False if not.
+	 */
+	public boolean isChallengeCompleted(){
+		return ChallengeCompleted;
 	}
 
 }
