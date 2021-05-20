@@ -25,12 +25,12 @@ public class Player extends Actor {
 	public static int TurnCounter;
 
 	/**
-	 * The current turn the player game instance is at. Static variable.
+	 * The current status of challenge mode.  Static variable.
 	 */
 	public static boolean ChallengeOver = false;
 
 	/**
-	 * The current turn the player game instance is at. Static variable.
+	 * The current status of challenge mode. Static variable.
 	 */
 	public static boolean ChallengeCompleted = false;
 
@@ -53,18 +53,17 @@ public class Player extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// Updating the current game turn
+		//Updating the current game turn
 		TurnCounter++;
 		System.out.println("Current Turn: " + TurnCounter);
 
-		//adding quit option
+		//Adding quit option for user
 		actions.add(new GameQuitAction("0"));
 
 		//Challenge Mode game ending sequences
 		if (GameDriver.isChallengeMode()){
 			if (TurnCounter >= GameDriver.getChallengeTurn()){
 				if (EcoPointStorage < GameDriver.getChallengeEcoPoints()){
-					//System.out.println("You failed to achieve the challenge!");
 					map.removeActor(this);
 					ChallengeOver = true;
 					return new GameCompletionAction();
@@ -72,7 +71,6 @@ public class Player extends Actor {
 			}
 			else {
 				if (EcoPointStorage >= GameDriver.getChallengeEcoPoints()){
-					//System.out.println("Congratulations! You just completed the game in challenge mode!");
 					map.removeActor(this);
 					ChallengeOver = true;
 					ChallengeCompleted = true;

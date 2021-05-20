@@ -34,6 +34,7 @@ public class VendingMachine extends Ground {
         itemArrayList.add(new StegosaurEgg());
         itemArrayList.add(new BrachiosaurEgg());
         itemArrayList.add(new AllosaurEgg());
+        itemArrayList.add(new PterodactylEgg());
         itemArrayList.add(new LaserGun());
 
         Actions action = new Actions();

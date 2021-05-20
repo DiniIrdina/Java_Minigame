@@ -20,6 +20,7 @@ public class VMPurchasingAction extends Action {
         StegosaurEgg,
         BrachiosaurEgg,
         AllosaurEgg,
+        PterodactylEgg,
         LaserGun
     }
 
@@ -71,6 +72,9 @@ public class VMPurchasingAction extends Action {
                 break;
             case AllosaurEgg:
                 itemPrice = ((AllosaurEgg) selection).getPrice();
+                break;
+            case PterodactylEgg:
+                itemPrice = ((PterodactylEgg) selection).getPrice();
                 break;
             case LaserGun:
                 itemPrice = ((LaserGun) selection).getPrice();
