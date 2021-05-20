@@ -6,6 +6,7 @@ import game.action.AttackAction;
 import game.action.CarnivoreEatAction;
 import game.actor.Allosaur;
 import game.actor.Dinosaur;
+import game.actor.Pterodactyl;
 import game.actor.Stegosaur;
 import game.item.Food;
 
@@ -101,6 +102,16 @@ public class AllosaurHungryBehaviour implements Behaviour{
                             closestTarget = target;
                         }
                 }
+                }
+                if (targetLocation.containsAnActor() && targetLocation.getActor() instanceof Pterodactyl){
+                    if (((Pterodactyl)actor).isOnGround()){
+                        targetDistance = FollowBehaviour.distance(location, targetLocation);
+                        Dinosaur target = (Dinosaur) targetLocation.getActor();
+                        if (targetDistance < shortestDistance) {
+                            shortestDistance = targetDistance;
+                            closestTarget = target;
+                        }
+                    }
                 }
             }
         }

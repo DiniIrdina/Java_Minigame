@@ -71,4 +71,14 @@ public class Lake extends Ground {
             }
         }
     }
+
+    public ArrayList<Fish> getFishPopulation() {
+        return fishPopulation;
+    }
+
+    public void reduceFishPopulation(int number){
+        for (int i = 0; i < number; i++) {
+            fishPopulation.remove(fishPopulation.size() - 1);
+        }
+    }
 }

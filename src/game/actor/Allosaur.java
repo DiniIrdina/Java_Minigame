@@ -91,7 +91,11 @@ public class Allosaur extends Dinosaur {
      */
     @Override
     public void eatsFood(Food food) {
-
+        if (food instanceof Egg){
+            heal(10);
+        }else if (food instanceof Corpse){
+            heal(((Corpse)food).getHealth());
+        }
     }
 
     @Override

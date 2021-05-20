@@ -66,6 +66,10 @@ public class Pterodactyl extends Dinosaur{
         super.turn(map);
         Location location = map.locationOf(this);
 
+        if (!onGround){
+            flyDuration++;
+        }
+
 
         for (Item item: inventory){
             if (item instanceof PterodactylEgg){
@@ -103,8 +107,8 @@ public class Pterodactyl extends Dinosaur{
         return flyDuration;
     }
 
-    public void setFlyDuration(int flyDuration) {
-        this.flyDuration = flyDuration;
+    public void resetFlyDuration() {
+        this.flyDuration = 0;
     }
 
     public boolean isOnGround() {

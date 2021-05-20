@@ -16,6 +16,7 @@ public class AllosaurAttackAction extends Action {
      */
     protected Dinosaur target;
     private String stegosaur = "Stegosaur";
+    private String pterodactyl = "Pterodactyl";
     private int damage;
 
     /**
@@ -53,6 +54,10 @@ public class AllosaurAttackAction extends Action {
                 }
                 actor.heal(damage);
             }
+        }else if (target.getSpecies().equals(pterodactyl)){
+            map.removeActor(target);
+            this.damage = 100;
+            actor.heal(damage);
         }
         return menuDescription(actor);
     }

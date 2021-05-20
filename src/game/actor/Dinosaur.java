@@ -338,5 +338,13 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
 
     public abstract void LayEgg(Location location);
 
+    public boolean isHungry(){
+        if (hitPoints < BREEDING_LEVEL){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 }
