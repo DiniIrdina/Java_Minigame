@@ -70,7 +70,7 @@ public class BreedingBehaviour implements Behaviour {
         for (int x: map.getXRange()){
             for (int y: map.getYRange()){
                 Location location = map.at(x,y);
-                if (location.containsAnActor()){
+                if (location.containsAnActor() && !(location.getActor() instanceof Player)){
                     Actor target = map.getActorAt(location);
                     if ((dino.isAdult() && ((Dinosaur)target).isAdult()) &&
                                 (dino.getSpecies().equals(((Dinosaur)target).getSpecies())) &&
