@@ -2,15 +2,14 @@ package game.behaviour;
 
 import edu.monash.fit2099.engine.*;
 import game.action.CarnivoreEatAction;
+import game.action.CatchFishAction;
 import game.action.HerbivoreEatAction;
-import game.actor.Allosaur;
-import game.actor.Brachiosaur;
-import game.actor.Dinosaur;
-import game.actor.Stegosaur;
+import game.actor.*;
 import game.environment.Bush;
-import game.environment.Dirt;
 import game.environment.Lake;
 import game.environment.Tree;
+import game.item.Corpse;
+import game.item.Egg;
 import game.item.Food;
 import game.item.Fruit;
 
@@ -23,25 +22,9 @@ public class HungryBehaviour implements Behaviour{
         ArrayList<Action> actions = new ArrayList<>();
 
         Location location = map.locationOf(actor);
+        Ground ground = location.getGround();
         List<Item> itemsHere = location.getItems();
 
-        if (!itemsHere.isEmpty()) {
-            for (Item item : itemsHere) {
-                if (item instanceof Food) {
-                    if (actor instanceof Stegosaur) {
-                        if (((Dinosaur) actor).canEat((Food) item)) {
-                            return new HerbivoreEatAction((Food) item);
-                        }
-
-                    }else if(actor instanceof Allosaur){
-                        if (((Dinosaur)actor).canEat((Food)item)){
-                            return new CarnivoreEatAction((Food)item);
-                        }
-                    }
-                }
-            }
-        }
-        Ground ground = location.getGround();
         if (actor instanceof Brachiosaur) {
             if (ground instanceof Tree) {
                 List<Fruit> fruits = ((Tree) ground).getFruits();
@@ -51,23 +34,55 @@ public class HungryBehaviour implements Behaviour{
                     }
                 }
             }
+            else{
+                Location nearestTree = getNearestTree(actor,map);
+                if (nearestTree!=null){
+                    return WanderBehaviour.moveTo(actor,map,location,nearestTree);
+                }
+            }
         }
 
-        List<Exit> exitList = map.locationOf(actor).getExits();
-        Location nearestBush = getNearestBush(actor,map);
-        if (nearestBush != null && actor instanceof Stegosaur){
-            if (exitList.contains(nearestBush)){
+        if (actor instanceof Stegosaur){
+            for (Item item : itemsHere){
+                if (item instanceof Food && ((Stegosaur)actor).canEat((Food)item)){
+                    return new HerbivoreEatAction((Food)item);
+                }
+            }
+            Location nearestBush = getNearestBush(actor, map);
+            if (nearestBush!=null){
                 return WanderBehaviour.moveTo(actor,map,location,nearestBush);
             }
         }
 
-        Location nearestTree = getNearestTree(actor,map);
-        if (nearestTree!=null && !(actor instanceof Allosaur)){
-            if (exitList.contains(nearestTree)){
-                return WanderBehaviour.moveTo(actor,map,location,nearestTree);
+        if (actor instanceof Pterodactyl){
+            Location nearestLake = getNearestLake(actor, map);
+            Location nearestFoodSource = getNearestFoodSource(actor, map);
+            Location chosenSource = null;
+
+            if (ground instanceof Lake){
+                return new CatchFishAction();
             }
+
+            if (nearestLake!=null && nearestFoodSource!=null){
+                if (FollowBehaviour.distance(location,nearestFoodSource) < FollowBehaviour.distance(location, nearestLake)){
+                    chosenSource = nearestFoodSource;
+                }else{
+                    chosenSource = nearestLake;
+                }
+            }
+            else if (nearestLake!=null){
+                chosenSource = nearestLake;
+            }
+            else if (nearestFoodSource!=null){
+                chosenSource = nearestFoodSource;
+            }
+            return WanderBehaviour.moveTo(actor,map,location,chosenSource);
+
         }
-        return null;
+
+
+
+        return new DoNothingAction();
     }
 
     /**
@@ -143,6 +158,41 @@ public class HungryBehaviour implements Behaviour{
         }
         return nearestLake;
 
+    }
+
+    /**
+     * This method checks the entire map and returns the location of the nearest food source relative to the actor. The
+     * food source in this case is either an egg or a corpse item.
+     * @param actor the current actor
+     * @param map the map the actor is in
+     * @return location of the nearest food source
+     */
+    public Location getNearestFoodSource(Actor actor, GameMap map){
+        Location location = map.locationOf(actor);
+        Location nearestFood = null;
+        int shortestDistance =999999;
+        boolean containFood = false;
+        for (int x: map.getXRange()){
+            for (int y: map.getYRange()){
+                Location currentLocation = map.at(x, y);
+                List<Item> locationItems = currentLocation.getItems();
+                for (Item item: locationItems){
+                    if (item instanceof Corpse || item instanceof Egg){
+                        containFood = true;
+                        break;
+                    }
+                }
+                if (containFood){
+                    int currentDistance = FollowBehaviour.distance(location,currentLocation);
+                    if (currentDistance < shortestDistance){
+                        nearestFood = currentLocation;
+                        shortestDistance = currentDistance;
+                    }
+                }
+                containFood = false;
+            }
+        }
+        return nearestFood;
     }
 
 }
