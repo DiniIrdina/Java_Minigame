@@ -1,9 +1,15 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.action.AttackAction;
+import game.action.FeedingAction;
+import game.behaviour.PterodactylBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.environment.Tree;
+import game.interfaces.NeedsPlayer;
 import game.item.*;
+
+import static java.util.Objects.isNull;
 
 public class Pterodactyl extends Dinosaur{
     static final String SPECIES = "Pterodactyl";
@@ -55,6 +61,30 @@ public class Pterodactyl extends Dinosaur{
         }
     }
 
+    /**
+     * Lists all the actions that the other actor can perform on the current actor.
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return           actions
+     */
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        actions = new Actions();
+        actions.add(new AttackAction(this));
+        Player player = NeedsPlayer.retrievePlayer(map);
+        if (!isNull(player)){
+            for(Item item: player.getInventory()){
+                if (item instanceof Egg){
+                    actions.add(new FeedingAction(this,((Food)item), Egg.getFeedPoints()));
+                }else if (item instanceof CarnivoreMealKit){
+                    actions.add(new FeedingAction(this,((Food)item), CarnivoreMealKit.getFeedPoints()));
+                }
+            }
+        }
+        return actions;
+
+    }
+
     @Override
     public void drinksWater() {
         this.thirst += 30;
@@ -68,6 +98,10 @@ public class Pterodactyl extends Dinosaur{
 
         if (!onGround){
             flyDuration++;
+        }
+
+        if (flyDuration < 5){
+            setBehaviour(new PterodactylBehaviour());
         }
 
 

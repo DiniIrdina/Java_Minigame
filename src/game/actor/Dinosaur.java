@@ -96,7 +96,6 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
                     char adultDisplay,char babyDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {
         super(species, displayChar, hitPoints);
-        double probability = Math.random();
         this.maxHitPoints = maxHitPoints;
         this.SPECIES = species;
         this.PREGNANT_LENGTH = pregnant;

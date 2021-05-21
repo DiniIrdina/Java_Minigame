@@ -9,10 +9,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
-import game.actor.Allosaur;
-import game.actor.Brachiosaur;
-import game.actor.Player;
-import game.actor.Stegosaur;
+import game.actor.*;
 import game.environment.*;
 
 /**
@@ -99,6 +96,8 @@ public class WorldBuilder {
 		gameMap.at(30,15).addActor(new Brachiosaur(50,'M'));
 		gameMap.at(25,23).addActor(new Brachiosaur(50,'F'));
 		gameMap.at(35,2).addActor(new Brachiosaur(50,'M'));
+		gameMap.at(20,10).addActor(new Pterodactyl(30,'M'));
+		gameMap.at(18,10).addActor(new Pterodactyl(18,'F'));
 
 		world.run();
 	}

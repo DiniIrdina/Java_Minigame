@@ -76,12 +76,10 @@ public class HungryBehaviour implements Behaviour{
             else if (nearestFoodSource!=null){
                 chosenSource = nearestFoodSource;
             }
-            return WanderBehaviour.moveTo(actor,map,location,chosenSource);
-
+            if (chosenSource != null) {
+                return WanderBehaviour.moveTo(actor, map, location, chosenSource);
+            }
         }
-
-
-
         return new DoNothingAction();
     }
 

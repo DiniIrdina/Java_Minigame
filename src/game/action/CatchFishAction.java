@@ -1,10 +1,20 @@
 package game.action;
 
 import edu.monash.fit2099.engine.*;
+import game.actor.Dinosaur;
 import game.actor.Pterodactyl;
 import game.environment.Lake;
 import game.item.Fish;
 
+
+/**
+ * An action class used mainly by the Pterodactyl to catch fish in a lake. It uses a random number generator to decide if it catches
+ * either one or two fish. In addition, it also allows the Pterodactyl to drink water from the lake if there are enough
+ * sips in it.
+ *
+ * @see Lake#getFishPopulation()
+ * @see Dinosaur#drinksWater()
+ */
 public class CatchFishAction extends Action {
     private int numberOfFish = 0;
     @Override
