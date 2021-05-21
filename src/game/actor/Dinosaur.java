@@ -272,9 +272,15 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * Reduces the health points of a dinosaur based on a hunger threshold.
      */
     public void increaseHunger(GameMap map){
+        /*String map_name = null;
+        for (GameMap i : MAPS){
+            if (i == map){
+                map_name = i.toString();
+            }
+        }*/
         Location location = map.locationOf(this);
         if (hitPoints < HUNGRY_LEVEL){
-            System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is hungry!");
+            System.out.println(this + /*" in " + map_name +*/ " at (" + location.x()+ ","+ location.y()+ ") is hungry!");
         }
         hurt(1);
     }
