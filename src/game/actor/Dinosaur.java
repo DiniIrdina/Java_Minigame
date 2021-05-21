@@ -8,6 +8,8 @@ import game.interfaces.NeedsPlayer;
 import game.item.Corpse;
 import game.item.Food;
 
+import static game.WorldBuilder.MAPS;
+
 /**
  * Abstract class creation of Dinosaur. Used as the template for all relation types of dinosaurs
  */
