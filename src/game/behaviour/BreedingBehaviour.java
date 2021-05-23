@@ -8,6 +8,7 @@ import game.actor.Pterodactyl;
 import game.environment.Tree;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class that figures out the BreedingBehaviour for dinosaurs. The dinosaur that
@@ -28,6 +29,7 @@ public class BreedingBehaviour implements Behaviour {
         Location actorLocation = map.locationOf(actor);
         Ground ground = actorLocation.getGround();
         ArrayList<Dinosaur> potentialMates = getMates((Dinosaur) actor, map);
+
         if (potentialMates.isEmpty()) {
             return (((Dinosaur) actor).getWanderBehaviour().getAction(actor, map));
         } else {
@@ -41,12 +43,24 @@ public class BreedingBehaviour implements Behaviour {
                 }
             }
 
-             if (shortestDistance == 1 && actor instanceof Pterodactyl) {  //breeding for Pterodactyl only
-                 Location mateLocation = map.locationOf(mate);
-                 Ground mateGround = mateLocation.getGround();
+            Location mateLocation = map.locationOf(mate);
+            Location nearestTree = Tree.getNearestTree(mate,map);
+            Ground mateGround = mateLocation.getGround();
+             if (actor instanceof Pterodactyl && shortestDistance == 1) {  //breeding for Pterodactyl only
                  if (mateGround instanceof Tree && ground instanceof Tree) {
                      return new BreedingAction(mate);
                  }
+                 else{
+                     List<Exit> exits = nearestTree.getExits();
+                     for (Exit i: exits){
+                         Ground exitGround = i.getDestination().getGround();
+                         if (exitGround instanceof Tree){
+                             return WanderBehaviour.moveTo(actor, map, actorLocation, i.getDestination());
+                         }
+                     }
+                 }
+             }else if ( actor instanceof Pterodactyl && shortestDistance > 1 ) {
+                 return WanderBehaviour.moveTo(actor, map, actorLocation, nearestTree);
              }
 
             if (shortestDistance > 1) {  //breeding for all dinosaurs except Pterodactyl
@@ -54,8 +68,8 @@ public class BreedingBehaviour implements Behaviour {
             } else {
                 return new BreedingAction(mate);
             }
-        }
-    }
+        }}
+
 
     /**
      * This method locates the nearest dinosaur of the same species to be mated with. The method will search
@@ -83,4 +97,7 @@ public class BreedingBehaviour implements Behaviour {
         }
         return mateList;
     }
+
+
+
 }

@@ -35,7 +35,7 @@ public class HungryBehaviour implements Behaviour{
                 }
             }
             else{
-                Location nearestTree = getNearestTree(actor,map);
+                Location nearestTree = Tree.getNearestTree(actor,map);
                 if (nearestTree!=null){
                     return WanderBehaviour.moveTo(actor,map,location,nearestTree);
                 }
@@ -108,33 +108,6 @@ public class HungryBehaviour implements Behaviour{
             }
         }
         return nearestBush;
-    }
-
-    /**
-     * This method locates the nearest tree object relative to the current actor's position.
-     * The method is only applicable for the Brachiosaur dinosaur and it returns the nearest tree object.
-     * @param actor the current selected actor, always a Brachiosaur.
-     * @param map the current instance of the map
-     * @return the nearest tree object within search radius
-     */
-    public Location getNearestTree(Actor actor, GameMap map){
-        Location location = map.locationOf(actor);
-        Location nearestTree = null;
-        int shortestDistance = 999999;
-        for (int x: map.getXRange()){
-            for (int y: map.getYRange()){
-                Location currentLocation = map.at(x,y);
-                Ground ground = currentLocation.getGround();
-                if (ground instanceof Tree){
-                    int currentDistance = FollowBehaviour.distance(location,currentLocation);
-                    if (currentDistance < shortestDistance){
-                        nearestTree = currentLocation;
-                        shortestDistance = currentDistance;
-                    }
-                }
-            }
-        }
-        return nearestTree;
     }
 
     public Location getNearestLake(Actor actor, GameMap map){
