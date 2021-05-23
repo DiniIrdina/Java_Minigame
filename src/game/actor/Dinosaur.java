@@ -208,6 +208,11 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
 
         }
     }
+
+    /**
+     * Checks if the dinosaur is an adult
+     * @return returns true if dinosaur is an adult
+     */
     public boolean isAdult(){
         boolean result = false;
         if (age >= ADULT_AGE){
@@ -335,7 +340,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     public void increaseHunger(GameMap map){
         Location location = map.locationOf(this);
         if (hitPoints < HUNGRY_LEVEL){
-            System.out.println(this + /*" in " + map_name +*/ " at (" + location.x()+ ","+ location.y()+ ") is hungry!");
+            System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is hungry!");
         }
         hurt(1);
     }

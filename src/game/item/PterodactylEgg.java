@@ -6,6 +6,9 @@ import game.actor.Player;
 import game.actor.Pterodactyl;
 import game.environment.Tree;
 
+/**
+ * Class that represents a PterodactylEgg, an Egg item.
+ */
 public class PterodactylEgg extends Egg{
     public static final int PRICE = 200;
     /**
@@ -15,6 +18,11 @@ public class PterodactylEgg extends Egg{
         super("Pterodactyl");
     }
 
+    /**
+     * Tick updates the current turn of game for the class object
+     * Will spawn the specified dinosaur object once the condition has been fulfilled.
+     * @param location The location of the Ground
+     */
     public void tick(Location location){
         super.tick(location);
         /*
@@ -45,6 +53,10 @@ public class PterodactylEgg extends Egg{
         }
     }
 
+    /**
+     * Returns the price of the object.
+     * @return the price
+     */
     public int getPrice(){
         return PRICE;
     }

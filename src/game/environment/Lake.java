@@ -8,6 +8,10 @@ import game.item.Fish;
 
 import java.util.ArrayList;
 
+/**
+ * Class creation of the Lake object. The lake object will contain instances of fishes as an available food source
+ * within the world.
+ */
 public class Lake extends Ground {
     private ArrayList<Fish> fishPopulation = new ArrayList<>();
     private int sips;
@@ -18,7 +22,7 @@ public class Lake extends Ground {
     final int RAIN_TURN = 10;
     private int currentTurn;
     /**
-     * Constructor.
+     * Overloading constructor of the Lake class. Lake will be represented by the char '~'.
      */
     public Lake() {
         super('~');
@@ -32,10 +36,18 @@ public class Lake extends Ground {
 
     }
 
+    /**
+     * Setter method that reduces the sips.
+     */
     public void reduceSip(){
         sips -= 1;
     }
 
+    /**
+     * If the class allows the actors to pass through.
+     * @param actor the Actor to check
+     * @return boolean
+     */
     @Override
     public boolean canActorEnter(Actor actor) {
         boolean result = false;
@@ -45,14 +57,25 @@ public class Lake extends Ground {
         return result;
     }
 
+    /**
+     * Setter method that increases the sips.
+     */
     public void increaseSip(int moreSip){
         sips += moreSip;
     }
 
+    /**
+     * Getter method that returns the amount of sips.
+     * @return the current amount of sips
+     */
     public int getSips(){
         return sips;
     }
 
+    /**
+     * Tick updates the current turn of game for the class object
+     * @param location The location of the Ground
+     */
     public void tick(Location location){
         currentTurn += 1;
         super.tick(location);
@@ -73,10 +96,18 @@ public class Lake extends Ground {
         }
     }
 
+    /**
+     * Getter method that returns the total amount of fishes within the Lake block.
+     * @return the total amount of fishes.
+     */
     public ArrayList<Fish> getFishPopulation() {
         return fishPopulation;
     }
 
+    /**
+     * Setter method that reduces the total amount of fishes within the Lake block.
+     * @param number the number of fishes to be reduced by.
+     */
     public void reduceFishPopulation(int number){
         for (int i = 0; i < number; i++) {
             fishPopulation.remove(fishPopulation.size() - 1);

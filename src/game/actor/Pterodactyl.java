@@ -12,6 +12,9 @@ import game.item.*;
 
 import static java.util.Objects.isNull;
 
+/**
+ * Class creation for Pterodactyl, a carnivorous dinosaur.
+ */
 public class Pterodactyl extends Dinosaur implements NearestTree {
     static final String SPECIES = "Pterodactyl";
     static final int ADULT_AGE = 20;
@@ -31,6 +34,11 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
     private int flyDuration;
     private boolean onGround;
 
+    /**
+     * First overloaded constructor of the Pterodactyl class. All Pterodactyl have 100 hit points. The baby
+     * Pterodactyl will have 'p' as its display and the adult will have 'P'.
+     * @param age the current age of the Pterodactyl to be created for
+     */
     public Pterodactyl(int age) {
         super(SPECIES, ADULT_PTERODACTYL_DISPLAY, age, MAX_HIT_POINTS,STARTING_HIT_POINTS,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_PTERODACTYL_DISPLAY, BABY_PTERODACTYL_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
@@ -38,6 +46,11 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
         onGround = false;
     }
 
+    /**
+     * Second overloaded constructor of the Pterodactyl class.
+     * @param age the current age of the Pterodactyl to be created for
+     * @param gender the gender of the Pterodactyl to be created for
+     */
     public Pterodactyl(int age, char gender) {
         super(SPECIES, ADULT_PTERODACTYL_DISPLAY, gender,age, MAX_HIT_POINTS,STARTING_HIT_POINTS,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_PTERODACTYL_DISPLAY,BABY_PTERODACTYL_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
@@ -45,6 +58,11 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
         onGround = false;
     }
 
+    /**
+     * Specifies the different types of food the dinosaur can consume.
+     * @param food the type of food
+     * @return true if food is edible by current dinosaur
+     */
     @java.lang.Override
     public boolean canEat(Food food) {
         boolean result = false;
@@ -54,6 +72,10 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
         return result;
     }
 
+    /**
+     * The eating action.
+     * @param food the type of food
+     */
     @java.lang.Override
     public void eatsFood(Food food) {
         if (food instanceof Fish){
@@ -87,11 +109,22 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
 
     }
 
+    /**
+     * The drinking water action executed.
+     */
     @Override
     public void drinksWater() {
         this.thirst += 30;
     }
 
+    /**
+     * Figure out what to do next.
+     *
+     * FIXME: Pterodactyl wanders around at random, or if no suitable MoveActions are available, it
+     * just stands there.  That's boring.
+     *
+     * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+     */
     @java.lang.Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         Action wander = behaviour.getAction(this, map);
@@ -147,24 +180,43 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
         return new DoNothingAction();
     }
 
+    /**
+     * Lays an egg object on the current location of the dinosaur.
+     * @param location the location the dinosaur is current at
+     */
     @Override
     public void LayEgg(Location location) {
         Tree tree = (Tree) location.getGround();
         tree.addEgg();
     }
 
+    /**
+     * Getter method that returns the current Flying duration of the dinosaur.
+     * @return the current flying duration
+     */
     public int getFlyDuration() {
         return flyDuration;
     }
 
+    /**
+     * Setter method that resets the current flying duration of the dinosaur.
+     */
     public void resetFlyDuration() {
         this.flyDuration = 0;
     }
 
+    /**
+     * Checks if the dinosaur is on the ground
+     * @return returns true if dinosaur is on the ground, false otherwise.
+     */
     public boolean isOnGround() {
         return onGround;
     }
 
+    /**
+     * Setter method that sets if the dinosaur is on ground.
+     * @param onGround input true if its on ground, false otherwise
+     */
     public void setOnGround(boolean onGround) {
         this.onGround = onGround;
     }

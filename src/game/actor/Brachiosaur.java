@@ -154,6 +154,9 @@ public class Brachiosaur extends Dinosaur {
         }
     }
 
+    /**
+     * The drinking water action executed.
+     */
     @Override
     public void drinksWater() {
         this.thirst += 80;

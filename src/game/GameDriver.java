@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * The main class for the Jurassic World game.
+ * The main class for the Jurassic World game. This is the main game driver that runs the game.
  *
  */
 public class GameDriver {
@@ -21,6 +21,10 @@ public class GameDriver {
      */
     private static boolean challengeMode = false;
 
+    /**
+     * The main executing method for the game to run.
+     * @param args default args
+     */
     public static void main(String[] args) {
         int choice;
         Scanner scanner = new Scanner(System.in);

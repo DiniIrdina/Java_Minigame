@@ -17,8 +17,15 @@ import game.environment.*;
  *
  */
 public class WorldBuilder {
+	/**
+	 * An arraylist to store all map instances to be accessed from different classes.
+	 */
 	public static ArrayList<GameMap> MAPS = new ArrayList<GameMap>();
 
+	/**
+	 * GenerateMaps is responsible for generating the game map layouts with all the different elements.
+	 * Dinosaurs, players and actors are as well generated here at specified coordinates.
+	 */
 	public void generateMaps(){
 		World world = new World(new Display());
 
