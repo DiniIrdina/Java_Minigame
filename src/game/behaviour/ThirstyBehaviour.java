@@ -5,49 +5,28 @@ import game.action.DrinkAction;
 import game.actor.Dinosaur;
 import game.environment.Lake;
 import game.environment.Tree;
+import game.interfaces.NearestLake;
 
 import java.util.List;
 
-public class ThirstyBehaviour implements Behaviour{
+/**
+ * A behaviour class that is called when a Dinosaur gets thirsty. It will search the entire map and get the nearest lake
+ * location to the actor.
+ */
+public class ThirstyBehaviour implements Behaviour, NearestLake{
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Location location = map.locationOf(actor);
-        Location nearestLake = getNearestLake(actor,map);
-        if (nearestLake != null){
+        Location nearLake = NearestLake.getNearestLake(actor,map);
+        if (nearLake != null){
             List<Exit> exitList = map.locationOf(actor).getExits();
-            if (exitList.contains(nearestLake)){
-                return new DrinkAction(nearestLake);
+            if (exitList.contains(nearLake)){
+                return new DrinkAction(nearLake);
             }else{
-                return WanderBehaviour.moveTo(actor, map,location, nearestLake);
+                return WanderBehaviour.moveTo(actor, map,location, nearLake);
             }
         }
         return null;
     }
-    /**
-     *
-     * This method checks the entire map and returns the location of the nearest lake relative to the actor's location.
-     * @param actor the current actor.
-     * @param map the map the actor is in.
-     * @return location of the nearest lake to the actor
-     */
-    public Location getNearestLake(Actor actor, GameMap map){
-        Location location = map.locationOf(actor);
-        Location nearestLake = null;
-        int shortestDistance =999999;
-        for (int x: map.getXRange()){
-            for (int y: map.getYRange()){
-                Location currentLocation = map.at(x, y);
-                Ground ground = currentLocation.getGround();
-                if (ground instanceof Lake){
-                    int currentDistance = FollowBehaviour.distance(location,currentLocation);
-                    if (currentDistance < shortestDistance){
-                        nearestLake = currentLocation;
-                        shortestDistance = currentDistance;
-                    }
-                }
-            }
-        }
 
-        return nearestLake;
-    }
 }

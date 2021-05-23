@@ -8,18 +8,17 @@ import game.actor.*;
 import game.environment.Bush;
 import game.environment.Lake;
 import game.environment.Tree;
+import game.interfaces.NearestLake;
+import game.interfaces.NearestTree;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.Food;
 import game.item.Fruit;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class HungryBehaviour implements Behaviour{
+public class HungryBehaviour implements Behaviour, NearestTree, NearestLake {
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        ArrayList<Action> actions = new ArrayList<>();
 
         Location location = map.locationOf(actor);
         Ground ground = location.getGround();
@@ -35,7 +34,7 @@ public class HungryBehaviour implements Behaviour{
                 }
             }
             else{
-                Location nearestTree = Tree.getNearestTree(actor,map);
+                Location nearestTree = NearestTree.getNearestTree(actor,map);
                 if (nearestTree!=null){
                     return WanderBehaviour.moveTo(actor,map,location,nearestTree);
                 }
@@ -55,23 +54,29 @@ public class HungryBehaviour implements Behaviour{
         }
 
         if (actor instanceof Pterodactyl){
-            Location nearestLake = getNearestLake(actor, map);
+            Location nearLake = NearestLake.getNearestLake(actor, map);
             Location nearestFoodSource = getNearestFoodSource(actor, map);
             Location chosenSource = null;
+
+            for (Item item : itemsHere){
+                if (item instanceof Food && ((Stegosaur)actor).canEat((Food)item)){
+                    return new HerbivoreEatAction((Food)item);
+                }
+            }
 
             if (ground instanceof Lake){
                 return new CatchFishAction();
             }
 
-            if (nearestLake!=null && nearestFoodSource!=null){
-                if (FollowBehaviour.distance(location,nearestFoodSource) < FollowBehaviour.distance(location, nearestLake)){
+            if (nearLake!=null && nearestFoodSource!=null){
+                if (FollowBehaviour.distance(location,nearestFoodSource) < FollowBehaviour.distance(location, nearLake)){
                     chosenSource = nearestFoodSource;
                 }else{
-                    chosenSource = nearestLake;
+                    chosenSource = nearLake;
                 }
             }
-            else if (nearestLake!=null){
-                chosenSource = nearestLake;
+            else if (nearLake!=null){
+                chosenSource = nearLake;
             }
             else if (nearestFoodSource!=null){
                 chosenSource = nearestFoodSource;
@@ -108,27 +113,6 @@ public class HungryBehaviour implements Behaviour{
             }
         }
         return nearestBush;
-    }
-
-    public Location getNearestLake(Actor actor, GameMap map){
-        Location location = map.locationOf(actor);
-        Location nearestLake = null;
-        int shortestDistance = 999999;
-        for (int x: map.getXRange()){
-            for (int y: map.getYRange()){
-                Location currentLocation = map.at(x,y);
-                Ground ground = currentLocation.getGround();
-                if (ground instanceof Lake){
-                    int currentDistance = FollowBehaviour.distance(location,currentLocation);
-                    if (currentDistance < shortestDistance){
-                        nearestLake = currentLocation;
-                        shortestDistance = currentDistance;
-                    }
-                }
-            }
-        }
-        return nearestLake;
-
     }
 
     /**

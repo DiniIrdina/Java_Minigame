@@ -5,6 +5,7 @@ import game.action.CarnivoreEatAction;
 import game.actor.Pterodactyl;
 import game.environment.Tree;
 
+import game.interfaces.NearestTree;
 import game.item.Food;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Random;
 /**
  * Behaviour class specifically for Pterodactyl as it handles flying, landing on trees.
  */
-public class PterodactylBehaviour implements Behaviour {
+public class PterodactylBehaviour implements Behaviour, NearestTree {
     private Random random = new Random();
 
 
@@ -34,18 +35,18 @@ public class PterodactylBehaviour implements Behaviour {
             }
         }
 
-        Location nearestTree = Tree.getNearestTree(actor, map);
+        Location nearTree = NearestTree.getNearestTree(actor, map);
         if (ground instanceof Tree) {
             ((Pterodactyl) actor).resetFlyDuration();
             ((Pterodactyl) actor).setOnGround(false);
         } else {
             if (flyDuration >= 30) {
                 ((Pterodactyl) actor).setOnGround(true);
-                return WanderBehaviour.moveTo(actor, map, location, nearestTree);
+                return WanderBehaviour.moveTo(actor, map, location, nearTree);
             }
         }
 
-        return WanderBehaviour.moveTo(actor, map, location, nearestTree);
+        return WanderBehaviour.moveTo(actor, map, location, nearTree);
 
     }
 

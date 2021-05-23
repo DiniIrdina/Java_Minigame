@@ -8,10 +8,9 @@ import edu.monash.fit2099.engine.*;
 import game.action.CarnivoreEatAction;
 import game.action.HerbivoreEatAction;
 import game.actor.*;
-import game.behaviour.Behaviour;
 import game.environment.Bush;
-import game.environment.Dirt;
 import game.environment.Tree;
+import game.interfaces.NearestTree;
 import game.item.Food;
 import game.item.Fruit;
 
@@ -21,7 +20,7 @@ import game.item.Fruit;
  * different behaviors dependent on the species of the dinosaur. Behaviours that could be invoked includes
  * BreedingBehaviour, FollowBehaviour and so forth. The movement is automatically generated and is randomized.
  */
-public class WanderBehaviour implements Behaviour {
+public class WanderBehaviour implements Behaviour, NearestTree {
 	
 	private Random random = new Random();
 
@@ -83,10 +82,10 @@ public class WanderBehaviour implements Behaviour {
 			}
 		}
 
-		Location nearestTree = Tree.getNearestTree(actor,map);
-			if (nearestTree!=null && !(actor instanceof Allosaur)){
-				if (exitList.contains(nearestTree)){
-					return moveTo(actor,map,location,nearestTree);
+		Location nearTree = NearestTree.getNearestTree(actor,map);
+			if (nearTree!=null && !(actor instanceof Allosaur)){
+				if (exitList.contains(nearTree)){
+					return moveTo(actor,map,location,nearTree);
 				}
 			}
 

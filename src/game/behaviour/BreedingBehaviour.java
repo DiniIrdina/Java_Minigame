@@ -6,6 +6,7 @@ import game.actor.Dinosaur;
 import game.actor.Player;
 import game.actor.Pterodactyl;
 import game.environment.Tree;
+import game.interfaces.NearestTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  * mates within the map instance. Once found, they will move over to the selected
  * partner and initiate the breeding action.
  */
-public class BreedingBehaviour implements Behaviour {
+public class BreedingBehaviour implements Behaviour, NearestTree {
     /**
      * This behaviour allows the dinosaurs of the same species to find a partner to breed with.
      * @param actor the Actor enacting the behaviour
@@ -44,7 +45,7 @@ public class BreedingBehaviour implements Behaviour {
             }
 
             Location mateLocation = map.locationOf(mate);
-            Location nearestTree = Tree.getNearestTree(mate,map);
+            Location nearestTree = NearestTree.getNearestTree(mate,map);
             Ground mateGround = mateLocation.getGround();
              if (actor instanceof Pterodactyl && shortestDistance == 1) {  //breeding for Pterodactyl only
                  if (mateGround instanceof Tree && ground instanceof Tree) {
