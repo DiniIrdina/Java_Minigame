@@ -10,6 +10,7 @@ import game.action.HerbivoreEatAction;
 import game.actor.*;
 import game.environment.Bush;
 import game.environment.Tree;
+import game.interfaces.NearestBush;
 import game.interfaces.NearestTree;
 import game.item.Food;
 import game.item.Fruit;
@@ -20,7 +21,7 @@ import game.item.Fruit;
  * different behaviors dependent on the species of the dinosaur. Behaviours that could be invoked includes
  * BreedingBehaviour, FollowBehaviour and so forth. The movement is automatically generated and is randomized.
  */
-public class WanderBehaviour implements Behaviour, NearestTree {
+public class WanderBehaviour implements Behaviour, NearestTree, NearestBush {
 	
 	private Random random = new Random();
 
@@ -75,7 +76,7 @@ public class WanderBehaviour implements Behaviour, NearestTree {
 
 
 		List<Exit> exitList = map.locationOf(actor).getExits();
-		Location nearestBush = getNearestBush(actor,map);
+		Location nearestBush = NearestBush.getNearestBush(actor,map);
 		if (nearestBush != null && actor instanceof Stegosaur){
 			if (exitList.contains(nearestBush)){
 				return moveTo(actor,map,location,nearestBush);

@@ -16,7 +16,9 @@ public class Bush extends Ground {
      */
     private ArrayList<Fruit> fruits = new ArrayList<>();
     private int currentTurn;
-    private double RAIN_PROBABILITY = 0.2;
+    private final double RAIN_PROBABILITY = 0.2;
+    private final double FRUIT_GROWTH_PROBABILITY = 0.1;
+    private final int RAIN_TURN = 10;
     private boolean isRaining;
     /**
      * Overloading constructor of the Bush class. Bush will be represented by the char 'w'.
@@ -40,14 +42,14 @@ public class Bush extends Ground {
      */
     public void tick(Location location){
         super.tick(location);
-        double fruitPossibility = 0.1;
+
         currentTurn++;
         double possibility = Math.random();
-        if (possibility<=fruitPossibility && fruits.size() <= 5){
+        if (possibility<= FRUIT_GROWTH_PROBABILITY && fruits.size() <= 5){
             fruits.add(new Fruit());
         }
 
-        if (currentTurn%10 == 0){
+        if (currentTurn%RAIN_TURN == 0){
             double rainChance = Math.random();
             if (rainChance <= RAIN_PROBABILITY){
                 isRaining = true;

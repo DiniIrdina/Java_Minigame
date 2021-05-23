@@ -14,24 +14,80 @@ import static game.WorldBuilder.MAPS;
  * Abstract class creation of Dinosaur. Used as the template for all relation types of dinosaurs
  */
 public abstract class Dinosaur extends Actor implements NeedsPlayer {
+    /**
+     * The threshold that indicates when the dinosaur is hungry.
+     */
     final int HUNGRY_LEVEL;
+    /**
+     *
+     */
     protected Behaviour behaviour;
     protected Actions actions;
+    /**
+     * String that represents the dinosaur's species. Currently, there are 4 options: "Stegosaur", "Brachiosaur",
+     * "Allosaur", and "Pterodactyl".
+     */
     final String SPECIES;
+    /**
+     * The dinosaur's current age.
+     */
     int age;
+    /**
+     * The maximum duration of the dinosaur's pregnancy before it lays its egg.
+     */
     final int PREGNANT_LENGTH;
+    /**
+     * The age threshold for when a dinosaur becomes an adult.
+     */
     final int ADULT_AGE;
+    /**
+     * The display character for an adult dinosaur.
+     */
     final char ADULT_DISPLAY;
+    /**
+     * The display character for a baby dinosaur.
+     */
     final char BABY_DISPLAY;
+    /**
+     * Character that represents the dinosaur's gender, 'F' for female and 'M' for male.
+     */
     char gender;
+    /**
+     * Boolean that indicates if the dinosaur is currently pregnant.
+     */
     boolean isPregnant;
+    /**
+     * The minimum amount of hit points the dinosaur requires in order to start breeding.
+     */
     final int BREEDING_LEVEL;
+    /**
+     * The maximum threshold for turns before the dinosaur dies.
+     */
     final int UNCONSCIOUS_LIMIT;
+    /**
+     * Integer to keep track of hor many turns the dinosaur has been pregnant. Once a certain threshold is reached,
+     * it will lay its egg.
+     */
     int pregnancyCounter;
+    /**
+     * The number of turns a dinosaur remains unconscious. Once it reaches a certain threshold, it will die.
+     */
     int deathTimer;
+    /**
+     * The maximum water capacity of the dinosaur.
+     */
     final int MAX_THIRST;
+    /**
+     * The threshold that indicates when the dinosaur is thirsty.
+     */
     final int THIRSTY_LEVEL;
+    /**
+     * Integer that represents the dinosaur's current thirst level.
+     */
     int thirst;
+    /**
+     * The amount of hit points the corpse provides if another dinosaur were to consume it.
+     */
     final int CORPSE_HEALTH;
 
     /**
@@ -58,7 +114,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         this.maxHitPoints = maxHitPoints;
         this.PREGNANT_LENGTH = pregnant;
         this.ADULT_AGE = adultAge;
-        this.age=age;
+        this.age= age;
         this.ADULT_DISPLAY = adultDisplay;
         this.BREEDING_LEVEL = breed;
         this.UNCONSCIOUS_LIMIT = limit;
@@ -203,21 +259,26 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     }
 
     /**
-     * The generalized turn counter to update age and hungry values.
+     * The generalized turn counter to update age and hungry values. It also sets the dinosaur's behaviour according to
+     * it's current stats. If dinosaur is unconscious due to thirst, it will check every turn to see if the location experiences
+     * rain.
      */
     public void turn(GameMap map){
         Age();
         increaseHunger(map);
+        increaseThirst(map);
         unconsciousPeriod(map);
 
         if(hitPoints >= BREEDING_LEVEL && isAdult() && !isPregnant()){
             setBehaviour(new BreedingBehaviour());
         }else if (isPregnant()){
             setBehaviour(new WanderBehaviour());
-        }else if (thirst <= THIRSTY_LEVEL){
+        }else if (thirst < THIRSTY_LEVEL){
             setBehaviour(new ThirstyBehaviour());
-        }else if (hitPoints <= BREEDING_LEVEL){
+        }else if (hitPoints < BREEDING_LEVEL){
             setBehaviour(new HungryBehaviour());
+        }else{
+            setBehaviour(new WanderBehaviour());
         }
 
         Location location = map.locationOf(this);
@@ -269,15 +330,9 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     }
 
     /**
-     * Reduces the health points of a dinosaur based on a hunger threshold.
+     * Reduces the health points of a dinosaur and returns a message if the dinosaur is hungry.
      */
     public void increaseHunger(GameMap map){
-        /*String map_name = null;
-        for (GameMap i : MAPS){
-            if (i == map){
-                map_name = i.toString();
-            }
-        }*/
         Location location = map.locationOf(this);
         if (hitPoints < HUNGRY_LEVEL){
             System.out.println(this + /*" in " + map_name +*/ " at (" + location.x()+ ","+ location.y()+ ") is hungry!");
@@ -285,8 +340,13 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         hurt(1);
     }
 
+    /**
+     * Reduces the thirst points of a dinosaur and returns a message if the dinosaur is thirsty.
+     * @param map
+     */
     public void increaseThirst(GameMap map){
         Location location = map.locationOf(this);
+        thirst--;
         if (thirst < THIRSTY_LEVEL){
             System.out.println(this +" at (" + location.x()+ ","+ location.y()+ ") is thirsty!");
         }
@@ -327,11 +387,14 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
     }
 
     /**
-     * The eating action.
+     * The eating action that increases hit points accordingly.
      * @param food the type of food
      */
     public abstract void eatsFood(Food food);
 
+    /**
+     * The drinking action that increases thirst points accordingly.
+     */
     public abstract void drinksWater();
 
     /**
@@ -342,15 +405,11 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
         return this.hitPoints;
     }
 
+    /**
+     * Method that allows the dinosaur to lay its egg at a specific location.
+     * @param location the location to lay the egg
+     */
     public abstract void LayEgg(Location location);
-
-    public boolean isHungry(){
-        if (hitPoints < BREEDING_LEVEL){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
 
 }

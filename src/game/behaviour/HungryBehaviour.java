@@ -59,7 +59,7 @@ public class HungryBehaviour implements Behaviour, NearestTree, NearestLake {
             Location chosenSource = null;
 
             for (Item item : itemsHere){
-                if (item instanceof Food && ((Stegosaur)actor).canEat((Food)item)){
+                if (item instanceof Food && ((Pterodactyl)actor).canEat((Food)item)){
                     return new HerbivoreEatAction((Food)item);
                 }
             }

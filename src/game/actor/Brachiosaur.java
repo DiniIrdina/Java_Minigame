@@ -29,6 +29,7 @@ public class Brachiosaur extends Dinosaur {
     static final int STARTING_THIRST = 120;
     static final int THIRSTY_LEVEL = 80;
     static final int CORPSE_HEALTH = 100;
+    static final int STARTING_HIT_POINTS = 100;
 
     /**
      * First overloaded constructor of the Brachiosaur class. All Brachiosaur have 160 hit points. The baby
@@ -36,7 +37,7 @@ public class Brachiosaur extends Dinosaur {
      * @param age the current age of the Brachiosaur to be created for
      */
     public Brachiosaur(int age) {
-        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, age, MAX_HIT_POINTS,STARTING_HIT_POINTS,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_BRACHIOSAUR_DISPLAY, BABY_BRACHIOSAUR_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
 
     }
@@ -47,7 +48,7 @@ public class Brachiosaur extends Dinosaur {
      * @param gender the gender of the Brachiosaur to be created for
      */
     public Brachiosaur(int age, char gender) {
-        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY,
+        super(SPECIES, ADULT_BRACHIOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,STARTING_HIT_POINTS,PREGNANT_LENGTH, ADULT_AGE,ADULT_BRACHIOSAUR_DISPLAY,
                 BABY_BRACHIOSAUR_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
 
     }

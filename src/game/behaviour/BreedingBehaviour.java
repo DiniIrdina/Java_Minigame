@@ -2,11 +2,14 @@ package game.behaviour;
 
 import edu.monash.fit2099.engine.*;
 import game.action.BreedingAction;
+import game.action.HerbivoreEatAction;
 import game.actor.Dinosaur;
 import game.actor.Player;
 import game.actor.Pterodactyl;
+import game.actor.Stegosaur;
 import game.environment.Tree;
 import game.interfaces.NearestTree;
+import game.item.Food;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,14 @@ public class BreedingBehaviour implements Behaviour, NearestTree {
         Location actorLocation = map.locationOf(actor);
         Ground ground = actorLocation.getGround();
         ArrayList<Dinosaur> potentialMates = getMates((Dinosaur) actor, map);
+        List<Item> itemsHere = actorLocation.getItems();
+
+        for (Item item : itemsHere){
+            if (item instanceof Food && ((Stegosaur)actor).canEat((Food)item)){
+                return new HerbivoreEatAction((Food)item);
+            }
+        }
+
 
         if (potentialMates.isEmpty()) {
             return (((Dinosaur) actor).getWanderBehaviour().getAction(actor, map));

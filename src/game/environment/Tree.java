@@ -18,9 +18,13 @@ import java.util.ArrayList;
  */
 public class Tree extends Ground {
 	private int age = 0;
-	final double RAIN_PROBABILITY = 0.2;
+	private final double RAIN_PROBABILITY = 0.2;
+	private final double FRUIT_GROWTH_PROBABILITY = 0.5;
+	private final double FRUIT_DROP_PROBABILITY = 0.05;
+	private final int MAX_FRUITS = 10;
 	private boolean isRaining;
 	private boolean occupied;
+	private final int RAIN_TURN = 10;
 	private Egg egg;
 
 	/**
@@ -84,20 +88,20 @@ public class Tree extends Ground {
 			displayChar = 'T';
 
 		double fruitChance = Math.random();
-		if (fruitChance >= 0.5 && fruits.size() <= 10){
+		if (fruitChance >= FRUIT_GROWTH_PROBABILITY && fruits.size() <= MAX_FRUITS){
 			Fruit fruit = new Fruit();
 			fruits.add(fruit);
 			Player.updateEcoPoints(1);
 		}
 
 		double fruitDropChance = Math.random();
-		if (fruitDropChance <= 0.05 && !fruits.isEmpty()){
+		if (fruitDropChance <= FRUIT_DROP_PROBABILITY && !fruits.isEmpty()){
 			fruits.remove(fruits.size()-1);
 			Fruit fruit = new Fruit();
 			location.addItem(fruit);
 		}
 
-		if (age%10 == 0){
+		if (age%RAIN_TURN == 0){
 			double rainChance = Math.random();
 			if (rainChance <= RAIN_PROBABILITY){
 				isRaining = true;

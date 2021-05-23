@@ -28,6 +28,7 @@ public class Stegosaur extends Dinosaur {
 	static final int STARTING_THIRST = 60;
 	static final int THIRSTY_LEVEL = 40;
 	static final int CORPSE_HEALTH = 50;
+	static final int STARTING_HIT_POINTS = 50;
 
 	/**
 	 * First overloaded constructor of the Stegosaur class. All Stegosaurs have 100 hit points. The baby
@@ -35,7 +36,7 @@ public class Stegosaur extends Dinosaur {
 	 * @param age the current age of the Stegosaur to be created for
 	 */
 	public Stegosaur(int age) {
-		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
+		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, age, MAX_HIT_POINTS,STARTING_HIT_POINTS,PREGNANT_LENGTH, ADULT_AGE,
 				ADULT_STEGOSAUR_DISPLAY, BABY_STEGOSAUR_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
 
 	}

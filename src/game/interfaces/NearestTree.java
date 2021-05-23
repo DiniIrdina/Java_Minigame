@@ -9,13 +9,13 @@ import game.environment.Tree;
 
 public interface NearestTree {
     /**
-     * This method locates the nearest tree object relative to the current actor's position.
+     * This method locates the nearest tree object relative to the current actor's position and returns its location.
      *
      * @param actor the current selected actor
      * @param map   the map the actor is in
      * @return the nearest tree object within search radius
      */
-    public static Location getNearestTree(Actor actor, GameMap map) {
+    static Location getNearestTree(Actor actor, GameMap map) {
         Location location = map.locationOf(actor);
         Location nearestTree = null;
         int shortestDistance = 999999;
@@ -25,7 +25,7 @@ public interface NearestTree {
                 Ground ground = currentLocation.getGround();
                 if (ground instanceof Tree) {
                     int currentDistance = FollowBehaviour.distance(location, currentLocation);
-                    if (currentDistance < shortestDistance) {
+                    if (currentDistance < shortestDistance && currentDistance != 0) {
                         nearestTree = currentLocation;
                         shortestDistance = currentDistance;
                     }

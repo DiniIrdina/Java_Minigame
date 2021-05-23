@@ -6,12 +6,13 @@ import game.action.FeedingAction;
 import game.behaviour.PterodactylBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.environment.Tree;
+import game.interfaces.NearestTree;
 import game.interfaces.NeedsPlayer;
 import game.item.*;
 
 import static java.util.Objects.isNull;
 
-public class Pterodactyl extends Dinosaur{
+public class Pterodactyl extends Dinosaur implements NearestTree {
     static final String SPECIES = "Pterodactyl";
     static final int ADULT_AGE = 20;
     static final int MAX_HIT_POINTS=100;
@@ -25,19 +26,20 @@ public class Pterodactyl extends Dinosaur{
     static final int STARTING_THIRST = 60;
     static final int THIRSTY_LEVEL = 40;
     static final int CORPSE_HEALTH = 30;
+    static final int STARTING_HIT_POINTS = 50;
 
     private int flyDuration;
     private boolean onGround;
 
     public Pterodactyl(int age) {
-        super(SPECIES, ADULT_PTERODACTYL_DISPLAY, age, MAX_HIT_POINTS,100,PREGNANT_LENGTH, ADULT_AGE,
+        super(SPECIES, ADULT_PTERODACTYL_DISPLAY, age, MAX_HIT_POINTS,STARTING_HIT_POINTS,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_PTERODACTYL_DISPLAY, BABY_PTERODACTYL_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT,HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
         flyDuration = 0;
         onGround = false;
     }
 
     public Pterodactyl(int age, char gender) {
-        super(SPECIES, ADULT_PTERODACTYL_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
+        super(SPECIES, ADULT_PTERODACTYL_DISPLAY, gender,age, MAX_HIT_POINTS,STARTING_HIT_POINTS,PREGNANT_LENGTH, ADULT_AGE,
                 ADULT_PTERODACTYL_DISPLAY,BABY_PTERODACTYL_DISPLAY, BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
         flyDuration = 0;
         onGround = false;
@@ -118,11 +120,25 @@ public class Pterodactyl extends Dinosaur{
             if (this.pregnancyCounter < 20){
                 pregnancyTurn();
             }
-            else if (this.pregnancyCounter >= 20 && location.getGround() instanceof Tree){
-                this.isPregnant = false;
-                LayEgg(map.locationOf(this));
-                removeEgg();
-                this.pregnancyCounter = 0;
+            else if (this.pregnancyCounter >= 20){
+                Ground ground = location.getGround();
+                if (ground instanceof Tree){
+                    Tree tree = (Tree)ground;
+                    if (!tree.isOccupied()){  //if there is no other egg occupying the tree
+                        this.isPregnant = false;
+                        LayEgg(map.locationOf(this));
+                        tree.addEgg();
+                        removeEgg();
+                        this.pregnancyCounter = 0;
+                    }else{  //if there is, find another tree
+                        Location nearTree = NearestTree.getNearestTree(this, map);
+                        return WanderBehaviour.moveTo(this, map, location, nearTree);
+                    }
+                }else{
+                    Location nearTree = NearestTree.getNearestTree(this, map);
+                    return WanderBehaviour.moveTo(this, map, location, nearTree);
+                }
+
             }
         }
         if (wander != null)

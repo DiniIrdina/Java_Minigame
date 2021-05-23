@@ -10,9 +10,10 @@ import java.util.List;
  * A class that represents bare dirt.
  */
 public class Dirt extends Ground {
-	final double DEFAULT_BUSH_CHANCE = 	0.001;
-	final double TWO_BUSH_CHANCE = 0.01;
-	final double RAIN_PROBABILITY = 0.2;
+	private final double DEFAULT_BUSH_CHANCE = 	0.01;
+	private final double TWO_BUSH_CHANCE = 0.01;
+	private final double RAIN_PROBABILITY = 0.2;
+	private final int RAIN_TURN = 10;
 	private int currentTurn;
 	private boolean isRaining;
 
@@ -70,7 +71,7 @@ public class Dirt extends Ground {
 		if (ground instanceof Dirt){
 			growBush(location);
 		}
-		if (currentTurn%10 == 0){
+		if (currentTurn%RAIN_TURN == 0){
 			double rainChance = Math.random();
 			if (rainChance <= RAIN_PROBABILITY){
 				isRaining = true;

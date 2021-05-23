@@ -5,7 +5,7 @@ import game.actor.Player;
 import game.actor.Stegosaur;
 
 /**
- * Class creation for the item StegosaurEgg, an Egg item.
+ * Class that represents a Stegosaur's egg, an Egg item.
  */
 public class StegosaurEgg extends Egg {
     public static final int PRICE = 200;

@@ -15,6 +15,7 @@ public class Lake extends Ground {
     static final double RAIN_PROBABILITY = 0.2;
     static final double RAINFALL_LOW = 0.1;
     static final double RAINFALL_HIGH = 0.6;
+    final int RAIN_TURN = 10;
     private int currentTurn;
     /**
      * Constructor.
@@ -59,7 +60,7 @@ public class Lake extends Ground {
         if (fishProbability <= NEW_FISH_PROBABILITY && fishPopulation.size() < 25){
             fishPopulation.add(new Fish());
         }
-        if (currentTurn%10 == 0){
+        if (currentTurn%RAIN_TURN == 0){
             double rainChance = Math.random();
             if (rainChance <= RAIN_PROBABILITY){
                 double rainfall = Math.random();

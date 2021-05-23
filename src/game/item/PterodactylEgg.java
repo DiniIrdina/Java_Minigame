@@ -1,5 +1,6 @@
 package game.item;
 
+import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.actor.Player;
 import game.actor.Pterodactyl;
@@ -24,16 +25,22 @@ public class PterodactylEgg extends Egg{
         on top of a tree.
         (Java says the class for placing the egg is dinosaur class related, you can test it if you're curious!)
          */
-        if (!(location.getGround() instanceof Tree)){
-            age--;
-            System.out.println("Pterodactyl can't be born on ground.");
-        }
+//        if (!(location.getGround() instanceof Tree)){
+//            age--;
+//            System.out.println("Pterodactyl can't be born on ground.");
+//        }
 
         if (age == 20){
             Pterodactyl babyDino = new Pterodactyl(0);
             location.addActor(babyDino);
-            Tree tree = (Tree)location.getGround();
-            tree.removeEgg();
+            Ground ground = location.getGround();
+            if (ground instanceof Tree){
+                Tree tree = ((Tree)ground);
+                tree.removeEgg();
+            }else{
+                location.removeItem(this);
+            }
+
             Player.updateEcoPoints(100);
         }
     }
