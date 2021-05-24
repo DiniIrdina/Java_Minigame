@@ -62,19 +62,22 @@ public class GameDriver {
      */
     public static void challengeSettings(){
         Scanner scanner = new Scanner(System.in);
-        System.out.printf(
-                        "You have selected challenge! In this game mode you can set the winning conditions for the game.%n" +
-                        "If the determined conditions are not met, you will lose the game!%n" +
-                        "Please tweak the settings for EcoPoints and Number of Moves.%n" +
-                        "Starting from EcoPoints,%n" +
-                        "Please Enter the amount of EcoPoints required to win:  %n");
-        challengeEcoPoints = scanner.nextInt();
-        System.out.printf(
-                        "Great! Your input for EcoPoints win condition is %d%n" +
-                        "Now, %n" + "Please Enter the maximum number of moves required before the game ends:  %n",challengeEcoPoints);
-        challengeTurn = scanner.nextInt();
-        System.out.println("Your input for maximum number of moves is " + challengeTurn);
-
+        try {
+            System.out.printf(
+                    "You have selected challenge! In this game mode you can set the winning conditions for the game.%n" +
+                            "If the determined conditions are not met, you will lose the game!%n" +
+                            "Please tweak the settings for EcoPoints and Number of Moves.%n" +
+                            "Starting from EcoPoints,%n" +
+                            "Please Enter the amount of EcoPoints required to win:  %n");
+            challengeEcoPoints = scanner.nextInt();
+            System.out.printf(
+                    "Great! Your input for EcoPoints win condition is %d%n" +
+                            "Now, %n" + "Please Enter the maximum number of moves required before the game ends:  %n", challengeEcoPoints);
+            challengeTurn = scanner.nextInt();
+            System.out.println("Your input for maximum number of moves is " + challengeTurn);
+        } catch (InputMismatchException e){
+            System.out.println("Incorrect input format, please key in integer values.");
+        }
     }
 
     /**
