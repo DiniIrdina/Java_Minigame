@@ -8,6 +8,7 @@ import game.actor.*;
 import game.environment.Bush;
 import game.environment.Lake;
 import game.environment.Tree;
+import game.interfaces.NearestBush;
 import game.interfaces.NearestLake;
 import game.interfaces.NearestTree;
 import game.item.Corpse;
@@ -16,7 +17,7 @@ import game.item.Food;
 import game.item.Fruit;
 import java.util.List;
 
-public class HungryBehaviour implements Behaviour, NearestTree, NearestLake {
+public class HungryBehaviour implements Behaviour, NearestTree, NearestLake, NearestBush {
     @Override
     public Action getAction(Actor actor, GameMap map) {
 
@@ -47,9 +48,15 @@ public class HungryBehaviour implements Behaviour, NearestTree, NearestLake {
                     return new HerbivoreEatAction((Food)item);
                 }
             }
-            Location nearestBush = getNearestBush(actor, map);
-            if (nearestBush!=null){
-                return WanderBehaviour.moveTo(actor,map,location,nearestBush);
+            if (ground instanceof Bush){
+                if ((((Bush)ground).getFruits().size() > 0)){
+                    ((Bush)ground).removeFruit();
+                    return new HerbivoreEatAction(new Fruit());
+                }
+            }
+            Location nearBush = NearestBush.getNearestBush(actor, map);
+            if (nearBush!=null){
+                return WanderBehaviour.moveTo(actor,map,location,nearBush);
             }
         }
 
@@ -60,7 +67,8 @@ public class HungryBehaviour implements Behaviour, NearestTree, NearestLake {
 
             for (Item item : itemsHere){
                 if (item instanceof Food && ((Pterodactyl)actor).canEat((Food)item)){
-                    return new HerbivoreEatAction((Food)item);
+                    ((Pterodactyl)actor).setOnGround(true);
+                    return new CarnivoreEatAction((Food)item);
                 }
             }
 
@@ -86,33 +94,6 @@ public class HungryBehaviour implements Behaviour, NearestTree, NearestLake {
             }
         }
         return new DoNothingAction();
-    }
-
-    /**
-     * This method locates the nearest bush object relative to the current actor's position.
-     * The method is only applicable for the Stegosaur dinosaur and it returns the nearest bush object.
-     * @param actor the current selected actor, always a Stegosaur.
-     * @param map the current instance of the map
-     * @return the nearest bush object within search radius
-     */
-    public Location getNearestBush(Actor actor, GameMap map){
-        Location location = map.locationOf(actor);
-        Location nearestBush = null;
-        int shortestDistance = 999999;
-        for (int x: map.getXRange()){
-            for (int y: map.getYRange()){
-                Location currentLocation = map.at(x,y);
-                Ground ground = currentLocation.getGround();
-                if (ground instanceof Bush){
-                    int currentDistance = FollowBehaviour.distance(location,currentLocation);
-                    if (currentDistance < shortestDistance){
-                        nearestBush = currentLocation;
-                        shortestDistance = currentDistance;
-                    }
-                }
-            }
-        }
-        return nearestBush;
     }
 
     /**

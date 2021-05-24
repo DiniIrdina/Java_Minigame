@@ -84,8 +84,8 @@ public class BreedingBehaviour implements Behaviour, NearestTree {
 
 
     /**
-     * This method locates the nearest dinosaur of the same species to be mated with. The method will search
-     * the entirety of the map till the mate has been located. Once the location has been found, it is added to
+     * This method locates the nearest dinosaurs of the same species to be mated with. The method will search
+     * the entirety of the map till the mate has been located. Once the location has been found, the dinosaur added to
      * an array list to be returned.
      * @param dino  the dinosaur that's looking to mate
      * @param map   the current instance of the map

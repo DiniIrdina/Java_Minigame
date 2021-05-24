@@ -29,6 +29,10 @@ public class Bush extends Ground {
         currentTurn = 1;
     }
 
+    public ArrayList<Fruit> getFruits() {
+        return fruits;
+    }
+
     /**
      * Removes the fruit from the array list
      */

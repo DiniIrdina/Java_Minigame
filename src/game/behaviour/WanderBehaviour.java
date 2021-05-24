@@ -40,6 +40,7 @@ public class WanderBehaviour implements Behaviour, NearestTree, NearestBush {
 		ArrayList<Action> actions = new ArrayList<>();
 
 		Location location = map.locationOf(actor);
+		Ground ground = location.getGround();
 		List<Item> itemsHere = location.getItems();
 
 		if (!actor.isConscious()){
@@ -58,11 +59,23 @@ public class WanderBehaviour implements Behaviour, NearestTree, NearestBush {
 						if (((Dinosaur)actor).canEat((Food)item)){
 							return new CarnivoreEatAction((Food)item);
 						}
+					}else if(actor instanceof Pterodactyl){
+						if (((Dinosaur)actor).canEat((Food)item)){
+							((Pterodactyl)actor).setOnGround(true);
+							return new CarnivoreEatAction((Food)item);
+						}
 					}
 					}
 				}
 			}
-		Ground ground = location.getGround();
+
+		if (ground instanceof Bush && actor instanceof Stegosaur){
+			if ((((Bush)ground).getFruits().size() > 0)){
+				((Bush)ground).removeFruit();
+				return new HerbivoreEatAction(new Fruit());
+			}
+		}
+
 		if (actor instanceof Brachiosaur) {
 			if (ground instanceof Tree) {
 				List<Fruit> fruits = ((Tree) ground).getFruits();
@@ -105,34 +118,6 @@ public class WanderBehaviour implements Behaviour, NearestTree, NearestBush {
 		}
 
 	}
-
-	/**
-	 * This method locates the nearest bush object relative to the current actor's position.
-	 * The method is only applicable for the Stegosaur dinosaur and it returns the nearest bush object.
-	 * @param actor the current selected actor, always a Stegosaur.
-	 * @param map the current instance of the map
-	 * @return the nearest bush object within search radius
-	 */
-	public Location getNearestBush(Actor actor, GameMap map){
-		Location location = map.locationOf(actor);
-		Location nearestBush = null;
-		int shortestDistance = 999999;
-		for (int x: map.getXRange()){
-			for (int y: map.getYRange()){
-				Location currentLocation = map.at(x,y);
-				Ground ground = currentLocation.getGround();
-				if (ground instanceof Bush){
-					int currentDistance = FollowBehaviour.distance(location,currentLocation);
-					if (currentDistance < shortestDistance){
-						nearestBush = currentLocation;
-						shortestDistance = currentDistance;
-					}
-				}
-			}
-		}
-		return nearestBush;
-	}
-
 
 	/**
 	 * The moveTo method executes the movement orders based on the FollowBehaviour.

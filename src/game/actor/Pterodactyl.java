@@ -131,11 +131,15 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
         super.turn(map);
         Location location = map.locationOf(this);
 
-        if (!onGround){
+        if (flyDuration < 30 && onGround){
+            setOnGround(false);
+        }
+
+        if (!onGround & flyDuration < 30){
             flyDuration++;
         }
 
-        if (flyDuration < 5){
+        if (flyDuration >=30){
             setBehaviour(new PterodactylBehaviour());
         }
 
