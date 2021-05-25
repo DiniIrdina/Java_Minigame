@@ -7,6 +7,9 @@ import edu.monash.fit2099.engine.Location;
 import game.behaviour.FollowBehaviour;
 import game.environment.Bush;
 
+/**
+ * Interface used to retrieve the nearest Bush location.
+ */
 public interface NearestBush {
 
 

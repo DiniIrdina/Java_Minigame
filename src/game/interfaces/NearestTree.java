@@ -6,7 +6,9 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.behaviour.FollowBehaviour;
 import game.environment.Tree;
-
+/**
+ * Interface used to retrieve the nearest Tree location.
+ */
 public interface NearestTree {
     /**
      * This method locates the nearest tree object relative to the current actor's position and returns its location.

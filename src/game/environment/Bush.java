@@ -15,10 +15,29 @@ public class Bush extends Ground {
      * Array list to store the fruit objects
      */
     private ArrayList<Fruit> fruits = new ArrayList<>();
+    /**
+     * Counts how many turns has passed.
+     */
     private int currentTurn;
+    /**
+     * The fixed probability of rainfall
+     */
     private final double RAIN_PROBABILITY = 0.2;
+    /**
+     * The fixed probability of a fruit growing
+     */
     private final double FRUIT_GROWTH_PROBABILITY = 0.1;
+    /**
+     * The maximum number of fruits it can contain
+     */
+    private final int MAX_FRUITS = 5;
+    /**
+     * The number of turns for a rainfall to occur
+     */
     private final int RAIN_TURN = 10;
+    /**
+     * Boolean that indicates if it is raining in this turn
+     */
     private boolean isRaining;
     /**
      * Overloading constructor of the Bush class. Bush will be represented by the char 'w'.
@@ -50,7 +69,7 @@ public class Bush extends Ground {
 
         currentTurn++;
         double possibility = Math.random();
-        if (possibility<= FRUIT_GROWTH_PROBABILITY && fruits.size() <= 5){
+        if (possibility<= FRUIT_GROWTH_PROBABILITY && fruits.size() <= MAX_FRUITS){
             fruits.add(new Fruit());
         }
 

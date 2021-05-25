@@ -6,7 +6,9 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.behaviour.FollowBehaviour;
 import game.environment.Lake;
-
+/**
+ * Interface used to retrieve the nearest Lake location.
+ */
 public interface NearestLake {
     /**
      *

@@ -16,19 +16,61 @@ import static java.util.Objects.isNull;
  * Class creation for Brachiosaur, a herbivorous dinosaur.
  */
 public class Brachiosaur extends Dinosaur {
+    /**
+     * String that represents the dinosaur's species.
+     */
     static final String SPECIES = "Brachiosaur";
+    /**
+     * The age threshold that indicates the adult age for the dinosaur.
+     */
     static final int ADULT_AGE = 50;
+    /**
+     * The maximum hit points for the dinosaur.
+     */
     static final int MAX_HIT_POINTS=160;
+    /**
+     * The hit points threshold that indicates if the dinosaur is hungry.
+     */
     static final int HUNGRY_LEVEL = 140;
+    /**
+     * The duration of the dinosaur's pregnancy. It is the maximum number of turns before the dinosaur lays its egg.
+     */
     static final int PREGNANT_LENGTH = 30;
+    /**
+     * The display character for a baby dinosaur.
+     */
     static final char BABY_BRACHIOSAUR_DISPLAY = 'b';
+    /**
+     * The display character for an adult dinosaur.
+     */
     static final char ADULT_BRACHIOSAUR_DISPLAY = 'B';
+    /**
+     * The minimum hit points required for a dinosaur to breed.
+     */
     static final int BREEDING_LEVEL =70;
+    /**
+     * The number of turns a dinosaur can remain unconscious before it dies.
+     */
     static final int UNCONSCIOUS_LIMIT =15;
+    /**
+     * The maximum thirst level for a dinosaur.
+     */
     static final int MAX_THIRST = 200;
+    /**
+     * The starting values for the thirst level. Used when spawning a dinosaur.
+     */
     static final int STARTING_THIRST = 120;
+    /**
+     * The thirst level threshold that indicates if a dinosaur is thirsty.
+     */
     static final int THIRSTY_LEVEL = 80;
+    /**
+     * The amount of hit points the dinosaur's corpse provides when it dies.
+     */
     static final int CORPSE_HEALTH = 100;
+    /**
+     * The starting values for the hit points. Used when spawning a dinosaur.
+     */
     static final int STARTING_HIT_POINTS = 100;
 
     /**

@@ -19,7 +19,13 @@ public class FeedingAction extends Action {
      * The target of the dinosaur to be interacted with.
      */
     protected Dinosaur target;
+    /**
+     * The chosen food to feed the dinosaur.
+     */
     protected Food food;
+    /**
+     * The amount of hit points the food can restore.
+     */
     protected int foodPoints;
 
     /**

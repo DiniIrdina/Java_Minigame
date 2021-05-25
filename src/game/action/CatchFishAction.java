@@ -17,6 +17,15 @@ import game.item.Fish;
  */
 public class CatchFishAction extends Action {
     private int numberOfFish = 0;
+
+    /**
+     * This action class will check if the lake has fishes for the dinosaur to catch, and uses a random number generator
+     * to decide the number of fishes it will catch. By default, the dinosaur will also replenish its thirst levels if
+     * there are available sips.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a descriptive string
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Location location = map.locationOf(actor);
@@ -48,7 +57,11 @@ public class CatchFishAction extends Action {
         }
         return menuDescription(actor);
     }
-
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return the text we put on the menu
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " ate " + numberOfFish + " fish!";

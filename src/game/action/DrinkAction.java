@@ -39,7 +39,11 @@ public class DrinkAction extends Action {
             return menuDescription(actor);
         }
     }
-
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return the text we put on the menu
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor +" drank water!";

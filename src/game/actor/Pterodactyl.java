@@ -16,19 +16,61 @@ import static java.util.Objects.isNull;
  * Class creation for Pterodactyl, a carnivorous dinosaur.
  */
 public class Pterodactyl extends Dinosaur implements NearestTree {
+    /**
+     * String that represents the dinosaur's species.
+     */
     static final String SPECIES = "Pterodactyl";
+    /**
+     * The age threshold that indicates the adult age for the dinosaur.
+     */
     static final int ADULT_AGE = 20;
+    /**
+     * The maximum hit points for the dinosaur.
+     */
     static final int MAX_HIT_POINTS=100;
+    /**
+     * The hit points threshold that indicates if the dinosaur is hungry.
+     */
     static final int HUNGRY_LEVEL = 90;
+    /**
+     * The duration of the dinosaur's pregnancy. It is the maximum number of turns before the dinosaur lays its egg.
+     */
     static final int PREGNANT_LENGTH = 10;
+    /**
+     * The display character for a baby dinosaur.
+     */
     static final char BABY_PTERODACTYL_DISPLAY = 'p';
+    /**
+     * The display character for an adult dinosaur.
+     */
     static final char ADULT_PTERODACTYL_DISPLAY = 'P';
+    /**
+     * The minimum hit points required for a dinosaur to breed.
+     */
     static final int BREEDING_LEVEL =50;
+    /**
+     * The number of turns a dinosaur can remain unconscious before it dies.
+     */
     static final int UNCONSCIOUS_LIMIT =20;
+    /**
+     * The maximum thirst level for a dinosaur.
+     */
     static final int MAX_THIRST = 100;
+    /**
+     * The starting values for the thirst level. Used when spawning a dinosaur.
+     */
     static final int STARTING_THIRST = 60;
+    /**
+     * The thirst level threshold that indicates if a dinosaur is thirsty.
+     */
     static final int THIRSTY_LEVEL = 40;
+    /**
+     * The amount of hit points the dinosaur's corpse provides when it dies.
+     */
     static final int CORPSE_HEALTH = 30;
+    /**
+     * The starting values for the hit points. Used when spawning a dinosaur.
+     */
     static final int STARTING_HIT_POINTS = 50;
 
     private int flyDuration;

@@ -13,12 +13,33 @@ import game.item.StegosaurEgg;
  * an Egg will be added to the female dinosaur's inventory.
  */
 public class BreedingAction extends Action {
+    /**
+     * The Dinosaur actor to mate with.
+     */
     private Dinosaur target;
+    /**
+     * String that represents the Stegosaur species.
+     */
     private String stegosaur = "Stegosaur";
+    /**
+     * String that represents the Brachiosaur species.
+     */
     private String brachiosaur = "Brachiosaur";
+    /**
+     * String that represents the Allosaur species.
+     */
     private String allosaur = "Allosaur";
+    /**
+     * String that represents the Pterodactyl species.
+     */
     private String pterodactyl = "Pterodactyl";
+    /**
+     * Character that represents the male gender.
+     */
     private Character male = 'M';
+    /**
+     * Character that represents the female gender.
+     */
     private Character female = 'F';
 
     /**
@@ -35,7 +56,7 @@ public class BreedingAction extends Action {
      * female's inventory.
      * @param actor The actor executing the action.
      * @param map The map the actor is currently on.
-     * @return    The menudescription of the action, a string.
+     * @return    The menu description of the action, a string.
      */
     @Override
     public String execute(Actor actor, GameMap map) {

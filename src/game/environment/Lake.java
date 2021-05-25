@@ -21,11 +21,23 @@ public class Lake extends Ground {
      * The current number of sips available
      */
     private int sips;
+    /**
+     * The probability of a new fish being born
+     */
     static final double NEW_FISH_PROBABILITY = 0.6;
+    /**
+     * The fixed probability of rainfall
+     */
     static final double RAIN_PROBABILITY = 0.2;
     static final double RAINFALL_LOW = 0.1;
     static final double RAINFALL_HIGH = 0.6;
+    /**
+     * The number of turns for a rainfall to occur
+     */
     final int RAIN_TURN = 10;
+    /**
+     * Counts how many turns has passed.
+     */
     private int currentTurn;
     /**
      * Overloading constructor of the Lake class. Lake will be represented by the char '~'.

@@ -11,6 +11,10 @@ import game.item.Food;
  * Fruits which is an vegetative item.
  */
 public class HerbivoreEatAction extends Action {
+
+    /**
+     * The food to be consumed.
+     */
     private Food food;
 
     /**

@@ -18,9 +18,21 @@ import java.util.ArrayList;
  */
 public class Tree extends Ground {
 	private int age = 0;
+	/**
+	 * The fixed probability of rainfall
+	 */
 	private final double RAIN_PROBABILITY = 0.2;
+	/**
+	 * The fixed probability of a fruit growing
+	 */
 	private final double FRUIT_GROWTH_PROBABILITY = 0.5;
+	/**
+	 * The fixed probability of a fruit dropping from the tree
+	 */
 	private final double FRUIT_DROP_PROBABILITY = 0.05;
+	/**
+	 * The maximum number of fruits it can contain
+	 */
 	private final int MAX_FRUITS = 10;
 	/**
 	 * Boolean that indicates if currently, the location of the tree is experiencing rainfall.
@@ -30,7 +42,13 @@ public class Tree extends Ground {
 	 * Boolean that is set to true if there is an Egg object in the tree. By default, it is set to false.
 	 */
 	private boolean occupied;
+	/**
+	 * The number of turns for a rainfall to occur
+	 */
 	private final int RAIN_TURN = 10;
+	/**
+	 * References an Egg object
+	 */
 	private Egg egg;
 
 	/**

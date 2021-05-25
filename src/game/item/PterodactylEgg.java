@@ -20,7 +20,8 @@ public class PterodactylEgg extends Egg{
 
     /**
      * Tick updates the current turn of game for the class object
-     * Will spawn the specified dinosaur object once the condition has been fulfilled.
+     * Will spawn the specified dinosaur object once the condition has been fulfilled. If the egg is on a tree, it will
+     * be removed and the tree will be set to unoccupied.
      * @param location The location of the Ground
      */
     public void tick(Location location){

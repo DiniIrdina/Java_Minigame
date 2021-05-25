@@ -105,6 +105,15 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param pregnant if the dinosaur is pregnant
      * @param adultAge the age of a fully grown dinosaur
      * @param adultDisplay the display char of the fully grown dinosaur
+     * @param babyDisplay the display char of a baby dinosaur
+     * @param breed the minimum hit points required for the dinosaur to breed
+     * @param limit the number of a turns the dinosaur remains unconscious before it dies
+     * @param hunger the minimum hit points that indicates if the dinosaur is hungry
+     * @param maxThirst the maximum thirst level
+     * @param thirst the current thirst level
+     * @param thirstyLevel the minimum thirst level that indicates if the dinosaur is thirsty
+     * @param corpse_health the hit points provided by the dinosaur's corpse
+     *
      */
     public Dinosaur(String species, char displayChar, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge, char
                     adultDisplay, char babyDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {
@@ -150,6 +159,15 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * @param pregnant if the dinosaur is pregnant
      * @param adultAge the age of a fully grown dinosaur
      * @param adultDisplay the display char of the fully grown dinosaur
+     * @param babyDisplay the display char of a baby dinosaur
+     * @param breed the minimum hit points required for the dinosaur to breed
+     * @param limit the number of a turns the dinosaur remains unconscious before it dies
+     * @param hunger the minimum hit points that indicates if the dinosaur is hungry
+     * @param maxThirst the maximum thirst level
+     * @param thirst the current thirst level
+     * @param thirstyLevel the minimum thirst level that indicates if the dinosaur is thirsty
+     * @param corpse_health the hit points provided by the dinosaur's corpse
+     *
      */
     public Dinosaur(String species, char displayChar,char gender, int age,int maxHitPoints,int hitPoints, int pregnant, int adultAge,
                     char adultDisplay,char babyDisplay, int breed, int limit, int hunger, int maxThirst, int thirst, int thirstyLevel, int corpse_health) {

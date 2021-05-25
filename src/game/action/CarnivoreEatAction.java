@@ -13,6 +13,9 @@ import game.item.Food;
  * machines
  */
 public class CarnivoreEatAction extends Action {
+    /**
+     * The food to be consumed.
+     */
     private Food food;
 
     /**
