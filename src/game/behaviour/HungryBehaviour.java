@@ -25,6 +25,10 @@ public class HungryBehaviour implements Behaviour, NearestTree, NearestLake, Nea
         Ground ground = location.getGround();
         List<Item> itemsHere = location.getItems();
 
+        if (!actor.isConscious()){
+            return new DoNothingAction();
+        }
+
         if (actor instanceof Brachiosaur) {
             if (ground instanceof Tree) {
                 List<Fruit> fruits = ((Tree) ground).getFruits();

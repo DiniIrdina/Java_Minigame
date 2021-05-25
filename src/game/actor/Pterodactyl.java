@@ -128,8 +128,8 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
     @java.lang.Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         Action wander = behaviour.getAction(this, map);
-        super.turn(map);
         Location location = map.locationOf(this);
+        super.turn(map, location);
 
         if (flyDuration < 30 && onGround){
             setOnGround(false);

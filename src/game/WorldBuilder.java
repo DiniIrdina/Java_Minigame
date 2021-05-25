@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.actor.*;
 import game.environment.*;
+import game.item.Corpse;
 
 /**
  * The class that generates the map and all other world instances for the Jurassic World game.
@@ -97,14 +98,15 @@ public class WorldBuilder {
 		world.addPlayer(player, gameMap.at(9, 4));
 		
 		// Place a pair of stegosaurs in the middle of the map
-		gameMap.at(30, 12).addActor(new Stegosaur(18,'F'));
-		gameMap.at(32, 12).addActor(new Stegosaur(25,'M'));
-		gameMap.at(28,20).addActor(new Brachiosaur(50,'F'));
-		gameMap.at(30,15).addActor(new Brachiosaur(50,'M'));
-		gameMap.at(25,23).addActor(new Brachiosaur(50,'F'));
-		gameMap.at(35,2).addActor(new Brachiosaur(50,'M'));
-		gameMap.at(20,10).addActor(new Pterodactyl(30,'M'));
+		gameMap.at(30, 21).addActor(new Stegosaur(18,'F'));
+		//gameMap.at(32, 12).addActor(new Stegosaur(25,'M'));
+		//gameMap.at(28,20).addActor(new Brachiosaur(50,'F'));
+		//gameMap.at(30,15).addActor(new Brachiosaur(50,'M'));
+		//gameMap.at(25,23).addActor(new Brachiosaur(50,'F'));
+		//gameMap.at(35,2).addActor(new Brachiosaur(50,'M'));
+		gameMap.at(31,21).addActor(new Pterodactyl(30,'M'));
 		gameMap.at(18,10).addActor(new Pterodactyl(18,'F'));
+		gameMap.at(32,21).addItem(new Corpse("Stegosaur", gameMap, 50));
 
 		world.run();
 	}

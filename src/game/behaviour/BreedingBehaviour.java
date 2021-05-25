@@ -33,8 +33,10 @@ public class BreedingBehaviour implements Behaviour, NearestTree {
         Location actorLocation = map.locationOf(actor);
         Ground ground = actorLocation.getGround();
         ArrayList<Dinosaur> potentialMates = getMates((Dinosaur) actor, map);
-        List<Item> itemsHere = actorLocation.getItems();
 
+        if (!actor.isConscious()){
+            return new DoNothingAction();
+        }
 
         if (potentialMates.isEmpty()) {
             return (((Dinosaur) actor).getWanderBehaviour().getAction(actor, map));

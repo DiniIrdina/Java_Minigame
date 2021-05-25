@@ -34,6 +34,11 @@ public class AllosaurHungryBehaviour implements Behaviour{
     public Action getAction(Actor actor, GameMap map) {
         Location actorLocation = map.locationOf(actor);
         List<Item> itemsHere = actorLocation.getItems();
+
+        if (!actor.isConscious()){
+            return new DoNothingAction();
+        }
+
         if (!itemsHere.isEmpty()) {
             for (Item item : itemsHere) {
                 if (item instanceof Food){

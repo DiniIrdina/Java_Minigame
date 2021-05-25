@@ -26,6 +26,11 @@ public class PterodactylBehaviour implements Behaviour, NearestTree {
         Location location = map.locationOf(actor);
         Ground ground = location.getGround();
         List<Item> itemsHere = location.getItems();
+
+        if (!actor.isConscious()){
+            return new DoNothingAction();
+        }
+
         for (Item item : itemsHere) {
             if (item instanceof Food) {
                 if (((Pterodactyl) actor).canEat((Food) item)) {

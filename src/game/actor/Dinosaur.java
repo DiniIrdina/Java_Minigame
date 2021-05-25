@@ -268,7 +268,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
      * it's current stats. If dinosaur is unconscious due to thirst, it will check every turn to see if the location experiences
      * rain.
      */
-    public void turn(GameMap map){
+    public void turn(GameMap map, Location location){
         Age();
         increaseHunger(map);
         increaseThirst(map);
@@ -286,7 +286,6 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
             setBehaviour(new WanderBehaviour());
         }
 
-        Location location = map.locationOf(this);
         Ground ground = location.getGround();
         if (!isConscious() && thirst <= 0) {
             if (ground instanceof Tree && ((Tree)ground).isRaining()){
@@ -323,6 +322,7 @@ public abstract class Dinosaur extends Actor implements NeedsPlayer {
 
         if (hitPoints <= 0 || thirst <=0){
             if (!isConscious() && deathTimer < 15){
+                System.out.println("Dinosaur is unconscious");
                 deathTimerUpdate();
             }
             else if (!isConscious() && deathTimer == 15){

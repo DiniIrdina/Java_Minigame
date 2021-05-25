@@ -18,6 +18,11 @@ public class ThirstyBehaviour implements Behaviour, NearestLake{
     public Action getAction(Actor actor, GameMap map) {
         Location location = map.locationOf(actor);
         Location nearLake = NearestLake.getNearestLake(actor,map);
+
+        if (!actor.isConscious()){
+            return new DoNothingAction();
+        }
+
         if (nearLake != null){
             List<Exit> exitList = map.locationOf(actor).getExits();
             if (exitList.contains(nearLake)){

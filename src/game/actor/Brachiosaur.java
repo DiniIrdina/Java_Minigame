@@ -99,7 +99,7 @@ public class Brachiosaur extends Dinosaur {
 
 
         Action wander = behaviour.getAction(this, map);
-        super.turn(map);
+        super.turn(map, location);
         for (Item item: inventory){
             if (item instanceof BrachiosaurEgg){
                 this.isPregnant = true;

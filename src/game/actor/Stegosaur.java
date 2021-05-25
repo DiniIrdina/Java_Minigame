@@ -46,7 +46,7 @@ public class Stegosaur extends Dinosaur {
 	 * @param gender the gender of the Stegosaur to be created for
 	 */
 	public Stegosaur(int age, char gender) {
-		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,50,PREGNANT_LENGTH, ADULT_AGE,
+		super(SPECIES, ADULT_STEGOSAUR_DISPLAY, gender,age, MAX_HIT_POINTS,STARTING_HIT_POINTS,PREGNANT_LENGTH, ADULT_AGE,
 				ADULT_STEGOSAUR_DISPLAY, BABY_STEGOSAUR_DISPLAY,BREEDING_LEVEL, UNCONSCIOUS_LIMIT, HUNGRY_LEVEL, MAX_THIRST, STARTING_THIRST, THIRSTY_LEVEL, CORPSE_HEALTH);
 
 	}
@@ -86,8 +86,8 @@ public class Stegosaur extends Dinosaur {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		Action wander = behaviour.getAction(this, map);
-		super.turn(map);
 		Location location = map.locationOf(this);
+		super.turn(map, location);
 
 
 		for (Item item: inventory){
