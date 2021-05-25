@@ -97,16 +97,21 @@ public class WorldBuilder {
 		Actor player = new Player("Player", '@', 100);
 		world.addPlayer(player, gameMap.at(9, 4));
 		
-		// Place a pair of stegosaurs in the middle of the map
-		gameMap.at(30, 21).addActor(new Stegosaur(18,'F'));
-		//gameMap.at(32, 12).addActor(new Stegosaur(25,'M'));
-		//gameMap.at(28,20).addActor(new Brachiosaur(50,'F'));
-		//gameMap.at(30,15).addActor(new Brachiosaur(50,'M'));
-		//gameMap.at(25,23).addActor(new Brachiosaur(50,'F'));
-		//gameMap.at(35,2).addActor(new Brachiosaur(50,'M'));
-		gameMap.at(31,21).addActor(new Pterodactyl(30,'M'));
+		//Spawning dinosaurs onto map1
+		gameMap.at(30, 12).addActor(new Stegosaur(18,'F'));
+		gameMap.at(32, 12).addActor(new Stegosaur(25,'M'));
+		gameMap.at(28,20).addActor(new Brachiosaur(50,'F'));
+		gameMap.at(30,15).addActor(new Brachiosaur(50,'M'));
+		gameMap.at(23,11).addActor(new Pterodactyl(30,'M'));
 		gameMap.at(18,10).addActor(new Pterodactyl(18,'F'));
-		gameMap.at(32,21).addItem(new Corpse("Stegosaur", gameMap, 50));
+
+		//Spawning dinosaurs onto map2
+		gameMap2.at(73, 8).addActor(new Stegosaur(18,'F'));
+		gameMap2.at(72, 7).addActor(new Stegosaur(25,'M'));
+		gameMap2.at(28,16).addActor(new Brachiosaur(50,'F'));
+		gameMap2.at(30,15).addActor(new Brachiosaur(50,'M'));
+		gameMap2.at(13,4).addActor(new Pterodactyl(30,'M'));
+		gameMap2.at(18,5).addActor(new Pterodactyl(18,'F'));
 
 		world.run();
 	}

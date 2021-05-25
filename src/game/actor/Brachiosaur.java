@@ -122,10 +122,6 @@ public class Brachiosaur extends Dinosaur {
 
     /**
      * Figure out what to do next.
-     *
-     * FIXME: Brachiosaur wanders around at random, or if no suitable MoveActions are available, it
-     * just stands there.  That's boring.
-     *
      * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @Override

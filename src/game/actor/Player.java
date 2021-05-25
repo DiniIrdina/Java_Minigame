@@ -48,7 +48,8 @@ public class Player extends Actor {
 	}
 
 	/**
-	 * Figure out what to do next.
+	 * The method that will be run every turn in order for the player to decide which action to take,
+	 * based on selected inputs.
 	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
 	 */
 	@Override

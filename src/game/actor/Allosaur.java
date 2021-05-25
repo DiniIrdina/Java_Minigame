@@ -154,7 +154,7 @@ public class Allosaur extends Dinosaur {
     }
 
     /**
-     *
+     * The method that will be run every turn in order for the dinosaur to decide which action to take.
      * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @Override

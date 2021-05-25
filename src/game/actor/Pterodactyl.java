@@ -167,11 +167,7 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
     }
 
     /**
-     * Figure out what to do next.
-     *
-     * FIXME: Pterodactyl wanders around at random, or if no suitable MoveActions are available, it
-     * just stands there.  That's boring.
-     *
+     * The method that will be run every turn in order for the dinosaur to decide which action to take.
      * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @java.lang.Override
