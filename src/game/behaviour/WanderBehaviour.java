@@ -19,8 +19,7 @@ import game.item.Fruit;
 /**
  * A class that figures out the default behaviour for all dinosaurs, which is wandering around.
  * The class will utilize the methods associated to call upon and execute all the
- * different behaviors dependent on the species of the dinosaur. Behaviours that could be invoked includes
- * BreedingBehaviour, FollowBehaviour and so forth. The movement is automatically generated and is randomized.
+ * different actions dependent on the species of the dinosaur. The movement is automatically generated and is randomized.
  */
 public class WanderBehaviour implements Behaviour, NearestTree, NearestBush {
 	
@@ -30,7 +29,7 @@ public class WanderBehaviour implements Behaviour, NearestTree, NearestBush {
 	 * Returns a MoveAction to wander to a random location, if possible.  
 	 * If no movement is possible, returns null. It checks the actor's current location to get any food instances
 	 * on the ground. The actor will proceed to eat if suitable. If not, it will check the adjacent area around it for
-	 * food sources.
+	 * food sources and move towards it.
 	 * 
 	 * @param actor the Actor enacting the behaviour
 	 * @param map the map that actor is currently on

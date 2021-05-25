@@ -22,7 +22,13 @@ public class Tree extends Ground {
 	private final double FRUIT_GROWTH_PROBABILITY = 0.5;
 	private final double FRUIT_DROP_PROBABILITY = 0.05;
 	private final int MAX_FRUITS = 10;
+	/**
+	 * Boolean that indicates if currently, the location of the tree is experiencing rainfall.
+	 */
 	private boolean isRaining;
+	/**
+	 * Boolean that is set to true if there is an Egg object in the tree. By default, it is set to false.
+	 */
 	private boolean occupied;
 	private final int RAIN_TURN = 10;
 	private Egg egg;
@@ -40,19 +46,34 @@ public class Tree extends Ground {
 		isRaining = false;
 	}
 
+	/**
+	 * Getter for the occupied attribute.
+	 * @return boolean true if occupied, false if unoccupied.
+	 */
 	public boolean isOccupied() {
 		return occupied;
 	}
 
+	/**
+	 * Setter for the occupied attribute.
+	 * @param occupied
+	 */
 	public void setOccupied(boolean occupied) {
 		this.occupied = occupied;
 	}
 
+	/**
+	 * Adds an Egg object to the tree. This is done by setting the egg attribute in the object to reference a new
+	 * Egg object. Sets occupied to true.
+	 */
 	public void addEgg(){
 		egg = new PterodactylEgg();
 		setOccupied(true);
 	}
 
+	/**
+	 * Removes the Egg from the tree by setting the egg attribute to null, and setting occupied to false.
+	 */
 	public void removeEgg(){
 		egg = null;
 		setOccupied(false);
@@ -67,14 +88,16 @@ public class Tree extends Ground {
 	}
 
 	/**
-	 * Removes the fruit from the array list
+	 * Removes a fruit from the array list
 	 */
 	public void removeFruit(){
 		fruits.remove(fruits.size()-1);
 	}
 
 	/**
-	 * Tick updates the current turn of game for the class object
+	 * Tick updates the current turn of game for the class object. Every turn, there is a chance for a new fruit to grow
+	 * if the tree is not full, and there is a chance for fruit to drop from the tree. Every 10 turns, there is a possibility
+	 * of rainfall.
 	 * @param location The location of the Ground
 	 */
 	@Override

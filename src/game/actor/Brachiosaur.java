@@ -54,7 +54,8 @@ public class Brachiosaur extends Dinosaur {
     }
 
     /**
-     * Lists all the actions that the other actor can perform on the current actor.
+     * Lists all the actions that the other actor can perform on the current actor. In this case, it allows the Player
+     * to feed the dinosaur.
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
@@ -142,7 +143,8 @@ public class Brachiosaur extends Dinosaur {
     }
 
     /**
-     * The eating action.
+     * The eating action. If the food is a Fruit, increase hit points by 5. If the food is a meal kit, increase to max
+     * hit points.
      * @param food the type of food
      */
     @Override
@@ -155,7 +157,7 @@ public class Brachiosaur extends Dinosaur {
     }
 
     /**
-     * The drinking water action executed.
+     * The drinking water action executed. This increases the dinosaur's water levels by 80 points.
      */
     @Override
     public void drinksWater() {

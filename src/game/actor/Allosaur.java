@@ -63,7 +63,8 @@ public class Allosaur extends Dinosaur {
     }
 
     /**
-     * Lists all the actions that the other actor can perform on the current actor.
+     * Lists all the actions that the other actor can perform on the current actor. In this case, it allows the Player
+     * to feed the dinosaur.
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
@@ -87,7 +88,8 @@ public class Allosaur extends Dinosaur {
     }
 
     /**
-     * The eating action.
+     * The eating action. If the food is an Egg, increase hit points by 10, and if it is a Corpse, increase by the corpse's
+     * available hit points. If the food is a meal kit, increase to max hit points.
      * @param food the type of food
      */
     @Override
@@ -96,11 +98,13 @@ public class Allosaur extends Dinosaur {
             heal(10);
         }else if (food instanceof Corpse){
             heal(((Corpse)food).getHealth());
+        }else if (food instanceof CarnivoreMealKit){
+            heal(maxHitPoints-hitPoints);
         }
     }
 
     /**
-     * The drinking water action executed.
+     * The drinking water action executed. This increases the dinosaur's water levels by 30 points.
      */
     @Override
     public void drinksWater() {
@@ -108,10 +112,6 @@ public class Allosaur extends Dinosaur {
     }
 
     /**
-     * Figure out what to do next.
-     *
-     * FIXME: Allosaur wanders around at random, or if no suitable MoveActions are available, it
-     * just stands there.  That's boring.
      *
      * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
      */

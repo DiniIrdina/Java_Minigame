@@ -61,7 +61,8 @@ public class Dirt extends Ground {
 
 
 	/**
-	 * Tick updates the current turn of game for the class object
+	 * Tick updates the current turn of game for the class object. Every turn, there is a chance for a Bush to grow in
+	 * this location. Every 10 turns, there is a possibility of rainfall.
 	 * @param location The location of the Ground
 	 */
 	public void tick(Location location){

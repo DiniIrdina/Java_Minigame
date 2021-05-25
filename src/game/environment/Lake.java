@@ -9,11 +9,17 @@ import game.item.Fish;
 import java.util.ArrayList;
 
 /**
- * Class creation of the Lake object. The lake object will contain instances of fishes as an available food source
- * within the world.
+ * Class creation of the Lake object. The lake object will contain instances of Fish as an available food source
+ * within the world. It will also contain sips for dinosaurs to drink from.
  */
 public class Lake extends Ground {
+    /**
+     * The current fish population in the lake
+     */
     private ArrayList<Fish> fishPopulation = new ArrayList<>();
+    /**
+     * The current number of sips available
+     */
     private int sips;
     static final double NEW_FISH_PROBABILITY = 0.6;
     static final double RAIN_PROBABILITY = 0.2;
@@ -73,7 +79,9 @@ public class Lake extends Ground {
     }
 
     /**
-     * Tick updates the current turn of game for the class object
+     * Tick updates the current turn of game for the class object. Every turn, there is a possibility for a new fish to
+     * be added to the lake if it is not full. In addition, every 10 turns it checks if there is rainfall based
+     * on a probability, and if there is, it will increase the number of sips in the lake.
      * @param location The location of the Ground
      */
     public void tick(Location location){

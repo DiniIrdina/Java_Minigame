@@ -66,27 +66,34 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
     @java.lang.Override
     public boolean canEat(Food food) {
         boolean result = false;
-        if (food instanceof Fish || food instanceof Corpse){
+        if (food instanceof Fish || food instanceof Corpse || food instanceof Egg || food instanceof CarnivoreMealKit){
             result = true;
         }
         return result;
     }
 
     /**
-     * The eating action.
+     * The eating action. If the food is an Egg or a Fish, increase hit points by 5, and if it is a Corpse, increase by
+     * the corpse's available hit points. If the food is a meal kit, increase to max hit points.
      * @param food the type of food
      */
     @java.lang.Override
     public void eatsFood(Food food) {
         if (food instanceof Fish){
             heal(5);
-        }else if (food instanceof Corpse){
+        }else if(food instanceof Egg){
+            heal(5);
+        }
+        else if (food instanceof Corpse){
             heal(10);
+        }else if (food instanceof CarnivoreMealKit){
+            heal(maxHitPoints-hitPoints);
         }
     }
 
     /**
-     * Lists all the actions that the other actor can perform on the current actor.
+     * Lists all the actions that the other actor can perform on the current actor. In this case, it allows the Player
+     * to feed the dinosaur.
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
@@ -110,7 +117,7 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
     }
 
     /**
-     * The drinking water action executed.
+     * The drinking water action executed. This increases the dinosaur's water levels by 30 points.
      */
     @Override
     public void drinksWater() {

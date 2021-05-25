@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Behaviour class specifically for Pterodactyl as it handles flying, landing on trees.
+ * Behaviour class specifically for Pterodactyl as it handles flying, and landing on trees.
  */
 public class PterodactylBehaviour implements Behaviour, NearestTree {
     private Random random = new Random();
@@ -20,6 +20,15 @@ public class PterodactylBehaviour implements Behaviour, NearestTree {
 
     private int flyDuration;
 
+    /**
+     * This behaviour retrieves the Pterodactyl's current flyDuration and checks if it is within the threshold. If it surpasses
+     * it, the dinosaur will land on the ground and search for the nearest tree in order to reset its flyDuration. However,
+     * if the dinosaur is flying and the tile it is on contains a food source, it will land on the ground and return an
+     * Eat Action.
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return the relevant action
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         flyDuration = ((Pterodactyl) actor).getFlyDuration();

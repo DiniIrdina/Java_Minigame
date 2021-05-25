@@ -22,7 +22,10 @@ import java.util.List;
  */
 public class BreedingBehaviour implements Behaviour, NearestTree {
     /**
-     * This behaviour allows the dinosaurs of the same species to find a partner to breed with.
+     * This behaviour allows the dinosaurs of the same species to find a partner to breed with. If the dinosaur is
+     * adjacent to a mate, it will return a BreedingAction. If the mate is out of range, the dinosaur will move towards
+     * the mate. This is the same for all dinosaurs except for the Pterodactyl which has specific conditions (must be on
+     * a tree to breed).
      * @param actor the Actor enacting the behaviour
      * @param map the map that actor is currently on
      * @return either a FollowBehaviour if the mate is not nearby or if the mate is within range, BreedingAction

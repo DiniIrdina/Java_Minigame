@@ -17,8 +17,19 @@ import game.item.Food;
 import game.item.Fruit;
 import java.util.List;
 
+/**
+ * A behaviour class that allows the dinosaur to actively search for a food source. Once it finds the nearest food source
+ * relative to its position, it will start moving towards it.
+ */
 public class HungryBehaviour implements Behaviour, NearestTree, NearestLake, NearestBush {
     @Override
+    /**
+     * This behaviour will return an Eat Action if the dinosaur is already at a food source. If not, then it will search
+     * the entire map for the nearest food source and return a moveTo action to move the dinosaur towards it.
+     * @param actor the current Pterodactyl
+     * @param map the map the actor is currently in
+     * @return the relevant action
+     */
     public Action getAction(Actor actor, GameMap map) {
 
         Location location = map.locationOf(actor);
@@ -80,7 +91,7 @@ public class HungryBehaviour implements Behaviour, NearestTree, NearestLake, Nea
                 return new CatchFishAction();
             }
 
-            if (nearLake!=null && nearestFoodSource!=null){
+            if (nearLake!=null && nearestFoodSource!=null){ //checks if lake is nearer or other food source is nearer
                 if (FollowBehaviour.distance(location,nearestFoodSource) < FollowBehaviour.distance(location, nearLake)){
                     chosenSource = nearestFoodSource;
                 }else{

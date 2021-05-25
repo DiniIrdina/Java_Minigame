@@ -41,7 +41,8 @@ public class Bush extends Ground {
     }
 
     /**
-     * Tick updates the current turn of game for the class object
+     * Tick updates the current turn of game for the class object. Every turn, there is a chance for a new fruit to grow
+     * if the bush is not full. Every 10 turns, there is a possibility for rainfall.
      * @param location The location of the Ground
      */
     public void tick(Location location){
