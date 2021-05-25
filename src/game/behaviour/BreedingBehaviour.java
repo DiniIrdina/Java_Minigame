@@ -35,12 +35,6 @@ public class BreedingBehaviour implements Behaviour, NearestTree {
         ArrayList<Dinosaur> potentialMates = getMates((Dinosaur) actor, map);
         List<Item> itemsHere = actorLocation.getItems();
 
-        for (Item item : itemsHere){
-            if (item instanceof Food && ((Stegosaur)actor).canEat((Food)item)){
-                return new HerbivoreEatAction((Food)item);
-            }
-        }
-
 
         if (potentialMates.isEmpty()) {
             return (((Dinosaur) actor).getWanderBehaviour().getAction(actor, map));

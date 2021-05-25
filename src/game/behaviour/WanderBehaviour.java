@@ -9,6 +9,7 @@ import game.action.CarnivoreEatAction;
 import game.action.HerbivoreEatAction;
 import game.actor.*;
 import game.environment.Bush;
+import game.environment.Dirt;
 import game.environment.Tree;
 import game.interfaces.NearestBush;
 import game.interfaces.NearestTree;
@@ -83,6 +84,12 @@ public class WanderBehaviour implements Behaviour, NearestTree, NearestBush {
 					for (Fruit fruit : fruits) {
 						return new HerbivoreEatAction(fruit);
 					}
+				}
+			}else if (ground instanceof Bush) {
+				double killBushChance = Math.random();
+				if (killBushChance > 0.5) {
+					Dirt dirt = new Dirt();
+					location.setGround(dirt);
 				}
 			}
 		}

@@ -1,11 +1,9 @@
 package game.action;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 import game.actor.Brachiosaur;
 import game.actor.Stegosaur;
+import game.environment.Bush;
 import game.item.Food;
 
 /**
@@ -33,9 +31,12 @@ public class HerbivoreEatAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        Ground ground = map.locationOf(actor).getGround();
         if (actor instanceof Stegosaur){
             ((Stegosaur) actor).eatsFood(this.food);
-            map.locationOf(actor).removeItem(this.food);
+            if (!(ground instanceof Bush)) {
+                map.locationOf(actor).removeItem(this.food);
+            }
         }
         else if (actor instanceof Brachiosaur){
             ((Brachiosaur) actor).eatsFood(this.food);
