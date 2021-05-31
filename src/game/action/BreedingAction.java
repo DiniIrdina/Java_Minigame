@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.GameMap;
 import game.actor.Dinosaur;
 import game.item.AllosaurEgg;
 import game.item.BrachiosaurEgg;
+import game.item.PterodactylEgg;
 import game.item.StegosaurEgg;
 
 /**
@@ -72,6 +73,9 @@ public class BreedingAction extends Action {
                     else if (target.getSpecies().equals(allosaur)){
                         actor.addItemToInventory(new AllosaurEgg());
                     }
+                    else if (target.getSpecies().equals(pterodactyl)){
+                        actor.addItemToInventory(new PterodactylEgg());
+                    }
 
                 }
                 else{
@@ -83,6 +87,9 @@ public class BreedingAction extends Action {
                     }
                     else if (target.getSpecies().equals(allosaur)){
                         target.addItemToInventory(new AllosaurEgg());
+                    }
+                    else if (target.getSpecies().equals(pterodactyl)){
+                        actor.addItemToInventory(new PterodactylEgg());
                     }
                 }
             }

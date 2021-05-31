@@ -30,6 +30,7 @@ public class GameDriver {
         Scanner scanner = new Scanner(System.in);
         try {
             do {
+                challengeMode = false;
                 System.out.printf("Welcome to Jurassic Park Simulator! %n" +
                         "Please select your desired game mode: %n" +
                         "1. Challenge %n" +

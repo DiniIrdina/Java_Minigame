@@ -102,7 +102,7 @@ public class WorldBuilder {
 		gameMap.at(32, 12).addActor(new Stegosaur(25,'M'));
 		gameMap.at(28,20).addActor(new Brachiosaur(50,'F'));
 		gameMap.at(30,15).addActor(new Brachiosaur(50,'M'));
-		gameMap.at(23,11).addActor(new Pterodactyl(30,'M'));
+		gameMap.at(10,11).addActor(new Pterodactyl(30,'M'));
 		gameMap.at(18,10).addActor(new Pterodactyl(18,'F'));
 
 		//Spawning dinosaurs onto map2

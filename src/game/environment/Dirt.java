@@ -10,7 +10,7 @@ import java.util.List;
  * A class that represents bare dirt.
  */
 public class Dirt extends Ground {
-	private final double DEFAULT_BUSH_CHANCE = 	0.01;
+	private final double DEFAULT_BUSH_CHANCE = 	0.001;
 	private final double TWO_BUSH_CHANCE = 0.01;
 	private final double RAIN_PROBABILITY = 0.2;
 	private final int RAIN_TURN = 10;
