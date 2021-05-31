@@ -175,16 +175,16 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
         Action wander = behaviour.getAction(this, map);
         Location location = map.locationOf(this);
         super.turn(map, location);
-
-        if (flyDuration < 30 && onGround){
+        Ground ground = location.getGround();
+        if (ground instanceof Tree) {
+            resetFlyDuration();
             setOnGround(false);
         }
-
-        if (!onGround & flyDuration < 30){
+        if (flyDuration < 30 && onGround){
+            setOnGround(false);
+        } else if (!onGround & flyDuration < 30){
             flyDuration++;
-        }
-
-        if (flyDuration >=30){
+        }else if (flyDuration >=30){
             setBehaviour(new PterodactylBehaviour());
         }
 
@@ -203,7 +203,7 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
                 pregnancyTurn();
             }
             else if (this.pregnancyCounter >= 20){
-                Ground ground = location.getGround();
+
                 if (ground instanceof Tree){
                     Tree tree = (Tree)ground;
                     if (!tree.isOccupied()){  //if there is no other egg occupying the tree
