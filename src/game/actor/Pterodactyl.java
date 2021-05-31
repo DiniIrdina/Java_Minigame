@@ -211,6 +211,7 @@ public class Pterodactyl extends Dinosaur implements NearestTree {
                         LayEgg(map.locationOf(this));
                         tree.addEgg();
                         removeEgg();
+                        location.addItem(new PterodactylEgg());
                         this.pregnancyCounter = 0;
                     }else{  //if there is, find another tree
                         Location nearTree = NearestTree.getNearestTree(this, map);
